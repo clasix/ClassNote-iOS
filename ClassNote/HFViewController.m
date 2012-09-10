@@ -339,6 +339,27 @@
         }
         case NSFetchedResultsChangeMove:
         {
+            HFClass *class = (HFClass *)anObject;
+            
+            NSArray *keys;
+            int i, count;
+            id key, value;
+            
+            keys = [lessonsDictionary allKeys];
+            count = [keys count];
+            for (i = 0; i < count; i++)
+            {
+                key = [keys objectAtIndex: i];
+                value = [lessonsDictionary objectForKey: key];
+                if (class == value) {
+                    [lessonsDictionary removeObjectForKey:key];
+                    break;
+                }
+            }
+            
+            key = [NSNumber numberWithInt:[class.dayinweek intValue] * CLASSES_IN_DAY + [class.start intValue]];
+            
+            [lessonsDictionary setObject:class forKey:key]; 
             break;
         }
         case NSFetchedResultsChangeDelete:
