@@ -7,10 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		85031E7E15FE160900A1A287 /* AddViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85031E7915FE160900A1A287 /* AddViewController.m */; };
+		85031E7F15FE160900A1A287 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85031E7B15FE160900A1A287 /* DetailViewController.m */; };
+		85031E8015FE160900A1A287 /* EditingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85031E7D15FE160900A1A287 /* EditingViewController.m */; };
 		850E375E15FB90AE00EE3F6D /* 1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 850E375815FB90AE00EE3F6D /* 1.jpg */; };
 		850E375F15FB90AE00EE3F6D /* 2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 850E375915FB90AE00EE3F6D /* 2.jpg */; };
 		850E376315FB90AE00EE3F6D /* test6.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 850E375D15FB90AE00EE3F6D /* test6.jpg */; };
 		850E377115FBA1B700EE3F6D /* UIImage+SplitImageIntoTwoParts.m in Sources */ = {isa = PBXBuildFile; fileRef = 850E376F15FBA1B700EE3F6D /* UIImage+SplitImageIntoTwoParts.m */; };
+		851811D515FE370700607412 /* EditingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 851811D415FE370700607412 /* EditingView.xib */; };
 		851B4FED15FCE96A00A98CD8 /* default.png in Resources */ = {isa = PBXBuildFile; fileRef = 851B4FEC15FCE96A00A98CD8 /* default.png */; };
 		851B4FF215FCF25700A98CD8 /* Icon_72.png in Resources */ = {isa = PBXBuildFile; fileRef = 851B4FEE15FCF25700A98CD8 /* Icon_72.png */; };
 		851B4FF315FCF25700A98CD8 /* Icon_Big.png in Resources */ = {isa = PBXBuildFile; fileRef = 851B4FEF15FCF25700A98CD8 /* Icon_Big.png */; };
@@ -52,11 +56,18 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		85031E7815FE160900A1A287 /* AddViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AddViewController.h; path = ClassNote/AddViewController.h; sourceTree = "<group>"; };
+		85031E7915FE160900A1A287 /* AddViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AddViewController.m; path = ClassNote/AddViewController.m; sourceTree = "<group>"; };
+		85031E7A15FE160900A1A287 /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DetailViewController.h; path = ClassNote/DetailViewController.h; sourceTree = "<group>"; };
+		85031E7B15FE160900A1A287 /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DetailViewController.m; path = ClassNote/DetailViewController.m; sourceTree = "<group>"; };
+		85031E7C15FE160900A1A287 /* EditingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EditingViewController.h; path = ClassNote/EditingViewController.h; sourceTree = "<group>"; };
+		85031E7D15FE160900A1A287 /* EditingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EditingViewController.m; path = ClassNote/EditingViewController.m; sourceTree = "<group>"; };
 		850E375815FB90AE00EE3F6D /* 1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 1.jpg; sourceTree = "<group>"; };
 		850E375915FB90AE00EE3F6D /* 2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 2.jpg; sourceTree = "<group>"; };
 		850E375D15FB90AE00EE3F6D /* test6.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = test6.jpg; sourceTree = "<group>"; };
 		850E376E15FBA1B700EE3F6D /* UIImage+SplitImageIntoTwoParts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+SplitImageIntoTwoParts.h"; path = "ClassNote/UIImage+SplitImageIntoTwoParts.h"; sourceTree = "<group>"; };
 		850E376F15FBA1B700EE3F6D /* UIImage+SplitImageIntoTwoParts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+SplitImageIntoTwoParts.m"; path = "ClassNote/UIImage+SplitImageIntoTwoParts.m"; sourceTree = "<group>"; };
+		851811D415FE370700607412 /* EditingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditingView.xib; sourceTree = "<group>"; };
 		851B4FEC15FCE96A00A98CD8 /* default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = default.png; sourceTree = "<group>"; };
 		851B4FEE15FCF25700A98CD8 /* Icon_72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon_72.png; sourceTree = "<group>"; };
 		851B4FEF15FCF25700A98CD8 /* Icon_Big.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon_Big.png; sourceTree = "<group>"; };
@@ -106,10 +117,10 @@
 		85AB0B1E15989F540065020C /* HFClassGridViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HFClassGridViewCell.m; sourceTree = "<group>"; };
 		85E035D715F64FE70009FAB8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		85E035DA15F650180009FAB8 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
-		85E035E415F65EF70009FAB8 /* HFLesson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HFLesson.h; sourceTree = "<group>"; };
-		85E035E515F65EF70009FAB8 /* HFLesson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HFLesson.m; sourceTree = "<group>"; };
-		85E035E715F65F090009FAB8 /* HFClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HFClass.h; sourceTree = "<group>"; };
-		85E035E815F65F090009FAB8 /* HFClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HFClass.m; sourceTree = "<group>"; };
+		85E035E415F65EF70009FAB8 /* HFLesson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HFLesson.h; path = ClassNote/HFLesson.h; sourceTree = "<group>"; };
+		85E035E515F65EF70009FAB8 /* HFLesson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HFLesson.m; path = ClassNote/HFLesson.m; sourceTree = "<group>"; };
+		85E035E715F65F090009FAB8 /* HFClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HFClass.h; path = ClassNote/HFClass.h; sourceTree = "<group>"; };
+		85E035E815F65F090009FAB8 /* HFClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HFClass.m; path = ClassNote/HFClass.m; sourceTree = "<group>"; };
 		85F3568015997CBC000E1B6F /* DTGridViewAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DTGridViewAppDelegate.h; sourceTree = "<group>"; };
 		85F3568215997CCA000E1B6F /* DTGridViewAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTGridViewAppDelegate.m; sourceTree = "<group>"; };
 		85F35684159994D3000E1B6F /* HFClassEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HFClassEditViewController.h; path = ClassNote/HFClassEditViewController.h; sourceTree = "<group>"; };
@@ -135,6 +146,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		85031E8515FE24C800A1A287 /* Model Class */ = {
+			isa = PBXGroup;
+			children = (
+				85E035E715F65F090009FAB8 /* HFClass.h */,
+				85E035E815F65F090009FAB8 /* HFClass.m */,
+				85E035E415F65EF70009FAB8 /* HFLesson.h */,
+				85E035E515F65EF70009FAB8 /* HFLesson.m */,
+			);
+			name = "Model Class";
+			sourceTree = "<group>";
+		};
 		850E375715FB8F1F00EE3F6D /* Guide View Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -150,6 +172,12 @@
 		852EC1DA159C56830018A30E /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				85031E7815FE160900A1A287 /* AddViewController.h */,
+				85031E7915FE160900A1A287 /* AddViewController.m */,
+				85031E7A15FE160900A1A287 /* DetailViewController.h */,
+				85031E7B15FE160900A1A287 /* DetailViewController.m */,
+				85031E7C15FE160900A1A287 /* EditingViewController.h */,
+				85031E7D15FE160900A1A287 /* EditingViewController.m */,
 				85F35684159994D3000E1B6F /* HFClassEditViewController.h */,
 				85F35685159994D3000E1B6F /* HFClassEditViewController.m */,
 				85AB0ABE15988CD60065020C /* HFViewController.h */,
@@ -163,6 +191,7 @@
 		85AB0A9D15988CD50065020C = {
 			isa = PBXGroup;
 			children = (
+				85031E8515FE24C800A1A287 /* Model Class */,
 				85F9109D15FC5DBB00ADB1E9 /* YISplashScreen */,
 				850E375715FB8F1F00EE3F6D /* Guide View Controllers */,
 				852EC1DA159C56830018A30E /* View Controllers */,
@@ -196,6 +225,7 @@
 		85AB0AB215988CD60065020C /* ClassNote */ = {
 			isa = PBXGroup;
 			children = (
+				851811D415FE370700607412 /* EditingView.xib */,
 				85F3568015997CBC000E1B6F /* DTGridViewAppDelegate.h */,
 				85F3568215997CCA000E1B6F /* DTGridViewAppDelegate.m */,
 				85AB0ABB15988CD60065020C /* HFAppDelegate.h */,
@@ -205,10 +235,6 @@
 				85AB0B1B15989C470065020C /* ClassCellView.xib */,
 				85AB0AB315988CD60065020C /* Supporting Files */,
 				852EC1C1159C4AFA0018A30E /* ClassNote.xcdatamodeld */,
-				85E035E715F65F090009FAB8 /* HFClass.h */,
-				85E035E815F65F090009FAB8 /* HFClass.m */,
-				85E035E415F65EF70009FAB8 /* HFLesson.h */,
-				85E035E515F65EF70009FAB8 /* HFLesson.m */,
 			);
 			path = ClassNote;
 			sourceTree = "<group>";
@@ -355,6 +381,7 @@
 				851B4FF315FCF25700A98CD8 /* Icon_Big.png in Resources */,
 				851B4FF415FCF25700A98CD8 /* Icon_Small.png in Resources */,
 				851B4FF515FCF25700A98CD8 /* Icon.png in Resources */,
+				851811D515FE370700607412 /* EditingView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -385,6 +412,9 @@
 				8590DF9715FBB83800A7019F /* GuideViewController.m in Sources */,
 				851B4FFA15FCF3A200A98CD8 /* YISplashScreen.m in Sources */,
 				851B4FFB15FCF3A200A98CD8 /* YISplashScreenAnimation.m in Sources */,
+				85031E7E15FE160900A1A287 /* AddViewController.m in Sources */,
+				85031E7F15FE160900A1A287 /* DetailViewController.m in Sources */,
+				85031E8015FE160900A1A287 /* EditingViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

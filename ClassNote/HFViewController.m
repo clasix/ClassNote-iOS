@@ -9,6 +9,8 @@
 #import "HFViewController.h"
 #import "HFClassEditViewController.h"
 #import "HFClassGridViewCell.h"
+#import "DetailViewController.h"
+#import "AddViewController.h"
 
 @interface HFViewController ()
 
@@ -199,44 +201,53 @@
 }
 
 - (void)addLesson {
-    HFClassEditViewController *vc = [[HFClassEditViewController alloc] initWithNibName:@"HFClassEditView" bundle:nil];
-    vc.title = NSLocalizedString(@"newLesson", @"");
-    vc.delegate = self;
-    if (selectedRow > 0 & selectedColumn > 0) {
-        vc.dayInWeek = selectedColumn - 1;
-        vc.start = selectedRow;
-    }
-    
-    NSManagedObjectContext *addingContext = [[NSManagedObjectContext alloc] init];
+    AddViewController *addViewController = [[AddViewController alloc] initWithStyle:UITableViewStyleGrouped];
+	addViewController.delegate = self;
+	
+	// Create a new managed object context for the new book -- set its persistent store coordinator to the same as that from the fetched results controller's context.
+	NSManagedObjectContext *addingContext = [[NSManagedObjectContext alloc] init];
 	self.addingManagedObjectContext = addingContext;
 	[addingContext release];
+	
+	[addingManagedObjectContext setPersistentStoreCoordinator:[[fetchedResultsController managedObjectContext] persistentStoreCoordinator]];
     
-    [addingManagedObjectContext setPersistentStoreCoordinator:[[fetchedResultsController managedObjectContext] persistentStoreCoordinator]];
+    HFClass *hfClass = (HFClass *)[NSEntityDescription insertNewObjectForEntityForName:@"HFClass" inManagedObjectContext:addingManagedObjectContext];
+    hfClass.lesson = (HFLesson *)[NSEntityDescription insertNewObjectForEntityForName:@"HFLesson" inManagedObjectContext:addingManagedObjectContext];
+    if (selectedRow > 0 & selectedColumn > 0) {
+        hfClass.dayinweek = [NSNumber numberWithInt:selectedColumn - 1];
+        hfClass.start = [NSNumber numberWithInt:selectedRow];
+        // TODO: if the start is 12?
+        if (selectedRow < 12) {
+            hfClass.end = [NSNumber numberWithInt:selectedRow + 1];
+        } else {
+            hfClass.end = [NSNumber numberWithInt:selectedRow];
+        }
+        
+    }
     
-    vc.hfClass = (HFClass *)[NSEntityDescription insertNewObjectForEntityForName:@"HFClass" inManagedObjectContext:addingManagedObjectContext];
-    vc.hfLesson = (HFLesson *)[NSEntityDescription insertNewObjectForEntityForName:@"HFLesson" inManagedObjectContext:addingManagedObjectContext];
+	addViewController.hfClass = hfClass;
+	
+	UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:addViewController];
     
-    [self.navigationController pushViewController:vc animated:YES];
-    [vc release];
+    //[self.navigationController pushViewController:addViewController animated:YES];
+	
+    [self.navigationController presentModalViewController:navController animated:YES];
+	
+	[addViewController release];
+	[navController release];
 }
 
 //The event handling method
 - (void)editLesson:(UITapGestureRecognizer *)recognizer {
-    HFClassEditViewController *vc = [[HFClassEditViewController alloc] initWithNibName:@"HFClassEditView" bundle:nil];
-    vc.title = NSLocalizedString(@"editLesson", @"");
-    if (selectedRow > 0 & selectedColumn > 0) {
-        vc.dayInWeek = selectedColumn - 1;
-        vc.start = selectedRow;
-    }
+    // Create and push a detail view controller.
+	DetailViewController *detailViewController = [[DetailViewController alloc] initWithStyle:UITableViewStyleGrouped];
+    NSNumber * key = [NSNumber numberWithInt:(selectedColumn - 1) * CLASSES_IN_DAY + selectedRow];
+    HFClass * hfClass = [lessonsDictionary objectForKey:key];
     
-    NSNumber * key = [NSNumber numberWithInt:vc.dayInWeek * CLASSES_IN_DAY + vc.start];
-    HFClass * class = [lessonsDictionary objectForKey:key];
-    
-    vc.hfClass = class;
-    vc.hfLesson = class.lesson;
-    
-    [self.navigationController pushViewController:vc animated:YES];
-    [vc release];
+    // Pass the selected book to the new view controller.
+    detailViewController.hfClass = hfClass;
+	[self.navigationController pushViewController:detailViewController animated:YES];
+	[detailViewController release];
 }
 
 - (void)addViewController:(HFClassEditViewController *)controller didFinishWithSave:(BOOL)save {
@@ -259,7 +270,7 @@
     
     self.addingManagedObjectContext = nil;
     
-    //[self dismissModalViewControllerAnimated:YES];
+    [self dismissModalViewControllerAnimated:YES];
 }
 
 - (void)addControllerContextDidSave:(NSNotification*)saveNotification {
@@ -340,9 +351,27 @@
         case NSFetchedResultsChangeUpdate:
         {
             
-//            HFClass *class = (HFClass *)anObject;
-//            NSNumber * key = [NSNumber numberWithInt:[class.dayinweek intValue] * CLASSES_IN_DAY + [class.start intValue]];
-             
+            HFClass *class = (HFClass *)anObject;
+            
+            NSArray *keys;
+            int i, count;
+            id key, value;
+            
+            keys = [lessonsDictionary allKeys];
+            count = [keys count];
+            for (i = 0; i < count; i++)
+            {
+                key = [keys objectAtIndex: i];
+                value = [lessonsDictionary objectForKey: key];
+                if (class == value) {
+                    [lessonsDictionary removeObjectForKey:key];
+                    break;
+                }
+            }
+
+            key = [NSNumber numberWithInt:[class.dayinweek intValue] * CLASSES_IN_DAY + [class.start intValue]];
+            
+            [lessonsDictionary setObject:class forKey:key]; 
             // do nothing.
             break;
         }
