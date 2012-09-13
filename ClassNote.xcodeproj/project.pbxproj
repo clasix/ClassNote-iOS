@@ -47,6 +47,8 @@
 		85E035D615F64FE70009FAB8 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 85E035D815F64FE70009FAB8 /* Localizable.strings */; };
 		85E035E615F65EF70009FAB8 /* HFLesson.m in Sources */ = {isa = PBXBuildFile; fileRef = 85E035E515F65EF70009FAB8 /* HFLesson.m */; };
 		85E035E915F65F090009FAB8 /* HFClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 85E035E815F65F090009FAB8 /* HFClass.m */; };
+		85E6CF9316020C2E00ED65FC /* HFLessonEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85E6CF9116020C2E00ED65FC /* HFLessonEditViewController.m */; };
+		85E6CF9416020C2E00ED65FC /* HFLessonEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85E6CF9216020C2E00ED65FC /* HFLessonEditViewController.xib */; };
 		85F3568315997CCA000E1B6F /* DTGridViewAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 85F3568215997CCA000E1B6F /* DTGridViewAppDelegate.m */; };
 		85F35687159994D4000E1B6F /* HFClassEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85F35685159994D3000E1B6F /* HFClassEditViewController.m */; };
 		85F35688159994D4000E1B6F /* HFClassEditView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85F35686159994D3000E1B6F /* HFClassEditView.xib */; };
@@ -121,6 +123,9 @@
 		85E035E515F65EF70009FAB8 /* HFLesson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HFLesson.m; path = ClassNote/HFLesson.m; sourceTree = "<group>"; };
 		85E035E715F65F090009FAB8 /* HFClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HFClass.h; path = ClassNote/HFClass.h; sourceTree = "<group>"; };
 		85E035E815F65F090009FAB8 /* HFClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HFClass.m; path = ClassNote/HFClass.m; sourceTree = "<group>"; };
+		85E6CF9016020C2E00ED65FC /* HFLessonEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HFLessonEditViewController.h; path = ClassNote/HFLessonEditViewController.h; sourceTree = "<group>"; };
+		85E6CF9116020C2E00ED65FC /* HFLessonEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HFLessonEditViewController.m; path = ClassNote/HFLessonEditViewController.m; sourceTree = "<group>"; };
+		85E6CF9216020C2E00ED65FC /* HFLessonEditViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = HFLessonEditViewController.xib; path = ClassNote/HFLessonEditViewController.xib; sourceTree = "<group>"; };
 		85F3568015997CBC000E1B6F /* DTGridViewAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DTGridViewAppDelegate.h; sourceTree = "<group>"; };
 		85F3568215997CCA000E1B6F /* DTGridViewAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTGridViewAppDelegate.m; sourceTree = "<group>"; };
 		85F35684159994D3000E1B6F /* HFClassEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HFClassEditViewController.h; path = ClassNote/HFClassEditViewController.h; sourceTree = "<group>"; };
@@ -172,6 +177,9 @@
 		852EC1DA159C56830018A30E /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				85E6CF9016020C2E00ED65FC /* HFLessonEditViewController.h */,
+				85E6CF9116020C2E00ED65FC /* HFLessonEditViewController.m */,
+				85E6CF9216020C2E00ED65FC /* HFLessonEditViewController.xib */,
 				85031E7815FE160900A1A287 /* AddViewController.h */,
 				85031E7915FE160900A1A287 /* AddViewController.m */,
 				85031E7A15FE160900A1A287 /* DetailViewController.h */,
@@ -382,6 +390,7 @@
 				851B4FF415FCF25700A98CD8 /* Icon_Small.png in Resources */,
 				851B4FF515FCF25700A98CD8 /* Icon.png in Resources */,
 				851811D515FE370700607412 /* EditingView.xib in Resources */,
+				85E6CF9416020C2E00ED65FC /* HFLessonEditViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -415,6 +424,7 @@
 				85031E7E15FE160900A1A287 /* AddViewController.m in Sources */,
 				85031E7F15FE160900A1A287 /* DetailViewController.m in Sources */,
 				85031E8015FE160900A1A287 /* EditingViewController.m in Sources */,
+				85E6CF9316020C2E00ED65FC /* HFLessonEditViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

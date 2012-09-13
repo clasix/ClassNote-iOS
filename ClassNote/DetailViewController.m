@@ -2,6 +2,7 @@
 #import "HFClass.h"
 #import "HFLesson.h"
 #import "EditingViewController.h"
+#import "HFLessonEditViewController.h"
 
 
 @implementation DetailViewController
@@ -146,42 +147,63 @@
 	
 	if (!self.editing) return;
 	
-    EditingViewController *controller = [[EditingViewController alloc] initWithNibName:@"EditingView" bundle:nil];
-    
-    controller.editedObject = hfClass;
     switch (indexPath.row) {
         case 0: {
-            controller.editedFieldKey = @"lesson";
-            controller.editedFieldName = NSLocalizedString(@"lesson", @"display name for lesson");
-            controller.editingNumber = NO;
+            HFLessonEditViewController *controller = [[HFLessonEditViewController alloc] init];
+            controller.editObject = hfClass;
+            controller.hfLesson = hfClass.lesson;
+            
+            [self.navigationController pushViewController:controller animated:YES];
+            [controller release];
         } break;
         case 1: {
+            EditingViewController *controller = [[EditingViewController alloc] initWithNibName:@"EditingView" bundle:nil];
+            controller.editedObject = hfClass;
+            
             controller.editedFieldKey = @"room";
 			controller.editedFieldName = NSLocalizedString(@"classRoom", @"display name for room");
 			controller.editingNumber = NO;
+            
+            [self.navigationController pushViewController:controller animated:YES];
+            [controller release];
         } break;
         case 2: {
+            EditingViewController *controller = [[EditingViewController alloc] initWithNibName:@"EditingView" bundle:nil];
+            controller.editedObject = hfClass;
+            
             controller.editedFieldKey = @"dayinweek";
 			controller.editedFieldName = NSLocalizedString(@"dayInWeek", @"display name for dayinweek");
 			controller.editingNumber = YES;
             controller.pickerType = TYPE_DAY_IN_WEEK;
+            
+            [self.navigationController pushViewController:controller animated:YES];
+            [controller release];
         } break;
         case 3: {
+            EditingViewController *controller = [[EditingViewController alloc] initWithNibName:@"EditingView" bundle:nil];
+            controller.editedObject = hfClass;
+            
             controller.editedFieldKey = @"start";
 			controller.editedFieldName = NSLocalizedString(@"start", @"display name for start");
 			controller.editingNumber = YES;
             controller.pickerType = TYPE_START;
+            
+            [self.navigationController pushViewController:controller animated:YES];
+            [controller release];
         } break;
         case 4: {
+            EditingViewController *controller = [[EditingViewController alloc] initWithNibName:@"EditingView" bundle:nil];
+            controller.editedObject = hfClass;
+            
             controller.editedFieldKey = @"end";
 			controller.editedFieldName = NSLocalizedString(@"end", @"display name for end");
 			controller.editingNumber = YES;
             controller.pickerType = TYPE_END;
+            
+            [self.navigationController pushViewController:controller animated:YES];
+            [controller release];
         } break;
     }
-    
-    [self.navigationController pushViewController:controller animated:YES];
-	[controller release];
 }
 
 

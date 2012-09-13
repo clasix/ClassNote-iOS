@@ -21,3 +21,6 @@
 "newLesson" = "新建课程";
 "editLesson" = "编辑课程";
 "Class_Info" = "课堂信息";
+"lessonName" = "课程名称";
+"book" = "书名";
+"teacher" = "教师";

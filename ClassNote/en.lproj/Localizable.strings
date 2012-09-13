@@ -21,3 +21,6 @@
 "newLesson" = "New Lesson";
 "editLesson" = "Edit Lesson";
 "Class_Info" = "Class Info";
+"lessonName" = "Lesson Name";
+"book" = "Book";
+"teacher" = "Teacher";

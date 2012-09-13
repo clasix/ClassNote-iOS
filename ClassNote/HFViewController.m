@@ -213,6 +213,9 @@
     
     HFClass *hfClass = (HFClass *)[NSEntityDescription insertNewObjectForEntityForName:@"HFClass" inManagedObjectContext:addingManagedObjectContext];
     hfClass.lesson = (HFLesson *)[NSEntityDescription insertNewObjectForEntityForName:@"HFLesson" inManagedObjectContext:addingManagedObjectContext];
+    
+    hfClass.lesson.name = @"New Lesson";
+    hfClass.room = @"ClassRoom";
     if (selectedRow > 0 & selectedColumn > 0) {
         hfClass.dayinweek = [NSNumber numberWithInt:selectedColumn - 1];
         hfClass.start = [NSNumber numberWithInt:selectedRow];
