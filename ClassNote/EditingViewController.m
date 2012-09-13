@@ -27,7 +27,8 @@
 
 #pragma mark -
 #pragma mark View lifecycle
-
+// FIXME: 结束课的时间不能早于开始时间，否则会出现Conflict(冲突)
+// 如果出现Conflict，则应该标明，参照日历的做法。
 - (void)viewDidLoad {
 	// Set the title to the user-visible name of the field.
 	self.title = editedFieldName;
