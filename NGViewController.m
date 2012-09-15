@@ -12,14 +12,14 @@
 #import "HFClass.h"
 
 
-#define kColumnWidth    ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad ? 200.f : 100.f)
+#define kColumnWidth    ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad ? 120.f : 60.f)
 #define kRightPadding   ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad ? 91.f : 46.f)
-#define kContentHeight  ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad ? 1280.f : 640.f)
+#define kContentHeight  ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad ? 800.f : 400.f)
 
 #define dayLineLeft  600.f
 #define timeLineTop 600.f
 #define margin  0.f
-#define dayLineHeight (kContentHeight/8.0)
+#define dayLineHeight (kContentHeight/16.0)
 #define cellLineHeight (kContentHeight/16.0)
 
 @interface NGViewController () <NGVaryingGridViewDelegate>
@@ -67,6 +67,7 @@
     self.gridView.gridViewDelegate = self;
     [self.view addSubview:self.gridView];
     
+    //
     UIView *timeLine = [[UIView alloc] initWithFrame:CGRectMake(-1.f, - timeLineTop, kRightPadding + 1.f, kContentHeight + timeLineTop * 2)];
     CALayer *layer = timeLine.layer;
 	layer.masksToBounds = NO;
@@ -77,7 +78,7 @@
 	layer.shadowOpacity = 0.5f;
     
     timeLine.backgroundColor = [UIColor grayColor];
-    for (int i = 0; i < 11; i++) {
+    for (int i = 0; i < 12; i++) {
         UILabel *timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.f, timeLineTop + dayLineHeight + cellLineHeight * i, timeLine.frame.size.width, cellLineHeight)];
         timeLabel.backgroundColor = [UIColor clearColor];
         timeLabel.textColor = [UIColor whiteColor];
@@ -89,6 +90,7 @@
         [timeLine addSubview:timeLabel];
     }
     
+    //
     UIView *dayLine = [[UIView alloc] initWithFrame:CGRectMake(-dayLineLeft, -1.f, kRightPadding + kColumnWidth * [weekdays count] + dayLineLeft * 2, dayLineHeight)];
     dayLine.backgroundColor = [UIColor grayColor];
     layer = dayLine.layer;
@@ -99,13 +101,13 @@
 	layer.shadowRadius = 5.f;
 	layer.shadowOpacity = 0.5f;
     
-//    UIView *grayView = [[UIView alloc] initWithFrame:CGRectMake(-dayLineLeft, dayLine.frame.size.height / 2.f, dayLine.frame.size.width + dayLineLeft * 2, dayLine.frame.size.height)];
-//    grayView.backgroundColor = [UIColor lightGrayColor];
-//    layer = grayView.layer;
-//	layer.masksToBounds = NO;
-//	layer.borderWidth = 1.f;
-//	layer.borderColor = [[UIColor blackColor] CGColor];
-//    [dayLine addSubview:grayView];
+    UIView *grayView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, dayLine.frame.size.width + dayLineLeft, dayLine.frame.size.height)];
+    grayView.backgroundColor = [UIColor lightGrayColor];
+    layer = grayView.layer;
+	layer.masksToBounds = NO;
+	layer.borderWidth = 1.f;
+	layer.borderColor = [[UIColor blackColor] CGColor];
+    [dayLine addSubview:grayView];
     for (int i = 0; i < [weekdays count]; i++) {
         UILabel *dayLabel = [[UILabel alloc] initWithFrame:CGRectMake(i * kColumnWidth + timeLine.frame.size.width + dayLineLeft, 0.f, kColumnWidth, dayLine.frame.size.height)];
         dayLabel.backgroundColor = [UIColor clearColor];
@@ -118,10 +120,10 @@
         [dayLine addSubview:dayLabel];
     }
     
-//    NGTimeTableCell *wholeDayEvent = [[NGTimeTableCell alloc] initWithFrame:CGRectMake(dayLineLeft + kRightPadding + 0 * kColumnWidth + margin, kContentHeight / 16.f + margin, 2 * kColumnWidth - margin * 2, kContentHeight / 16.f - margin * 2)];
-//    wholeDayEvent.backgroundColor = [UIColor blueColor];
-//    wholeDayEvent.text = @"Vacation";
-//    [dayLine addSubview:wholeDayEvent];
+    UIView *wholeDayEvent = [[UIView alloc] initWithFrame:CGRectMake(0, self.gridView.visibleRect.size.height + 0.2 - cellLineHeight * 3, kRightPadding + kColumnWidth * [weekdays count] + dayLineLeft, cellLineHeight * 3 - margin * 2)];
+    wholeDayEvent.backgroundColor = [UIColor blueColor];
+    //wholeDayEvent.text = @"Vacation";
+    [dayLine addSubview:wholeDayEvent];
     
     [self.gridView setStickyView:dayLine lockPosition:NGVaryingGridViewLockPositionTop];
     [self.gridView setStickyView:timeLine lockPosition:NGVaryingGridViewLockPositionLeft];
@@ -145,6 +147,10 @@
      selector:@selector(applicationWillResignActive:)
      name:UIApplicationWillResignActiveNotification
      object:app];
+    
+    // ScrollView的视图包括左轴和上轴
+    //[self.gridView setMaximumContentWidth:kRightPadding + kColumnWidth * [weekdays count]];
+    //[self.gridView setMaximumContentHeight:kContentHeight];
     
     [self.gridView reloadData];
 }

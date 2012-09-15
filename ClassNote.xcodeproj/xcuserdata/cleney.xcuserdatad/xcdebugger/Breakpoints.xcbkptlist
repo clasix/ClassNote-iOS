@@ -1243,11 +1243,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "NGViewController.m"
-         timestampString = "369412658.303975"
+         timestampString = "369421126.094844"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "300"
-         endingLineNumber = "300"
+         startingLineNumber = "306"
+         endingLineNumber = "306"
          landmarkName = "@implementation NGViewController"
          landmarkType = "3">
       </FileBreakpoint>
@@ -1256,13 +1256,24 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "NGViewController.m"
-         timestampString = "369412658.303975"
+         timestampString = "369421126.094844"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "253"
-         endingLineNumber = "253"
+         startingLineNumber = "259"
+         endingLineNumber = "259"
          landmarkName = "-controller:didChangeObject:atIndexPath:forChangeType:newIndexPath:"
          landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "NGViewController.m"
+         timestampString = "369418176.594459"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "23"
+         endingLineNumber = "23">
       </FileBreakpoint>
    </FileBreakpoints>
 </Bucket>

@@ -121,6 +121,7 @@
         }
         maxX = MAX(MIN(maxX, self.maximumContentWidth), self.contentSize.width);
         maxY = MAX(MIN(maxY, self.maximumContentHeight), self.contentSize.height);
+        
         self.scrollView.contentSize = CGSizeMake(maxX, maxY);
         
         [self loadCellsInRect:self.visibleRect];
