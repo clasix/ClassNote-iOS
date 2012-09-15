@@ -41,6 +41,9 @@
 @synthesize maximumContentWidth = _maximumContentWidth;
 @synthesize maximumContentHeight = _maximumContentHeight;
 
+@synthesize minScrollX = _minScrollX;
+@synthesize minScrollY = _minScrollY;
+
 @synthesize stickyViewForTopPosition = _stickyViewForTopPosition;
 @synthesize stickyViewForLeftPosition = _stickyViewForLeftPosition;
 @synthesize stickyViewForLeftPositionPadding = _stickyViewForLeftPositionPadding;
@@ -121,6 +124,11 @@
         }
         maxX = MAX(MIN(maxX, self.maximumContentWidth), self.contentSize.width);
         maxY = MAX(MIN(maxY, self.maximumContentHeight), self.contentSize.height);
+        
+        // ScrollView的视图包括左轴和上轴
+        
+        maxX = MAX(maxX, self.minScrollX);
+        maxY = MAX(maxY, self.minScrollY);
         
         self.scrollView.contentSize = CGSizeMake(maxX, maxY);
         

@@ -46,6 +46,8 @@ typedef enum {
 @property (nonatomic, unsafe_unretained) id <UIScrollViewDelegate> scrollViewDelegate;
 @property (nonatomic) CGFloat maximumContentWidth;
 @property (nonatomic) CGFloat maximumContentHeight;
+@property (nonatomic) CGFloat minScrollX;
+@property (nonatomic) CGFloat minScrollY;
 @property (nonatomic, readonly) CGRect visibleRect;
 @property(nonatomic, getter=isDirectionalLockEnabled) BOOL directionalLockEnabled;
 @property (nonatomic) BOOL showsHorizontalScrollIndicator;

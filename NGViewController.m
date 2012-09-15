@@ -101,13 +101,6 @@
 	layer.shadowRadius = 5.f;
 	layer.shadowOpacity = 0.5f;
     
-    UIView *grayView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, dayLine.frame.size.width + dayLineLeft, dayLine.frame.size.height)];
-    grayView.backgroundColor = [UIColor lightGrayColor];
-    layer = grayView.layer;
-	layer.masksToBounds = NO;
-	layer.borderWidth = 1.f;
-	layer.borderColor = [[UIColor blackColor] CGColor];
-    [dayLine addSubview:grayView];
     for (int i = 0; i < [weekdays count]; i++) {
         UILabel *dayLabel = [[UILabel alloc] initWithFrame:CGRectMake(i * kColumnWidth + timeLine.frame.size.width + dayLineLeft, 0.f, kColumnWidth, dayLine.frame.size.height)];
         dayLabel.backgroundColor = [UIColor clearColor];
@@ -149,8 +142,8 @@
      object:app];
     
     // ScrollView的视图包括左轴和上轴
-    //[self.gridView setMaximumContentWidth:kRightPadding + kColumnWidth * [weekdays count]];
-    //[self.gridView setMaximumContentHeight:kContentHeight];
+    [self.gridView setMinScrollX:kRightPadding + kColumnWidth * [weekdays count]];
+    [self.gridView setMinScrollY:kContentHeight];
     
     [self.gridView reloadData];
 }
