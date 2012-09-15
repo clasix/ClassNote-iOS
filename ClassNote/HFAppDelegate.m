@@ -12,6 +12,7 @@
 #import "GuideViewController.h"
 #import "YISplashScreen.h"
 #import "YISplashScreenAnimation.h"
+#import "NGViewController.h"
 
 #define SHOWS_MIGRATION_ALERT   0   // 0 or 1
 #define ANIMATION_TYPE          1   // 0-2
@@ -69,7 +70,8 @@
         
         window.rootViewController = appStartController;
     }else {
-        HFViewController *vc = [[HFViewController alloc] init];
+//        HFViewController *vc = [[HFViewController alloc] init];
+        NGViewController *vc = [[NGViewController alloc] init];
         
         NSManagedObjectContext *context = [self managedObjectContext];
         if (!context) {
