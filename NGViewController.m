@@ -14,7 +14,13 @@
 
 #define kColumnWidth    ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad ? 200.f : 100.f)
 #define kRightPadding   ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad ? 91.f : 46.f)
-#define kContentHeight  ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad ? 1600.f : 800.f)
+#define kContentHeight  ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad ? 1280.f : 640.f)
+
+#define dayLineLeft  600.f
+#define timeLineTop 600.f
+#define margin  0.f
+#define dayLineHeight (kContentHeight/8.0)
+#define cellLineHeight (kContentHeight/16.0)
 
 @interface NGViewController () <NGVaryingGridViewDelegate>
 
@@ -61,7 +67,7 @@
     self.gridView.gridViewDelegate = self;
     [self.view addSubview:self.gridView];
     
-    UIView *timeLine = [[UIView alloc] initWithFrame:CGRectMake(-1.f, -600.f, kRightPadding + 1.f, kContentHeight + 600.f)];
+    UIView *timeLine = [[UIView alloc] initWithFrame:CGRectMake(-1.f, - timeLineTop, kRightPadding + 1.f, kContentHeight + timeLineTop * 2)];
     CALayer *layer = timeLine.layer;
 	layer.masksToBounds = NO;
 	layer.borderWidth = 1.f;
@@ -72,7 +78,7 @@
     
     timeLine.backgroundColor = [UIColor grayColor];
     for (int i = 0; i < 11; i++) {
-        UILabel *timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.f, 600.f + kContentHeight / 12.f * (i+1), timeLine.frame.size.width, 20.f)];
+        UILabel *timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.f, timeLineTop + dayLineHeight + cellLineHeight * i, timeLine.frame.size.width, cellLineHeight)];
         timeLabel.backgroundColor = [UIColor clearColor];
         timeLabel.textColor = [UIColor whiteColor];
         timeLabel.textAlignment = UITextAlignmentCenter;
@@ -83,7 +89,7 @@
         [timeLine addSubview:timeLabel];
     }
     
-    UIView *dayLine = [[UIView alloc] initWithFrame:CGRectMake(-600.f, -1.f, kColumnWidth * 5.f + kRightPadding + 1200.f, kContentHeight / 8.f)];
+    UIView *dayLine = [[UIView alloc] initWithFrame:CGRectMake(-dayLineLeft, -1.f, kRightPadding + kColumnWidth * [weekdays count] + dayLineLeft * 2, dayLineHeight)];
     dayLine.backgroundColor = [UIColor grayColor];
     layer = dayLine.layer;
 	layer.masksToBounds = NO;
@@ -93,15 +99,15 @@
 	layer.shadowRadius = 5.f;
 	layer.shadowOpacity = 0.5f;
     
-    UIView *grayView = [[UIView alloc] initWithFrame:CGRectMake(-600.f, dayLine.frame.size.height / 2.f, dayLine.frame.size.width + 1200.f, dayLine.frame.size.height / 2.f)];
-    grayView.backgroundColor = [UIColor lightGrayColor];
-    layer = grayView.layer;
-	layer.masksToBounds = NO;
-	layer.borderWidth = 1.f;
-	layer.borderColor = [[UIColor blackColor] CGColor];
-    [dayLine addSubview:grayView];
+//    UIView *grayView = [[UIView alloc] initWithFrame:CGRectMake(-dayLineLeft, dayLine.frame.size.height / 2.f, dayLine.frame.size.width + dayLineLeft * 2, dayLine.frame.size.height)];
+//    grayView.backgroundColor = [UIColor lightGrayColor];
+//    layer = grayView.layer;
+//	layer.masksToBounds = NO;
+//	layer.borderWidth = 1.f;
+//	layer.borderColor = [[UIColor blackColor] CGColor];
+//    [dayLine addSubview:grayView];
     for (int i = 0; i < [weekdays count]; i++) {
-        UILabel *dayLabel = [[UILabel alloc] initWithFrame:CGRectMake(i * kColumnWidth + timeLine.frame.size.width + 600.f, 0.f, kColumnWidth, grayView.frame.size.height)];
+        UILabel *dayLabel = [[UILabel alloc] initWithFrame:CGRectMake(i * kColumnWidth + timeLine.frame.size.width + dayLineLeft, 0.f, kColumnWidth, dayLine.frame.size.height)];
         dayLabel.backgroundColor = [UIColor clearColor];
         dayLabel.textColor = [UIColor whiteColor];
         dayLabel.textAlignment = UITextAlignmentCenter;
@@ -112,10 +118,10 @@
         [dayLine addSubview:dayLabel];
     }
     
-    NGTimeTableCell *wholeDayEvent = [[NGTimeTableCell alloc] initWithFrame:CGRectMake(600.f + kRightPadding + 0 * kColumnWidth + 5.f, kContentHeight / 16.f + 5.f, 2 * kColumnWidth - 10.f, kContentHeight / 16.f - 10.f)];
-    wholeDayEvent.backgroundColor = [UIColor blueColor];
-    wholeDayEvent.text = @"Vacation";
-    [dayLine addSubview:wholeDayEvent];
+//    NGTimeTableCell *wholeDayEvent = [[NGTimeTableCell alloc] initWithFrame:CGRectMake(dayLineLeft + kRightPadding + 0 * kColumnWidth + margin, kContentHeight / 16.f + margin, 2 * kColumnWidth - margin * 2, kContentHeight / 16.f - margin * 2)];
+//    wholeDayEvent.backgroundColor = [UIColor blueColor];
+//    wholeDayEvent.text = @"Vacation";
+//    [dayLine addSubview:wholeDayEvent];
     
     [self.gridView setStickyView:dayLine lockPosition:NGVaryingGridViewLockPositionTop];
     [self.gridView setStickyView:timeLine lockPosition:NGVaryingGridViewLockPositionLeft];
@@ -165,7 +171,7 @@
     NSMutableArray *rectsArray = [NSMutableArray array];
     
     for (HFClass *class in classesArray) {
-        [rectsArray addObject:[NSValue valueWithCGRect:CGRectMake(kRightPadding + 5.f + [class.dayinweek intValue] * kColumnWidth, [class.start intValue] * kContentHeight / 8 + 5.f, kColumnWidth - 10.f, ([class.end intValue] - [class.start intValue]) * kContentHeight / 8 - 10.f)]];
+        [rectsArray addObject:[NSValue valueWithCGRect:CGRectMake(kRightPadding + margin + [class.dayinweek intValue] * kColumnWidth, dayLineHeight + [class.start intValue] * cellLineHeight + margin, kColumnWidth - margin * 2, ([class.end intValue] - [class.start intValue]) * cellLineHeight - margin * 2)]];
     }
 
     return rectsArray;
