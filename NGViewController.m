@@ -113,7 +113,9 @@
         [dayLine addSubview:dayLabel];
     }
     
-    UIView *wholeDayEvent = [[UIView alloc] initWithFrame:CGRectMake(0, self.gridView.visibleRect.size.height + 0.2 - cellLineHeight * 3, kRightPadding + kColumnWidth * [weekdays count] + dayLineLeft, cellLineHeight * 3 - margin * 2)];
+    CGRect kbRect = [self.view convertRect:self.gridView.frame fromView:nil];
+    
+    UIView *wholeDayEvent = [[UIView alloc] initWithFrame:CGRectMake(0, cellLineHeight, kRightPadding + kColumnWidth * [weekdays count] + dayLineLeft * 2, cellLineHeight * 2 - margin * 2)];
     wholeDayEvent.backgroundColor = [UIColor blueColor];
     //wholeDayEvent.text = @"Vacation";
     [dayLine addSubview:wholeDayEvent];
