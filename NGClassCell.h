@@ -8,6 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface NGTimeTableCell : UILabel
+@interface NGClassCell : UILabel {
+}
+
+@property (nonatomic, assign) NSInteger column;
+@property (nonatomic, assign) NSInteger row;
+@property (nonatomic, assign) NSInteger index;
 
 @end

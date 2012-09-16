@@ -33,7 +33,8 @@
 
 typedef enum {
     NGVaryingGridViewLockPositionTop = 0,
-    NGVaryingGridViewLockPositionLeft
+    NGVaryingGridViewLockPositionLeft,
+    NGVaryingGridViewLockPositionBottom
 } NGVaryingGridViewLockPosition;
 
 ////////////////////////////////////////////////////////////////////////

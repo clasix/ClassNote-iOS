@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "HFViewController.h"
 
-@interface NGViewController : UIViewController<NSFetchedResultsControllerDelegate> {
+@interface NGViewController : UIViewController<NSFetchedResultsControllerDelegate, AddViewControllerDelegate> {
     NSArray *weekdays;
     
     NSManagedObjectContext *managedObjectContext;
@@ -19,6 +19,7 @@
     
     NSMutableArray * classesArray;
     
+    NSInteger selectedIndex;
     NSInteger selectedRow;
     NSInteger selectedColumn;
 }

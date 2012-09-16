@@ -53,7 +53,7 @@
 		85F35687159994D4000E1B6F /* HFClassEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85F35685159994D3000E1B6F /* HFClassEditViewController.m */; };
 		85F35688159994D4000E1B6F /* HFClassEditView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85F35686159994D3000E1B6F /* HFClassEditView.xib */; };
 		85F850711604699500068115 /* NGVaryingGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = 85F850701604699500068115 /* NGVaryingGridView.m */; };
-		85F85076160469B100068115 /* NGTimeTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 85F85073160469B100068115 /* NGTimeTableCell.m */; };
+		85F85076160469B100068115 /* NGClassCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 85F85073160469B100068115 /* NGClassCell.m */; };
 		85F85077160469B100068115 /* NGViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85F85075160469B100068115 /* NGViewController.m */; };
 		85F910A615FC5DEC00ADB1E9 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85F910A515FC5DEC00ADB1E9 /* Default@2x.png */; };
 		85F910B315FC638500ADB1E9 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85AB0AB015988CD60065020C /* CoreGraphics.framework */; };
@@ -136,8 +136,8 @@
 		85F35686159994D3000E1B6F /* HFClassEditView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = HFClassEditView.xib; path = ClassNote/HFClassEditView.xib; sourceTree = "<group>"; };
 		85F8506F1604699500068115 /* NGVaryingGridView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGVaryingGridView.h; sourceTree = "<group>"; };
 		85F850701604699500068115 /* NGVaryingGridView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGVaryingGridView.m; sourceTree = "<group>"; };
-		85F85072160469B100068115 /* NGTimeTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGTimeTableCell.h; sourceTree = "<group>"; };
-		85F85073160469B100068115 /* NGTimeTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGTimeTableCell.m; sourceTree = "<group>"; };
+		85F85072160469B100068115 /* NGClassCell.h */ = {isa = PBXFileReference; fileEncoding = 4; path = NGClassCell.h; sourceTree = "<group>"; };
+		85F85073160469B100068115 /* NGClassCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGClassCell.m; sourceTree = "<group>"; };
 		85F85074160469B100068115 /* NGViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGViewController.h; sourceTree = "<group>"; };
 		85F85075160469B100068115 /* NGViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGViewController.m; sourceTree = "<group>"; };
 		85F910A515FC5DEC00ADB1E9 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
@@ -321,8 +321,8 @@
 		85F8506D1604697700068115 /* NGVaryingGrid */ = {
 			isa = PBXGroup;
 			children = (
-				85F85072160469B100068115 /* NGTimeTableCell.h */,
-				85F85073160469B100068115 /* NGTimeTableCell.m */,
+				85F85072160469B100068115 /* NGClassCell.h */,
+				85F85073160469B100068115 /* NGClassCell.m */,
 				85F85074160469B100068115 /* NGViewController.h */,
 				85F85075160469B100068115 /* NGViewController.m */,
 				85F8506F1604699500068115 /* NGVaryingGridView.h */,
@@ -449,7 +449,7 @@
 				85031E8015FE160900A1A287 /* EditingViewController.m in Sources */,
 				85E6CF9316020C2E00ED65FC /* HFLessonEditViewController.m in Sources */,
 				85F850711604699500068115 /* NGVaryingGridView.m in Sources */,
-				85F85076160469B100068115 /* NGTimeTableCell.m in Sources */,
+				85F85076160469B100068115 /* NGClassCell.m in Sources */,
 				85F85077160469B100068115 /* NGViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

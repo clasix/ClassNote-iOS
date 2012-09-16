@@ -22,6 +22,8 @@
 @property (nonatomic) CGFloat stickyViewForTopPositionPadding;
 @property (nonatomic) CGFloat stickyViewForLeftPositionPadding;
 
+@property (nonatomic, strong) UIView *stickyViewForBottomPosition;
+
 - (void)loadCellsInRect:(CGRect)rect;
 - (void)handleTap:(UIGestureRecognizer *)gestureRecognizer;
 - (void)updateStickyViewsPosition;
@@ -48,6 +50,8 @@
 @synthesize stickyViewForLeftPosition = _stickyViewForLeftPosition;
 @synthesize stickyViewForLeftPositionPadding = _stickyViewForLeftPositionPadding;
 @synthesize stickyViewForTopPositionPadding = _stickyViewForTopPositionPadding;
+
+@synthesize stickyViewForBottomPosition = _stickyViewForBottomPosition;
 
 ////////////////////////////////////////////////////////////////////////
 #pragma mark - Life Cycle
@@ -167,6 +171,11 @@
             _topStickyViewOnHierarchyTop = NO;
             break;
             
+        case NGVaryingGridViewLockPositionBottom:
+            [self.stickyViewForBottomPosition removeFromSuperview];
+            self.stickyViewForBottomPosition = view;
+            _topStickyViewOnHierarchyTop = YES;
+            
         default:
             break;
     }
@@ -234,10 +243,14 @@
     self.stickyViewForTopPosition.frame = CGRectMake(self.stickyViewForTopPosition.frame.origin.x, self.scrollView.contentOffset.y + self.stickyViewForTopPositionPadding, self.stickyViewForTopPosition.frame.size.width, self.stickyViewForTopPosition.frame.size.height);
     self.stickyViewForLeftPosition.frame = CGRectMake(self.scrollView.contentOffset.x + self.stickyViewForLeftPositionPadding, self.stickyViewForLeftPosition.frame.origin.y, self.stickyViewForLeftPosition.frame.size.width, self.stickyViewForLeftPosition.frame.size.height);
     
+    self.stickyViewForBottomPosition.frame = CGRectMake(self.stickyViewForBottomPosition.frame.origin.x, self.scrollView.contentOffset.y + self.scrollView.bounds.size.height - self.stickyViewForBottomPosition.frame.size.height, self.stickyViewForBottomPosition.frame.size.width, self.stickyViewForBottomPosition.frame.size.height);
+    
     if (_topStickyViewOnHierarchyTop) {
         [self.scrollView bringSubviewToFront:self.stickyViewForLeftPosition];
         [self.scrollView bringSubviewToFront:self.stickyViewForTopPosition];
+        [self.scrollView bringSubviewToFront:self.stickyViewForBottomPosition];
     } else {
+        [self.scrollView bringSubviewToFront:self.stickyViewForBottomPosition];
         [self.scrollView bringSubviewToFront:self.stickyViewForTopPosition];
         [self.scrollView bringSubviewToFront:self.stickyViewForLeftPosition];
     }
