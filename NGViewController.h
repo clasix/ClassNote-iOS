@@ -32,6 +32,8 @@
 
 @property (nonatomic, retain) NSMutableArray *classesArray;
 
+@property (nonatomic, retain) UILabel *editLabel;
+
 - (void)applicationWillResignActive:(NSNotification *)notification;
 
 @end

@@ -31,6 +31,7 @@
 @implementation NGViewController
 
 @synthesize gridView = _gridView;
+@synthesize editLabel = _editLabel;
 
 @synthesize managedObjectContext, addingManagedObjectContext ,classesArray, fetchedResultsController;
 
@@ -121,8 +122,10 @@
         [dayLine addSubview:dayLabel];
     }
     
-    UIView *editLine = [[UIView alloc] initWithFrame:CGRectMake(-dayLineLeft, self.gridView.bounds.size.height - dayLineHeight * 2, kRightPadding + kColumnWidth * [weekdays count] + dayLineLeft * 2, dayLineHeight * 2)];
-    editLine.backgroundColor = [UIColor grayColor];
+    UILabel *editLine = [[UILabel alloc] initWithFrame:CGRectMake(-dayLineLeft, self.gridView.bounds.size.height - dayLineHeight * 2, kRightPadding + kColumnWidth * [weekdays count] + dayLineLeft * 2, dayLineHeight * 2)];
+    //editLine.backgroundColor = [UIColor grayColor];
+    editLine.textAlignment = UITextAlignmentCenter;
+    editLine.font = [UIFont systemFontOfSize:14.f];
     layer = editLine.layer;
 	layer.masksToBounds = NO;
 	layer.borderWidth = 1.f;
@@ -130,6 +133,17 @@
 	layer.shadowOffset = CGSizeMake(5.f, 0.f);
 	layer.shadowRadius = 5.f;
 	layer.shadowOpacity = 0.5f;
+    
+    editLine.userInteractionEnabled = YES;
+    
+    //The setup code (in viewDidLoad in your view controller)
+    UITapGestureRecognizer *singleFingerTap = 
+    [[UITapGestureRecognizer alloc] initWithTarget:self
+                                            action:@selector(editLesson:)];
+    [editLine addGestureRecognizer:singleFingerTap];
+    [singleFingerTap release];
+    self.editLabel = editLine;
+    [editLine release];
     
     [self.gridView setStickyView:editLine lockPosition:NGVaryingGridViewLockPositionBottom];
     [self.gridView setStickyView:dayLine lockPosition:NGVaryingGridViewLockPositionTop];
@@ -204,14 +218,16 @@
 
 //The event handling method
 - (void)editLesson:(UITapGestureRecognizer *)recognizer {
-    // Create and push a detail view controller.
-	DetailViewController *detailViewController = [[DetailViewController alloc] initWithStyle:UITableViewStyleGrouped];
-    HFClass * hfClass = [classesArray objectAtIndex:selectedIndex];
-    
-    // Pass the selected book to the new view controller.
-    detailViewController.hfClass = hfClass;
-	[self.navigationController pushViewController:detailViewController animated:YES];
-	[detailViewController release];
+    if (selectedIndex < [classesArray count]) {
+        // Create and push a detail view controller.
+        DetailViewController *detailViewController = [[DetailViewController alloc] initWithStyle:UITableViewStyleGrouped];
+        HFClass * hfClass = [classesArray objectAtIndex:selectedIndex];
+        
+        // Pass the selected book to the new view controller.
+        detailViewController.hfClass = hfClass;
+        [self.navigationController pushViewController:detailViewController animated:YES];
+        [detailViewController release];
+    }
 }
 
 - (void)viewDidUnload {
@@ -256,6 +272,7 @@
 }
 
 - (UIView *)gridView:(NGVaryingGridView *)gridView viewForCellWithRect:(CGRect)rect index:(NSUInteger)index {
+    
     if (index < [classesArray count]) {
         NGClassCell *cell = (NGClassCell *) ([gridView dequeueReusableCellWithFrame:rect] ?: [[NGClassCell alloc] initWithFrame:rect]);
         
@@ -268,6 +285,8 @@
         
         if (cell.column == selectedColumn && cell.row == selectedRow) {
             cell.backgroundColor = [UIColor redColor];
+            [self.editLabel setText:[NSString stringWithFormat:@"Class's lesson is: %@, class room is:%@", hfClass.lesson.name, hfClass.room]];
+            //[self.editLabel setBackgroundColor:[UIColor redColor]];
         } else {
             cell.backgroundColor = [UIColor whiteColor];
         }
@@ -280,6 +299,7 @@
         
         if (cell.column == selectedColumn && cell.row == selectedRow) {
             cell.backgroundColor = [UIColor redColor];
+            [self.editLabel setText:@"No Class"];
         } else {
             cell.backgroundColor = [UIColor whiteColor];
         }
@@ -432,6 +452,7 @@
 }
 
 - (void)dealloc {
+    [_editLabel release];
     [classesArray release];
     [weekdays release];
     [managedObjectContext release];

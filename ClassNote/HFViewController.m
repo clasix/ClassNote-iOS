@@ -241,7 +241,7 @@
 }
 
 //The event handling method
-- (void)editLesson:(UITapGestureRecognizer *)recognizer {
+- (void)editLesson1:(UITapGestureRecognizer *)recognizer {
     // Create and push a detail view controller.
 	DetailViewController *detailViewController = [[DetailViewController alloc] initWithStyle:UITableViewStyleGrouped];
     NSNumber * key = [NSNumber numberWithInt:(selectedColumn - 1) * CLASSES_IN_DAY + selectedRow];
