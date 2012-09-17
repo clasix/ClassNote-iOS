@@ -32,6 +32,7 @@
 
 @synthesize gridView = _gridView;
 @synthesize editLabel = _editLabel;
+@synthesize deleteButton = _deleteButton;
 
 @synthesize managedObjectContext, addingManagedObjectContext ,classesArray, fetchedResultsController;
 
@@ -123,6 +124,17 @@
     }
     
     UILabel *editLine = [[UILabel alloc] initWithFrame:CGRectMake(-dayLineLeft, self.gridView.bounds.size.height - dayLineHeight * 2, kRightPadding + kColumnWidth * [weekdays count] + dayLineLeft * 2, dayLineHeight * 2)];
+    
+    UIButton *deleteButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    deleteButton.frame = CGRectMake(dayLineLeft + kRightPadding + kColumnWidth * 6, dayLineHeight * 0.5f, kColumnWidth, dayLineHeight);
+    [deleteButton setTitle:@"Delete" forState:UIControlStateNormal];
+    [deleteButton setBackgroundColor:[UIColor clearColor]];
+    [deleteButton setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+    
+    [deleteButton addTarget:self action:@selector(deleteClass) forControlEvents:UIControlEventTouchDown];
+    [editLine addSubview:deleteButton];
+    self.deleteButton = deleteButton;
+    self.deleteButton.hidden = YES;
     //editLine.backgroundColor = [UIColor grayColor];
     editLine.textAlignment = UITextAlignmentCenter;
     editLine.font = [UIFont systemFontOfSize:14.f];
@@ -142,6 +154,13 @@
                                             action:@selector(editLesson:)];
     [editLine addGestureRecognizer:singleFingerTap];
     [singleFingerTap release];
+    
+    UISwipeGestureRecognizer *swipeGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(detectSwipe:)];
+    [swipeGesture setNumberOfTouchesRequired:1];
+    [swipeGesture setDirection:UISwipeGestureRecognizerDirectionLeft | UISwipeGestureRecognizerDirectionRight];
+    [editLine addGestureRecognizer:swipeGesture];
+    [swipeGesture release];
+    
     self.editLabel = editLine;
     [editLine release];
     
@@ -218,7 +237,7 @@
 
 //The event handling method
 - (void)editLesson:(UITapGestureRecognizer *)recognizer {
-    if (selectedIndex < [classesArray count]) {
+    if (selectedIndex < [classesArray count] && self.deleteButton.hidden == YES) {
         // Create and push a detail view controller.
         DetailViewController *detailViewController = [[DetailViewController alloc] initWithStyle:UITableViewStyleGrouped];
         HFClass * hfClass = [classesArray objectAtIndex:selectedIndex];
@@ -227,6 +246,43 @@
         detailViewController.hfClass = hfClass;
         [self.navigationController pushViewController:detailViewController animated:YES];
         [detailViewController release];
+    }
+}
+
+-(void)detectSwipe:(UISwipeGestureRecognizer *)recognizer {
+    if (selectedIndex < [classesArray count]) {
+        if (self.deleteButton.hidden) {
+            self.deleteButton.hidden = NO;
+        } else {
+            self.deleteButton.hidden = YES;
+        }
+//        switch (recognizer.direction) {
+//            case UISwipeGestureRecognizerDirectionLeft:
+//                self.deleteButton.hidden = YES;
+//                break;
+//                
+//                
+//            case UISwipeGestureRecognizerDirectionDown:
+//                self.deleteButton.hidden = NO;
+//            default:
+//                break;
+//        }
+    }
+}
+
+- (void) deleteClass {
+    if (selectedIndex < [classesArray count]) {
+        HFClass * hfClass = [classesArray objectAtIndex:selectedIndex];
+        
+        NSManagedObjectContext *context = [fetchedResultsController managedObjectContext];
+		[context deleteObject:hfClass];
+		
+		NSError *error;
+		if (![context save:&error]) {
+			// Update to handle the error appropriately.
+			NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+			exit(-1);  // Fail
+		}
     }
 }
 
@@ -287,6 +343,7 @@
             cell.backgroundColor = [UIColor redColor];
             [self.editLabel setText:[NSString stringWithFormat:@"Class's lesson is: %@, class room is:%@", hfClass.lesson.name, hfClass.room]];
             //[self.editLabel setBackgroundColor:[UIColor redColor]];
+            selectedIndex = index;
         } else {
             cell.backgroundColor = [UIColor whiteColor];
         }
@@ -300,6 +357,7 @@
         if (cell.column == selectedColumn && cell.row == selectedRow) {
             cell.backgroundColor = [UIColor redColor];
             [self.editLabel setText:@"No Class"];
+            selectedIndex = index;
         } else {
             cell.backgroundColor = [UIColor whiteColor];
         }
@@ -317,6 +375,8 @@
     
     selectedColumn = classCell.column;
     selectedRow = classCell.row;
+    
+    self.deleteButton.hidden = YES;
     
     [self.gridView reloadData];
     NSLog(@"You selected a cell!");
@@ -442,6 +502,7 @@
 
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
 	// The fetch controller has sent all current change notifications, so tell the table view to process all updates.
+    self.deleteButton.hidden = YES;
     [self.gridView reloadData];
     [self.gridView setNeedsDisplay];
 	

@@ -33,6 +33,7 @@
 @property (nonatomic, retain) NSMutableArray *classesArray;
 
 @property (nonatomic, retain) UILabel *editLabel;
+@property (nonatomic, retain) UIButton *deleteButton;
 
 - (void)applicationWillResignActive:(NSNotification *)notification;
 
