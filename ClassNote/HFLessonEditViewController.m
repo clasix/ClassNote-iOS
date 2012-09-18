@@ -147,36 +147,7 @@
 
 -(void)keyboardWillChangeFrame:(NSNotification *)notification
 {
-    [self keyboardWasShown:notification];
-    
-    /*
-     Reduce the size of the text view so that it's not obscured by the keyboard.
-     Animate the resize so that it's in sync with the appearance of the keyboard.
-     */
-    
-    NSDictionary *userInfo = [notification userInfo];
-    
-    NSValue* alue = [userInfo objectForKey:UIKeyboardFrameBeginUserInfoKey];//更改输入法之前的键盘
-    CGRect formerRect = [alue CGRectValue];  
-    if (formerRect.size.height == 480) {
-        float formerKeybordHeight = formerRect.size.width;
-    }else{
-        float formerKeybordHeight = formerRect.size.height;
-    }
-    
-    // Get the origin of the keyboard when it's displayed.
-    NSValue* aValue = [userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];//更改后的键盘
-    
-    // Get the top of the keyboard as the y coordinate of its origin in self's view's coordinate system. The bottom of the text view's frame should align with the top of the keyboard's final position.
-    CGRect keyboardRect = [aValue CGRectValue];
-    
-    CGFloat height;
-    //unknown problem on ios5 that when rotate left the frame of keyboard is 198*480. 
-    if (keyboardRect.size.height == 480) {
-        height = keyboardRect.size.width;
-    }else{
-        height = keyboardRect.size.height;
-    }
+    //[self keyboardWasShown:notification];
 }
 
 // Called when the UIKeyboardDidShowNotification is sent.
