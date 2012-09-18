@@ -135,12 +135,55 @@
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(keyboardWasHidden:)
                                                  name:UIKeyboardDidHideNotification object:nil];
+    
+#ifdef __IPHONE_5_0
+    float version = [[[UIDevice currentDevice] systemVersion] floatValue];
+    if (version >= 5.0) {
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillChangeFrameNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillChangeFrame:) name:UIKeyboardWillChangeFrameNotification object:nil];
+    }
+#endif
+}
+
+-(void)keyboardWillChangeFrame:(NSNotification *)notification
+{
+    [self keyboardWasShown:notification];
+    
+    /*
+     Reduce the size of the text view so that it's not obscured by the keyboard.
+     Animate the resize so that it's in sync with the appearance of the keyboard.
+     */
+    
+    NSDictionary *userInfo = [notification userInfo];
+    
+    NSValue* alue = [userInfo objectForKey:UIKeyboardFrameBeginUserInfoKey];//更改输入法之前的键盘
+    CGRect formerRect = [alue CGRectValue];  
+    if (formerRect.size.height == 480) {
+        float formerKeybordHeight = formerRect.size.width;
+    }else{
+        float formerKeybordHeight = formerRect.size.height;
+    }
+    
+    // Get the origin of the keyboard when it's displayed.
+    NSValue* aValue = [userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];//更改后的键盘
+    
+    // Get the top of the keyboard as the y coordinate of its origin in self's view's coordinate system. The bottom of the text view's frame should align with the top of the keyboard's final position.
+    CGRect keyboardRect = [aValue CGRectValue];
+    
+    CGFloat height;
+    //unknown problem on ios5 that when rotate left the frame of keyboard is 198*480. 
+    if (keyboardRect.size.height == 480) {
+        height = keyboardRect.size.width;
+    }else{
+        height = keyboardRect.size.height;
+    }
 }
 
 // Called when the UIKeyboardDidShowNotification is sent.
 // FIXME: the teacherTextField will be hidden when the keyboard is for chinese.
 - (void)keyboardWasShown:(NSNotification*)aNotification
 {
+    
     CGRect aRect = self.view.frame;
     
     NSDictionary* info = [aNotification userInfo];
@@ -158,7 +201,7 @@
     //CGRect aRect = self.view.frame;
     aRect.size.height -= kbSize.height;
     if (!CGRectContainsPoint(aRect, activeField.frame.origin) ) {
-        CGPoint scrollPoint = CGPointMake(0.0, activeField.frame.origin.y + activeField.frame.size.height - kbSize.height + 60); // 52 is the status bar'height plus the topbar's height
+        CGPoint scrollPoint = CGPointMake(0.0, activeField.frame.origin.y + activeField.frame.size.height - aRect.size.height); // 52 is the status bar'height plus the topbar's height
         // consider that when the keyboard is chinese keyboard, the height is higher, and will hidden the textfield, then the 60 plus is not accurate!
         [scrollView setContentOffset:scrollPoint animated:YES];
     }     
