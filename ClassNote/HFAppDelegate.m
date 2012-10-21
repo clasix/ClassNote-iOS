@@ -12,6 +12,7 @@
 #import "YISplashScreen.h"
 #import "YISplashScreenAnimation.h"
 #import "NGViewController.h"
+#import "LoginViewController.h"
 
 #define SHOWS_MIGRATION_ALERT   0   // 0 or 1
 #define ANIMATION_TYPE          1   // 0-2
@@ -60,7 +61,8 @@
     //增加标识，用于判断是否是第一次启动应用...
     if (![[NSUserDefaults standardUserDefaults] boolForKey:@"everLaunched"]) { 
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"everLaunched"]; 
-        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"firstLaunch"]; 
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"firstLaunch"];
+        [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"isLogged"];
     }
     
     if ([[NSUserDefaults standardUserDefaults] boolForKey:@"firstLaunch"]) {
@@ -68,15 +70,22 @@
         appStartController.delegate = self;
         
         window.rootViewController = appStartController;
-    }else {
-        NGViewController *vc = [[NGViewController alloc] init];
-        
-        NSManagedObjectContext *context = [self managedObjectContext];
-        if (!context) {
-            NSLog(@"ManagedObjectContext created failed. %@", "Nothing");
+    } else {
+        // FIXME: PassWordViewController 并没有managedContext
+        UIViewController *vc;
+        if ([[NSUserDefaults standardUserDefaults] boolForKey:@"isLogged"]) {
+            vc = [[NGViewController alloc] init];
+            NSManagedObjectContext *context = [self managedObjectContext];
+            if (!context) {
+                NSLog(@"ManagedObjectContext created failed. %@", "Nothing");
+            }
+            
+            ((NGViewController*)vc).managedObjectContext = context;
+        } else {
+            vc = [[LoginViewController alloc] init];
+            
+            ((LoginViewController *)vc).delegate = self;
         }
-        
-        vc.managedObjectContext = context;
         
         navigationController = [[UINavigationController alloc] initWithRootViewController:vc];
         
@@ -154,14 +163,20 @@
 }
 
 - (UIViewController *)goingToMain {
-    NGViewController *vc = [[NGViewController alloc] init];
-    
-    NSManagedObjectContext *context = [self managedObjectContext];
-    if (!context) {
-        NSLog(@"ManagedObjectContext created failed. %@", "Nothing");
+    // FIXME: PassWordViewController 并没有managedContext
+    UIViewController *vc;
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"isLogged"]) {
+        vc = [[NGViewController alloc] init];
+        NSManagedObjectContext *context = [self managedObjectContext];
+        if (!context) {
+            NSLog(@"ManagedObjectContext created failed. %@", "Nothing");
+        }
+        
+        ((NGViewController*)vc).managedObjectContext = context;
+    } else {
+        vc = [[LoginViewController alloc] init];
+        ((LoginViewController *)vc).delegate = self;
     }
-    
-    vc.managedObjectContext = context;
     
     navigationController = [[UINavigationController alloc] initWithRootViewController:vc];
     
