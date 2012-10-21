@@ -7,7 +7,6 @@
 //
 
 #import "GuideViewController.h"
-#import "HFViewController.h"
 
 @implementation GuideViewController
 @synthesize gotoMainViewBtn = _gotoMainViewBtn;

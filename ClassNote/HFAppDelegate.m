@@ -8,7 +8,6 @@
 
 #import "HFAppDelegate.h"
 
-#import "HFViewController.h"
 #import "GuideViewController.h"
 #import "YISplashScreen.h"
 #import "YISplashScreenAnimation.h"
@@ -70,7 +69,6 @@
         
         window.rootViewController = appStartController;
     }else {
-//        HFViewController *vc = [[HFViewController alloc] init];
         NGViewController *vc = [[NGViewController alloc] init];
         
         NSManagedObjectContext *context = [self managedObjectContext];
@@ -156,7 +154,7 @@
 }
 
 - (UIViewController *)goingToMain {
-    HFViewController *vc = [[HFViewController alloc] init];
+    NGViewController *vc = [[NGViewController alloc] init];
     
     NSManagedObjectContext *context = [self managedObjectContext];
     if (!context) {
