@@ -22,20 +22,30 @@
 	}
 	else 
 	{
-		[HFLoginUtils storeUsername:user.text andPassword:password.text forServiceName:@"passwordTest" updateExisting:YES error:nil];
-		UIAlertView *alertView=[[UIAlertView alloc] initWithTitle:@"注册成功" message:nil delegate:self cancelButtonTitle:@"OK,I know" otherButtonTitles:nil];
-		[alertView show];
-		[alertView release];
-	
-		//[[[[UIApplication sharedApplication] windows] objectAtIndex:0] addSubview:[PassWordViewController sharedPassWordViewController].view];
-		[self.view removeFromSuperview];
+        bool success = [[[HFLoginUtils instance] server] sign_up_email:user.text :password.text];
+
+        if (success) {
+            UIAlertView *alertView=[[UIAlertView alloc] initWithTitle:@"注册成功" message:nil delegate:self cancelButtonTitle:@"OK,I know" otherButtonTitles:nil];
+            [alertView show];
+            [alertView release];
+            
+//            AuthResponse *auth_res = [[[HFLoginUtils instance] server] login_by_email:user.text :password.text];
+//            
+//            if (auth_res.auth_token) {
+//                [[NSUserDefaults standardUserDefaults] setObject:auth_res.auth_token forKey:@"auth_token"];
+//                [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"isLogged"];
+//                
+//                [self.navigationController presentModalViewController:[self.delegate goingToMain] animated:YES];
+//            }
+            
+            //[[[[UIApplication sharedApplication] windows] objectAtIndex:0] addSubview:[PassWordViewController sharedPassWordViewController].view];
+            [self.view removeFromSuperview];
+        }
 	}
-	
-	
 }
 -(IBAction) userComplete:(id) sender
 {
-	if([HFLoginUtils getPasswordForUsername:user.text andServiceName:@"passwordTest" error:nil])
+	if(FALSE)// TODO: [[[HFLoginUtils instance] server] sign_up_emai]
 	{
 		UIAlertView *alertView=[[UIAlertView alloc] initWithTitle:@"用户名已存在" message:@"请重新选择用户名" delegate:self cancelButtonTitle:@"OK,I know" otherButtonTitles:nil];
 		[alertView show];

@@ -7,7 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "service.h"
 
-@interface HFLoginUtils : NSObject
+@interface HFLoginUtils : NSObject{
+    ClassNoteClient *server;
+}
 
+@property (nonatomic, assign) ClassNoteClient *server;
+
++ (HFLoginUtils *)instance;
 @end

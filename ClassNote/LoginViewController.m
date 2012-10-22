@@ -21,11 +21,6 @@
 {
 	
     [super viewDidLoad];
-    
-    // Talk to a server via socket, using a binary protocol
-    TSocketClient *transport = [[TSocketClient alloc] initWithHostname:@"localhost" port:9090];
-    TBinaryProtocol *protocol = [[TBinaryProtocol alloc] initWithTransport:transport strictRead:YES strictWrite:YES];
-    server = [[ClassNoteClient alloc] initWithProtocol:protocol];
 }
 
 -(IBAction) logButtonPressed:(id) sender
@@ -33,6 +28,7 @@
 	user.text=nil;
 	password.text=nil;
 	SignUpViewController *logViewController=[[SignUpViewController alloc]init];
+    logViewController.delegate = self.delegate;
 	[self.view addSubview:logViewController.view];
 	//logViewController.view.frame=CGRectMake(0, 20, 320, 460);
 	//[logViewController release];
@@ -48,9 +44,9 @@
 	}
 	else 
 	{
-        AuthResponse *auth_res = [server login_by_email:user.text :password.text];
+        AuthResponse *auth_res = [[[HFLoginUtils instance] server] login_by_email:user.text :password.text];
         
-        if (auth_res) {
+        if (auth_res.auth_token) {
             [[NSUserDefaults standardUserDefaults] setObject:auth_res.auth_token forKey:@"auth_token"];
             [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"isLogged"];
                         

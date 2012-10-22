@@ -139,6 +139,7 @@
 		859D7803163411FB0050E6FA /* service.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = service.m; path = "thrift-client/service.m"; sourceTree = "<group>"; };
 		859D7804163411FB0050E6FA /* type.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = type.h; path = "thrift-client/type.h"; sourceTree = "<group>"; };
 		859D7805163411FB0050E6FA /* type.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = type.m; path = "thrift-client/type.m"; sourceTree = "<group>"; };
+		85A03F901635A218005F58E6 /* HFGotoMainDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HFGotoMainDelegate.h; sourceTree = "<group>"; };
 		85AB0AA815988CD60065020C /* ClassNote.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ClassNote.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		85AB0AAC15988CD60065020C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		85AB0AAE15988CD60065020C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -364,6 +365,7 @@
 			children = (
 				851811D415FE370700607412 /* EditingView.xib */,
 				85AB0ABB15988CD60065020C /* HFAppDelegate.h */,
+				85A03F901635A218005F58E6 /* HFGotoMainDelegate.h */,
 				85AB0ABC15988CD60065020C /* HFAppDelegate.m */,
 				85AB0AB315988CD60065020C /* Supporting Files */,
 				852EC1C1159C4AFA0018A30E /* ClassNote.xcdatamodeld */,

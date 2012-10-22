@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "GuideViewController.h"
+#import "HFGotoMainDelegate.h"
 
-@interface HFAppDelegate : UIResponder <UIApplicationDelegate, GuideViewControllerDelegate, UIAlertViewDelegate> {
+@interface HFAppDelegate : UIResponder <UIApplicationDelegate, HFGotoMainDelegate, UIAlertViewDelegate> {
     UIWindow *window;
 	UINavigationController *navigationController;
     

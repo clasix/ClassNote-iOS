@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "HFGotoMainDelegate.h"
 
 
 @interface SignUpViewController : UIViewController 
@@ -22,4 +23,6 @@
 -(IBAction) logButtonPressed:(id) sender;
 -(IBAction) ensurePasswordComplete:(id) sender;
 -(IBAction) userComplete:(id) sender;
+
+#@property (nonatomic, assign) id <HFGotoMainDelegate> delegate;
 @end

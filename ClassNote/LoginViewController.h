@@ -9,20 +9,19 @@
 #import <UIKit/UIKit.h>
 #import "service.h"
 #import "GuideViewController.h"
+#import "HFGotoMainDelegate.h"
 
 @interface LoginViewController : UIViewController 
 {
 	UITextField *user;
 	UITextField *password;
-    
-    ClassNoteClient *server;
 }
 @property (retain,nonatomic) IBOutlet UITextField *user;
 @property (retain,nonatomic) IBOutlet UITextField *password ;
 -(IBAction) logButtonPressed:(id) sender;
 -(IBAction) landButtonPressed:(id) sender;
 
-@property (nonatomic, assign) id <GuideViewControllerDelegate> delegate;
+@property (nonatomic, assign) id <HFGotoMainDelegate> delegate;
 
 @end
 

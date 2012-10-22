@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "UIImage+SplitImageIntoTwoParts.h"
+#import "HFAppDelegate.h"
+#import "HFGotoMainDelegate.h"
 
-@protocol GuideViewControllerDelegate;
 @interface GuideViewController : UIViewController<UIScrollViewDelegate>
 
 @property (nonatomic,strong) IBOutlet UIImageView *imageView;
@@ -22,10 +23,6 @@
 - (IBAction)gotoMainView:(id)sender;
 @property (retain, nonatomic) IBOutlet UIButton *gotoMainViewBtn;
 
-@property (nonatomic, assign) id <GuideViewControllerDelegate> delegate;
+@property (nonatomic, assign) id <HFGotoMainDelegate> delegate;
 
-@end
-
-@protocol GuideViewControllerDelegate
-- (UIViewController *)goingToMain;
 @end

@@ -1538,11 +1538,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "ClassNote/LoginViewController.m"
-         timestampString = "372524668.651894"
+         timestampString = "372613986.365863"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "54"
-         endingLineNumber = "54"
+         startingLineNumber = "50"
+         endingLineNumber = "50"
          landmarkName = "-landButtonPressed:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -1557,6 +1557,32 @@
          startingLineNumber = "36"
          endingLineNumber = "36"
          landmarkName = "-startApp"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "ClassNote/LoginViewController.m"
+         timestampString = "372613986.365863"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "49"
+         endingLineNumber = "49"
+         landmarkName = "-landButtonPressed:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "ClassNote/LoginViewController.m"
+         timestampString = "372613986.365863"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "48"
+         endingLineNumber = "48"
+         landmarkName = "-landButtonPressed:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>
