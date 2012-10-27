@@ -24,5 +24,5 @@
 -(IBAction) ensurePasswordComplete:(id) sender;
 -(IBAction) userComplete:(id) sender;
 
-#@property (nonatomic, assign) id <HFGotoMainDelegate> delegate;
+@property (nonatomic, assign) id <HFGotoMainDelegate> delegate;
 @end

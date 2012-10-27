@@ -24,13 +24,16 @@
 		851B4FFB15FCF3A200A98CD8 /* YISplashScreenAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 851B4FF915FCF3A200A98CD8 /* YISplashScreenAnimation.m */; };
 		852EC1BF159C4AA40018A30E /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 852EC1BE159C4AA40018A30E /* CoreData.framework */; };
 		852EC1C3159C4AFA0018A30E /* ClassNote.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 852EC1C1159C4AFA0018A30E /* ClassNote.xcdatamodeld */; };
+		85611BB9163BD32F0099B7BE /* HFMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85611BB7163BD32F0099B7BE /* HFMainViewController.m */; };
+		85611BBA163BD32F0099B7BE /* HFMainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85611BB8163BD32F0099B7BE /* HFMainViewController.xib */; };
+		85611BBE163C04C30099B7BE /* HFExceptionHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 85611BBD163C04C30099B7BE /* HFExceptionHandler.m */; };
 		8590DF9715FBB83800A7019F /* GuideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8590DF9515FBB83800A7019F /* GuideViewController.m */; };
 		8590DF9815FBB83800A7019F /* GuideViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8590DF9615FBB83800A7019F /* GuideViewController.xib */; };
 		859D77BB16340AB30050E6FA /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 859D77B616340AB30050E6FA /* SignUpViewController.m */; };
 		859D77BC16340AB30050E6FA /* SignUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 859D77B716340AB30050E6FA /* SignUpViewController.xib */; };
 		859D77BD16340AB30050E6FA /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 859D77B916340AB30050E6FA /* LoginViewController.m */; };
 		859D77BE16340AB30050E6FA /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 859D77BA16340AB30050E6FA /* LoginViewController.xib */; };
-		859D77C116340CE90050E6FA /* HFLoginUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 859D77C016340CE90050E6FA /* HFLoginUtils.m */; };
+		859D77C116340CE90050E6FA /* HFRemoteUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 859D77C016340CE90050E6FA /* HFRemoteUtils.m */; };
 		859D77F3163411E60050E6FA /* TBinaryProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 859D77D3163411E60050E6FA /* TBinaryProtocol.m */; };
 		859D77F4163411E60050E6FA /* TProtocolException.m in Sources */ = {isa = PBXBuildFile; fileRef = 859D77D6163411E60050E6FA /* TProtocolException.m */; };
 		859D77F5163411E60050E6FA /* TProtocolUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 859D77D9163411E60050E6FA /* TProtocolUtil.m */; };
@@ -91,6 +94,11 @@
 		851B4FF915FCF3A200A98CD8 /* YISplashScreenAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YISplashScreenAnimation.m; path = YISplashScreen/YISplashScreenAnimation.m; sourceTree = "<group>"; };
 		852EC1BE159C4AA40018A30E /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		852EC1C2159C4AFA0018A30E /* ClassNote.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ClassNote.xcdatamodel; sourceTree = "<group>"; };
+		85611BB6163BD32F0099B7BE /* HFMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HFMainViewController.h; sourceTree = "<group>"; };
+		85611BB7163BD32F0099B7BE /* HFMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HFMainViewController.m; sourceTree = "<group>"; };
+		85611BB8163BD32F0099B7BE /* HFMainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HFMainViewController.xib; sourceTree = "<group>"; };
+		85611BBC163C04C30099B7BE /* HFExceptionHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HFExceptionHandler.h; path = Exception/HFExceptionHandler.h; sourceTree = "<group>"; };
+		85611BBD163C04C30099B7BE /* HFExceptionHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HFExceptionHandler.m; path = Exception/HFExceptionHandler.m; sourceTree = "<group>"; };
 		8590DF9415FBB83800A7019F /* GuideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GuideViewController.h; path = ClassNote/GuideViewController.h; sourceTree = "<group>"; };
 		8590DF9515FBB83800A7019F /* GuideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GuideViewController.m; path = ClassNote/GuideViewController.m; sourceTree = "<group>"; };
 		8590DF9615FBB83800A7019F /* GuideViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = GuideViewController.xib; path = ClassNote/GuideViewController.xib; sourceTree = "<group>"; };
@@ -100,8 +108,8 @@
 		859D77B816340AB30050E6FA /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoginViewController.h; path = ClassNote/LoginViewController.h; sourceTree = "<group>"; };
 		859D77B916340AB30050E6FA /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoginViewController.m; path = ClassNote/LoginViewController.m; sourceTree = "<group>"; };
 		859D77BA16340AB30050E6FA /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LoginViewController.xib; path = ClassNote/LoginViewController.xib; sourceTree = "<group>"; };
-		859D77BF16340CE90050E6FA /* HFLoginUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HFLoginUtils.h; path = ClassNote/HFLoginUtils.h; sourceTree = "<group>"; };
-		859D77C016340CE90050E6FA /* HFLoginUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HFLoginUtils.m; path = ClassNote/HFLoginUtils.m; sourceTree = "<group>"; };
+		859D77BF16340CE90050E6FA /* HFRemoteUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HFRemoteUtils.h; path = ClassNote/HFRemoteUtils.h; sourceTree = "<group>"; };
+		859D77C016340CE90050E6FA /* HFRemoteUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HFRemoteUtils.m; path = ClassNote/HFRemoteUtils.m; sourceTree = "<group>"; };
 		859D77D2163411E60050E6FA /* TBinaryProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBinaryProtocol.h; sourceTree = "<group>"; };
 		859D77D3163411E60050E6FA /* TBinaryProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBinaryProtocol.m; sourceTree = "<group>"; };
 		859D77D4163411E60050E6FA /* TProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TProtocol.h; sourceTree = "<group>"; };
@@ -214,6 +222,9 @@
 		852EC1DA159C56830018A30E /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				85611BB6163BD32F0099B7BE /* HFMainViewController.h */,
+				85611BB7163BD32F0099B7BE /* HFMainViewController.m */,
+				85611BB8163BD32F0099B7BE /* HFMainViewController.xib */,
 				85E6CF9016020C2E00ED65FC /* HFLessonEditViewController.h */,
 				85E6CF9116020C2E00ED65FC /* HFLessonEditViewController.m */,
 				85E6CF9216020C2E00ED65FC /* HFLessonEditViewController.xib */,
@@ -230,6 +241,15 @@
 			name = "View Controllers";
 			sourceTree = "<group>";
 		};
+		85611BBB163C03270099B7BE /* Exception */ = {
+			isa = PBXGroup;
+			children = (
+				85611BBC163C04C30099B7BE /* HFExceptionHandler.h */,
+				85611BBD163C04C30099B7BE /* HFExceptionHandler.m */,
+			);
+			name = Exception;
+			sourceTree = "<group>";
+		};
 		859D77B416340A490050E6FA /* Login */ = {
 			isa = PBXGroup;
 			children = (
@@ -239,8 +259,8 @@
 				859D77B816340AB30050E6FA /* LoginViewController.h */,
 				859D77B916340AB30050E6FA /* LoginViewController.m */,
 				859D77BA16340AB30050E6FA /* LoginViewController.xib */,
-				859D77BF16340CE90050E6FA /* HFLoginUtils.h */,
-				859D77C016340CE90050E6FA /* HFLoginUtils.m */,
+				859D77BF16340CE90050E6FA /* HFRemoteUtils.h */,
+				859D77C016340CE90050E6FA /* HFRemoteUtils.m */,
 			);
 			name = Login;
 			sourceTree = "<group>";
@@ -326,6 +346,7 @@
 		85AB0A9D15988CD50065020C = {
 			isa = PBXGroup;
 			children = (
+				85611BBB163C03270099B7BE /* Exception */,
 				859D77D01634110A0050E6FA /* thrift */,
 				859D77C216340E060050E6FA /* thrift-client */,
 				859D77B416340A490050E6FA /* Login */,
@@ -488,6 +509,7 @@
 				85E6CF9416020C2E00ED65FC /* HFLessonEditViewController.xib in Resources */,
 				859D77BC16340AB30050E6FA /* SignUpViewController.xib in Resources */,
 				859D77BE16340AB30050E6FA /* LoginViewController.xib in Resources */,
+				85611BBA163BD32F0099B7BE /* HFMainViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -517,7 +539,7 @@
 				85F85077160469B100068115 /* NGViewController.m in Sources */,
 				859D77BB16340AB30050E6FA /* SignUpViewController.m in Sources */,
 				859D77BD16340AB30050E6FA /* LoginViewController.m in Sources */,
-				859D77C116340CE90050E6FA /* HFLoginUtils.m in Sources */,
+				859D77C116340CE90050E6FA /* HFRemoteUtils.m in Sources */,
 				859D77F3163411E60050E6FA /* TBinaryProtocol.m in Sources */,
 				859D77F4163411E60050E6FA /* TProtocolException.m in Sources */,
 				859D77F5163411E60050E6FA /* TProtocolUtil.m in Sources */,
@@ -534,6 +556,8 @@
 				859D7806163411FB0050E6FA /* exception.m in Sources */,
 				859D7807163411FB0050E6FA /* service.m in Sources */,
 				859D7808163411FB0050E6FA /* type.m in Sources */,
+				85611BB9163BD32F0099B7BE /* HFMainViewController.m in Sources */,
+				85611BBE163C04C30099B7BE /* HFExceptionHandler.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

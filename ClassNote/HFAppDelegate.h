@@ -21,6 +21,7 @@
     UIAlertView* _confirmAlert;
     UIAlertView* _completeAlert;
 
+    NSUncaughtExceptionHandler* _uncaughtExceptionHandler;
 }
 
 @property (nonatomic, retain) UIWindow *window;

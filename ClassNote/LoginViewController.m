@@ -9,10 +9,7 @@
 #import "LoginViewController.h"
 #import "SignUpViewController.h"
 #import "NGViewController.h"
-#import "HFLoginUtils.h"
-#import "TSocketClient.h"
-#import "TBinaryProtocol.h"
-#import "service.h"
+#import "HFRemoteUtils.h"
 
 @implementation LoginViewController
 @synthesize user,password, delegate;
@@ -44,7 +41,7 @@
 	}
 	else 
 	{
-        AuthResponse *auth_res = [[[HFLoginUtils instance] server] login_by_email:user.text :password.text];
+        AuthResponse *auth_res = [[[HFRemoteUtils instance] server] login_by_email:user.text :password.text];
         
         if (auth_res.auth_token) {
             [[NSUserDefaults standardUserDefaults] setObject:auth_res.auth_token forKey:@"auth_token"];

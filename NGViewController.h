@@ -27,6 +27,7 @@ static const int DAYS_IN_WEEK = 7;
     NSInteger selectedIndex;
     NSInteger selectedRow;
     NSInteger selectedColumn;
+    NSInteger lesson_table_id;
 }
 
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;

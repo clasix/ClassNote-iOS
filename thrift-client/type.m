@@ -708,7 +708,7 @@
 
 @implementation Course
 
-- (id) initWithGid: (int64_t) gid name: (NSString *) name tearcher: (NSString *) tearcher book: (NSString *) book for_class: (Clazz *) for_class for_semster: (int16_t) for_semster
+- (id) initWithGid: (int64_t) gid name: (NSString *) name tearcher: (NSString *) tearcher book: (NSString *) book for_class: (Clazz *) for_class for_semester: (int16_t) for_semester
 {
   self = [super init];
   __gid = gid;
@@ -721,8 +721,8 @@
   __book_isset = YES;
   __for_class = [for_class retain];
   __for_class_isset = YES;
-  __for_semster = for_semster;
-  __for_semster_isset = YES;
+  __for_semester = for_semester;
+  __for_semester_isset = YES;
   return self;
 }
 
@@ -754,10 +754,10 @@
     __for_class = [[decoder decodeObjectForKey: @"for_class"] retain];
     __for_class_isset = YES;
   }
-  if ([decoder containsValueForKey: @"for_semster"])
+  if ([decoder containsValueForKey: @"for_semester"])
   {
-    __for_semster = [decoder decodeIntForKey: @"for_semster"];
-    __for_semster_isset = YES;
+    __for_semester = [decoder decodeIntForKey: @"for_semester"];
+    __for_semester_isset = YES;
   }
   return self;
 }
@@ -784,9 +784,9 @@
   {
     [encoder encodeObject: __for_class forKey: @"for_class"];
   }
-  if (__for_semster_isset)
+  if (__for_semester_isset)
   {
-    [encoder encodeInt: __for_semster forKey: @"for_semster"];
+    [encoder encodeInt: __for_semester forKey: @"for_semester"];
   }
 }
 
@@ -900,21 +900,21 @@
   __for_class_isset = NO;
 }
 
-- (int16_t) for_semster {
-  return __for_semster;
+- (int16_t) for_semester {
+  return __for_semester;
 }
 
-- (void) setFor_semster: (int16_t) for_semster {
-  __for_semster = for_semster;
-  __for_semster_isset = YES;
+- (void) setFor_semester: (int16_t) for_semester {
+  __for_semester = for_semester;
+  __for_semester_isset = YES;
 }
 
-- (BOOL) for_semsterIsSet {
-  return __for_semster_isset;
+- (BOOL) for_semesterIsSet {
+  return __for_semester_isset;
 }
 
-- (void) unsetFor_semster {
-  __for_semster_isset = NO;
+- (void) unsetFor_semester {
+  __for_semester_isset = NO;
 }
 
 - (void) read: (id <TProtocol>) inProtocol
@@ -977,7 +977,7 @@
       case 6:
         if (fieldType == TType_I16) {
           int16_t fieldValue = [inProtocol readI16];
-          [self setFor_semster: fieldValue];
+          [self setFor_semester: fieldValue];
         } else { 
           [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
         }
@@ -1026,9 +1026,9 @@
       [outProtocol writeFieldEnd];
     }
   }
-  if (__for_semster_isset) {
-    [outProtocol writeFieldBeginWithName: @"for_semster" type: TType_I16 fieldID: 6];
-    [outProtocol writeI16: __for_semster];
+  if (__for_semester_isset) {
+    [outProtocol writeFieldBeginWithName: @"for_semester" type: TType_I16 fieldID: 6];
+    [outProtocol writeI16: __for_semester];
     [outProtocol writeFieldEnd];
   }
   [outProtocol writeFieldStop];
@@ -1047,8 +1047,8 @@
   [ms appendFormat: @"\"%@\"", __book];
   [ms appendString: @",for_class:"];
   [ms appendFormat: @"%@", __for_class];
-  [ms appendString: @",for_semster:"];
-  [ms appendFormat: @"%hi", __for_semster];
+  [ms appendString: @",for_semester:"];
+  [ms appendFormat: @"%hi", __for_semester];
   [ms appendString: @")"];
   return [NSString stringWithString: ms];
 }

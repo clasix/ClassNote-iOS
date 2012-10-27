@@ -10,6 +10,8 @@
 #import "NGVaryingGridView.h"
 #import "NGClassCell.h"
 #import "HFClass.h"
+#import "HFRemoteUtils.h"
+#import "HFExceptionHandler.h"
 
 
 #define kColumnWidth    ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad ? 120.f : 60.f)
@@ -51,6 +53,39 @@
                     NSLocalizedString(@"Friday", @""),
                     NSLocalizedString(@"Saturday", @""),
                     nil];
+    }
+    
+    if ([[NSUserDefaults standardUserDefaults] integerForKey:@"lesson_table_id"]) {
+        lesson_table_id = [[NSUserDefaults standardUserDefaults] integerForKey:@"lesson_table_id"];
+        NSLog(@"lesson_table_id is %@", lesson_table_id);
+    } else {
+        NSArray * lesson_tables;
+        NSString *auth_token = (NSString *)[[NSUserDefaults standardUserDefaults] objectForKey:@"auth_token"];
+        @try {
+            lesson_tables = [[[HFRemoteUtils instance] server] get_lessontables:auth_token];
+        }
+        @catch (NSException *exception) {
+            [HFExceptionHandler handleException:exception];
+        }
+        @finally {
+            
+        }
+        if ([lesson_tables count] == 0) {
+            // TODO: 返回值应该改成int型
+            BOOL ret = [[[HFRemoteUtils instance] server] create_lessontable:auth_token];
+            if (ret) {
+                NSArray * lesson_tables = [[[HFRemoteUtils instance] server] get_lessontables:auth_token];
+                lesson_table_id = [(LessonTable *)[lesson_tables objectAtIndex:0] gid];
+                [[NSUserDefaults standardUserDefaults] setInteger:lesson_table_id forKey:@"lesson_table_id"];
+                NSLog(@"lesson_table_id is %@", lesson_table_id);
+            } else {
+                [HFExceptionHandler networkAlert];
+            }
+        } else {
+            lesson_table_id = [(LessonTable *)[lesson_tables objectAtIndex:0] gid];
+            [[NSUserDefaults standardUserDefaults] setInteger:lesson_table_id forKey:@"lesson_table_id"];
+            NSLog(@"lesson_table_id is %d", lesson_table_id);
+        }
     }
     
     return self;

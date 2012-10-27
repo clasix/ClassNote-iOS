@@ -13,6 +13,8 @@
 #import "YISplashScreenAnimation.h"
 #import "NGViewController.h"
 #import "LoginViewController.h"
+#import "HFMainViewController.h"
+#import "HFExceptionHandler.h"
 
 #define SHOWS_MIGRATION_ALERT   0   // 0 or 1
 #define ANIMATION_TYPE          1   // 0-2
@@ -74,13 +76,8 @@
         // FIXME: PassWordViewController 并没有managedContext
         UIViewController *vc;
         if ([[NSUserDefaults standardUserDefaults] boolForKey:@"isLogged"]) {
-            vc = [[NGViewController alloc] init];
-            NSManagedObjectContext *context = [self managedObjectContext];
-            if (!context) {
-                NSLog(@"ManagedObjectContext created failed. %@", "Nothing");
-            }
-            
-            ((NGViewController*)vc).managedObjectContext = context;
+            vc = [[HFMainViewController alloc] init];
+            ((HFMainViewController *) vc).appDelegate = self;
         } else {
             vc = [[LoginViewController alloc] init];
             
@@ -159,6 +156,11 @@
     
 #endif
     
+    // 保存系统处理异常的Handler
+    //_uncaughtExceptionHandler = NSGetUncaughtExceptionHandler();
+    // 设置处理异常的Handler
+    //[HFExceptionHandler setDefaultUncaughtHandler];
+    
     return YES;
 }
 
@@ -166,13 +168,8 @@
     // FIXME: PassWordViewController 并没有managedContext
     UIViewController *vc;
     if ([[NSUserDefaults standardUserDefaults] boolForKey:@"isLogged"]) {
-        vc = [[NGViewController alloc] init];
-        NSManagedObjectContext *context = [self managedObjectContext];
-        if (!context) {
-            NSLog(@"ManagedObjectContext created failed. %@", "Nothing");
-        }
-        
-        ((NGViewController*)vc).managedObjectContext = context;
+        vc = [[HFMainViewController alloc] init];
+        ((HFMainViewController *) vc).appDelegate = self;
     } else {
         vc = [[LoginViewController alloc] init];
         ((LoginViewController *)vc).delegate = self;
@@ -218,6 +215,9 @@
             exit(-1);  // Fail
         } 
     }
+    
+    // 还原为系统处理异常的Handler
+    //NSSetUncaughtExceptionHandler(_uncaughtExceptionHandler);
 }
 
 //

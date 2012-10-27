@@ -8,9 +8,9 @@
 
 #import "SignUpViewController.h"
 #import "LoginViewController.h"
-#import "HFLoginUtils.h"
+#import "HFRemoteUtils.h"
 @implementation SignUpViewController
-@synthesize user,password,ensurePassword;
+@synthesize user,password,ensurePassword, delegate;
 -(IBAction) logButtonPressed:(id) sender
 {
 	
@@ -22,7 +22,7 @@
 	}
 	else 
 	{
-        bool success = [[[HFLoginUtils instance] server] sign_up_email:user.text :password.text];
+        bool success = [[[HFRemoteUtils instance] server] sign_up_email:user.text :password.text];
 
         if (success) {
             UIAlertView *alertView=[[UIAlertView alloc] initWithTitle:@"注册成功" message:nil delegate:self cancelButtonTitle:@"OK,I know" otherButtonTitles:nil];
@@ -40,6 +40,8 @@
             
             //[[[[UIApplication sharedApplication] windows] objectAtIndex:0] addSubview:[PassWordViewController sharedPassWordViewController].view];
             [self.view removeFromSuperview];
+        } else {
+            NSLog(@"Sign up failed");
         }
 	}
 }

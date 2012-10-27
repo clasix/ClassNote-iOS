@@ -7,13 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "TSocketClient.h"
+#import "TBinaryProtocol.h"
 #import "service.h"
 
-@interface HFLoginUtils : NSObject{
+@interface HFRemoteUtils : NSObject{
     ClassNoteClient *server;
 }
 
 @property (nonatomic, assign) ClassNoteClient *server;
 
-+ (HFLoginUtils *)instance;
++ (HFRemoteUtils *)instance;
 @end

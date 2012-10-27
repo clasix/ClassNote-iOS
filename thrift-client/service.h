@@ -16,16 +16,18 @@
 
 @protocol ClassNote <NSObject>
 - (AuthResponse *) login_by_email: (NSString *) email : (NSString *) password;  // throws TException
-- (AuthResponse *) login_by_username: (NSString *) username : (NSString *) password;  // throws TException
 - (BOOL) sign_up_email: (NSString *) email : (NSString *) password;  // throws TException
-- (BOOL) sign_up_username: (NSString *) username : (NSString *) password;  // throws TException
 - (BOOL) sign_out: (NSString *) auth_token;  // throws TException
+- (NSArray *) get_lessontables: (NSString *) auth_token;  // throws TException
+- (BOOL) create_lessontable: (NSString *) auth_token;  // throws TException
 - (User *) user_get: (NSString *) auth_token : (int64_t) user_id;  // throws TException
 - (NSArray *) lessontable_get: (NSString *) auth_token : (int64_t) user_id;  // throws TException
 - (BOOL) lessontable_set: (NSString *) auth_token : (int64_t) user_id : (NSArray *) lesson_tables;  // throws TException
 - (NSArray *) courses_get_by_class: (Clazz *) clazz;  // throws TException
 - (BOOL) course_add: (Course *) course;  // throws TException
 - (BOOL) course_set: (Course *) course;  // throws TException
+- (AuthResponse *) login_by_username: (NSString *) username : (NSString *) password;  // throws TException
+- (BOOL) sign_up_username: (NSString *) username : (NSString *) password;  // throws TException
 @end
 
 @interface ClassNoteClient : NSObject <ClassNote> {

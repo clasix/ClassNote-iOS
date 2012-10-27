@@ -6,20 +6,17 @@
 //  Copyright (c) 2012年 HackFisher. All rights reserved.
 //
 
-#import "HFLoginUtils.h"
-#import "TSocketClient.h"
-#import "TBinaryProtocol.h"
-#import "service.h"
+#import "HFRemoteUtils.h"
 
-@implementation HFLoginUtils
+@implementation HFRemoteUtils
 
 @synthesize server;
 
-+ (HFLoginUtils *)instance  {
-    static HFLoginUtils *instance;
++ (HFRemoteUtils *)instance  {
+    static HFRemoteUtils *instance;
     @synchronized(self) {
         if(!instance) {
-            instance = [[HFLoginUtils alloc] init];
+            instance = [[HFRemoteUtils alloc] init];
         }
     }
         
@@ -31,7 +28,7 @@
     self = [super init];
     if (self) {
         // Talk to a server via socket, using a binary protocol
-        TSocketClient *transport = [[TSocketClient alloc] initWithHostname:@"localhost" port:9090];
+        TSocketClient *transport = [[TSocketClient alloc] initWithHostname:@"localhost" port:8080];
         TBinaryProtocol *protocol = [[TBinaryProtocol alloc] initWithTransport:transport strictRead:YES strictWrite:YES];
         server = [[ClassNoteClient alloc] initWithProtocol:protocol];
     }
