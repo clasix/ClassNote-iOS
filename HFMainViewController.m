@@ -10,6 +10,8 @@
 #import "NGViewController.h"
 #import "HFRemoteUtils.h"
 #import "HFExceptionHandler.h"
+#import "MobClick.h"
+#import "UMFeedback.h"
 
 @interface HFMainViewController ()
 
@@ -36,6 +38,17 @@
     // Do any additional setup after loading the view from its nib.
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [MobClick beginLogPageView:@"MainPage"];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [MobClick endLogPageView:@"MainPage"];
+}
+
 - (void)viewDidUnload
 {
     [self setClassTableButton:nil];
@@ -59,7 +72,8 @@
 }
 - (IBAction)logout:(id)sender {
     NSString *auth_token = (NSString *)[[NSUserDefaults standardUserDefaults] objectForKey:@"auth_token"];
-    NSLog(@"Logout of auth_token:%@", auth_token);
+
+    [MobClick event:@"logout" label:auth_token];
     
     BOOL ret = FALSE;
     @try {
@@ -97,5 +111,9 @@
 }
 
 - (IBAction)gotoLesson:(id)sender {
+}
+
+- (IBAction)feedback:(id)sender {
+    [UMFeedback showFeedback:self withAppkey:UMENG_APPKEY];
 }
 @end

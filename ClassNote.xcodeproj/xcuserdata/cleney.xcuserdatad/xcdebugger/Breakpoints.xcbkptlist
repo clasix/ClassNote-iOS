@@ -661,19 +661,6 @@
          timestampString = "372505272.351006"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "76"
-         endingLineNumber = "76"
-         landmarkName = "-viewDidDisappear:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "ClassNote/GuideViewController.m"
-         timestampString = "372505272.351006"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
          startingLineNumber = "81"
          endingLineNumber = "81"
          landmarkName = "-shouldAutorotateToInterfaceOrientation:"
@@ -736,13 +723,13 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "ClassNote/HFAppDelegate.m"
-         timestampString = "373033816.293861"
+         timestampString = "373101420.230713"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "24"
-         endingLineNumber = "24"
-         landmarkName = "window"
-         landmarkType = "19">
+         startingLineNumber = "45"
+         endingLineNumber = "45"
+         landmarkName = "-umengTrack"
+         landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
@@ -781,19 +768,6 @@
          startingLineNumber = "66"
          endingLineNumber = "66"
          landmarkName = "-viewDidAppear:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "ClassNote/GuideViewController.m"
-         timestampString = "372505272.351006"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "71"
-         endingLineNumber = "71"
-         landmarkName = "-viewWillDisappear:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -853,11 +827,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "ClassNote/HFAppDelegate.m"
-         timestampString = "373033816.293861"
+         timestampString = "373101420.230713"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "54"
-         endingLineNumber = "54"
+         startingLineNumber = "80"
+         endingLineNumber = "80"
          landmarkName = "-startApp"
          landmarkType = "5">
       </FileBreakpoint>
@@ -944,11 +918,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "ClassNote/HFAppDelegate.m"
-         timestampString = "373033816.293861"
+         timestampString = "373101420.230713"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "273"
-         endingLineNumber = "273"
+         startingLineNumber = "301"
+         endingLineNumber = "301"
          landmarkName = "-persistentStoreCoordinator"
          landmarkType = "5">
       </FileBreakpoint>
@@ -957,11 +931,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "ClassNote/HFAppDelegate.m"
-         timestampString = "373033816.293861"
+         timestampString = "373101420.230713"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "274"
-         endingLineNumber = "274"
+         startingLineNumber = "302"
+         endingLineNumber = "302"
          landmarkName = "-persistentStoreCoordinator"
          landmarkType = "5">
       </FileBreakpoint>
@@ -1538,11 +1512,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "ClassNote/LoginViewController.m"
-         timestampString = "373029502.968883"
+         timestampString = "373102946.641315"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "47"
-         endingLineNumber = "47"
+         startingLineNumber = "59"
+         endingLineNumber = "59"
          landmarkName = "-landButtonPressed:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -1551,11 +1525,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "ClassNote/HFAppDelegate.m"
-         timestampString = "373033816.293861"
+         timestampString = "373101420.230713"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "38"
-         endingLineNumber = "38"
+         startingLineNumber = "64"
+         endingLineNumber = "64"
          landmarkName = "-startApp"
          landmarkType = "5">
       </FileBreakpoint>
@@ -1564,11 +1538,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "ClassNote/LoginViewController.m"
-         timestampString = "373029502.968883"
+         timestampString = "373102946.641315"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "46"
-         endingLineNumber = "46"
+         startingLineNumber = "58"
+         endingLineNumber = "58"
          landmarkName = "-landButtonPressed:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -1577,11 +1551,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "ClassNote/LoginViewController.m"
-         timestampString = "373029502.968883"
+         timestampString = "373102946.641315"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "45"
-         endingLineNumber = "45"
+         startingLineNumber = "57"
+         endingLineNumber = "57"
          landmarkName = "-landButtonPressed:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -1590,11 +1564,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "ClassNote/SignUpViewController.m"
-         timestampString = "373021769.205126"
+         timestampString = "373102946.641315"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "44"
-         endingLineNumber = "44"
+         startingLineNumber = "58"
+         endingLineNumber = "58"
          landmarkName = "-logButtonPressed:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -1603,11 +1577,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "ClassNote/SignUpViewController.m"
-         timestampString = "373022412.139184"
+         timestampString = "373102946.641315"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "25"
-         endingLineNumber = "25"
+         startingLineNumber = "39"
+         endingLineNumber = "39"
          landmarkName = "-logButtonPressed:"
          landmarkType = "5">
       </FileBreakpoint>

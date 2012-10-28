@@ -9,8 +9,22 @@
 #import "SignUpViewController.h"
 #import "LoginViewController.h"
 #import "HFRemoteUtils.h"
+#import "MobClick.h"
+
 @implementation SignUpViewController
 @synthesize user,password,ensurePassword, delegate;
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [MobClick beginLogPageView:@"SignUpPage"];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [MobClick endLogPageView:@"SignUpPage"];
+}
+
 -(IBAction) logButtonPressed:(id) sender
 {
 	

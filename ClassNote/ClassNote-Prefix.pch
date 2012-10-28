@@ -14,3 +14,5 @@
     #import <CoreData/CoreData.h>
     #import <QuartzCore/QuartzCore.h>
 #endif
+
+#define UMENG_APPKEY @"508cd3a652701519c80001d9"

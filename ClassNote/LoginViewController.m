@@ -10,6 +10,7 @@
 #import "SignUpViewController.h"
 #import "NGViewController.h"
 #import "HFRemoteUtils.h"
+#import "MobClick.h"
 
 @implementation LoginViewController
 @synthesize user,password, delegate;
@@ -18,6 +19,17 @@
 {
 	
     [super viewDidLoad];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [MobClick beginLogPageView:@"LoginPage"];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [MobClick endLogPageView:@"LoginPage"];
 }
 
 -(IBAction) logButtonPressed:(id) sender

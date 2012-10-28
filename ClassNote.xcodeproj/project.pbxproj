@@ -29,6 +29,10 @@
 		85611BBE163C04C30099B7BE /* HFExceptionHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 85611BBD163C04C30099B7BE /* HFExceptionHandler.m */; };
 		8590DF9715FBB83800A7019F /* GuideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8590DF9515FBB83800A7019F /* GuideViewController.m */; };
 		8590DF9815FBB83800A7019F /* GuideViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8590DF9615FBB83800A7019F /* GuideViewController.xib */; };
+		859A4D59163D0FF000A78FCA /* libMobClickLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 859A4D57163D0FF000A78FCA /* libMobClickLibrary.a */; };
+		859A4D5C163D107400A78FCA /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 859A4D5B163D107400A78FCA /* libz.dylib */; };
+		859A4D64163D183100A78FCA /* libUMFeedback.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 859A4D61163D183000A78FCA /* libUMFeedback.a */; };
+		859A4D65163D183100A78FCA /* umFeedback.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 859A4D62163D183000A78FCA /* umFeedback.bundle */; };
 		859D77BB16340AB30050E6FA /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 859D77B616340AB30050E6FA /* SignUpViewController.m */; };
 		859D77BC16340AB30050E6FA /* SignUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 859D77B716340AB30050E6FA /* SignUpViewController.xib */; };
 		859D77BD16340AB30050E6FA /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 859D77B916340AB30050E6FA /* LoginViewController.m */; };
@@ -102,6 +106,12 @@
 		8590DF9415FBB83800A7019F /* GuideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GuideViewController.h; path = ClassNote/GuideViewController.h; sourceTree = "<group>"; };
 		8590DF9515FBB83800A7019F /* GuideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GuideViewController.m; path = ClassNote/GuideViewController.m; sourceTree = "<group>"; };
 		8590DF9615FBB83800A7019F /* GuideViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = GuideViewController.xib; path = ClassNote/GuideViewController.xib; sourceTree = "<group>"; };
+		859A4D57163D0FF000A78FCA /* libMobClickLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libMobClickLibrary.a; sourceTree = "<group>"; };
+		859A4D58163D0FF000A78FCA /* MobClick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobClick.h; sourceTree = "<group>"; };
+		859A4D5B163D107400A78FCA /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		859A4D61163D183000A78FCA /* libUMFeedback.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libUMFeedback.a; sourceTree = "<group>"; };
+		859A4D62163D183000A78FCA /* umFeedback.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = umFeedback.bundle; sourceTree = "<group>"; };
+		859A4D63163D183100A78FCA /* UMFeedback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMFeedback.h; sourceTree = "<group>"; };
 		859D77B516340AB30050E6FA /* SignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SignUpViewController.h; path = ClassNote/SignUpViewController.h; sourceTree = "<group>"; };
 		859D77B616340AB30050E6FA /* SignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SignUpViewController.m; path = ClassNote/SignUpViewController.m; sourceTree = "<group>"; };
 		859D77B716340AB30050E6FA /* SignUpViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SignUpViewController.xib; path = ClassNote/SignUpViewController.xib; sourceTree = "<group>"; };
@@ -185,11 +195,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				859A4D5C163D107400A78FCA /* libz.dylib in Frameworks */,
 				85F910B315FC638500ADB1E9 /* CoreGraphics.framework in Frameworks */,
 				852EC1BF159C4AA40018A30E /* CoreData.framework in Frameworks */,
 				85AB0AAD15988CD60065020C /* UIKit.framework in Frameworks */,
 				85AB0AAF15988CD60065020C /* Foundation.framework in Frameworks */,
 				85F910B415FC65AB00ADB1E9 /* QuartzCore.framework in Frameworks */,
+				859A4D59163D0FF000A78FCA /* libMobClickLibrary.a in Frameworks */,
+				859A4D64163D183100A78FCA /* libUMFeedback.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -346,6 +359,12 @@
 		85AB0A9D15988CD50065020C = {
 			isa = PBXGroup;
 			children = (
+				859A4D61163D183000A78FCA /* libUMFeedback.a */,
+				859A4D62163D183000A78FCA /* umFeedback.bundle */,
+				859A4D63163D183100A78FCA /* UMFeedback.h */,
+				859A4D5B163D107400A78FCA /* libz.dylib */,
+				859A4D57163D0FF000A78FCA /* libMobClickLibrary.a */,
+				859A4D58163D0FF000A78FCA /* MobClick.h */,
 				85611BBB163C03270099B7BE /* Exception */,
 				859D77D01634110A0050E6FA /* thrift */,
 				859D77C216340E060050E6FA /* thrift-client */,
@@ -510,6 +529,7 @@
 				859D77BC16340AB30050E6FA /* SignUpViewController.xib in Resources */,
 				859D77BE16340AB30050E6FA /* LoginViewController.xib in Resources */,
 				85611BBA163BD32F0099B7BE /* HFMainViewController.xib in Resources */,
+				859A4D65163D183100A78FCA /* umFeedback.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -637,6 +657,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ClassNote/ClassNote-Prefix.pch";
 				INFOPLIST_FILE = "ClassNote/ClassNote-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -648,6 +672,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ClassNote/ClassNote-Prefix.pch";
 				INFOPLIST_FILE = "ClassNote/ClassNote-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
