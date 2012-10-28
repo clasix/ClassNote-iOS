@@ -57,7 +57,7 @@
     
     if ([[NSUserDefaults standardUserDefaults] integerForKey:@"lesson_table_id"]) {
         lesson_table_id = [[NSUserDefaults standardUserDefaults] integerForKey:@"lesson_table_id"];
-        NSLog(@"lesson_table_id is %@", lesson_table_id);
+        NSLog(@"lesson_table_id is %d", lesson_table_id);
     } else {
         NSArray * lesson_tables;
         NSString *auth_token = (NSString *)[[NSUserDefaults standardUserDefaults] objectForKey:@"auth_token"];

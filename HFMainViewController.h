@@ -17,6 +17,7 @@
 - (IBAction)gotoLessonTable:(id)sender;
 - (IBAction)gotoLesson:(id)sender;
 - (IBAction)feedback:(id)sender;
+- (IBAction)about:(id)sender;
 
 @property (nonatomic, retain) HFAppDelegate *appDelegate;
 @end

@@ -33,6 +33,8 @@
 		859A4D5C163D107400A78FCA /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 859A4D5B163D107400A78FCA /* libz.dylib */; };
 		859A4D64163D183100A78FCA /* libUMFeedback.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 859A4D61163D183000A78FCA /* libUMFeedback.a */; };
 		859A4D65163D183100A78FCA /* umFeedback.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 859A4D62163D183000A78FCA /* umFeedback.bundle */; };
+		859A4D7A163D6FEF00A78FCA /* HFLessonListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 859A4D78163D6FEF00A78FCA /* HFLessonListViewController.m */; };
+		859A4D7B163D6FEF00A78FCA /* HFLessonListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 859A4D79163D6FEF00A78FCA /* HFLessonListViewController.xib */; };
 		859D77BB16340AB30050E6FA /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 859D77B616340AB30050E6FA /* SignUpViewController.m */; };
 		859D77BC16340AB30050E6FA /* SignUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 859D77B716340AB30050E6FA /* SignUpViewController.xib */; };
 		859D77BD16340AB30050E6FA /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 859D77B916340AB30050E6FA /* LoginViewController.m */; };
@@ -112,6 +114,9 @@
 		859A4D61163D183000A78FCA /* libUMFeedback.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libUMFeedback.a; sourceTree = "<group>"; };
 		859A4D62163D183000A78FCA /* umFeedback.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = umFeedback.bundle; sourceTree = "<group>"; };
 		859A4D63163D183100A78FCA /* UMFeedback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMFeedback.h; sourceTree = "<group>"; };
+		859A4D77163D6FEE00A78FCA /* HFLessonListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HFLessonListViewController.h; path = ClassNote/HFLessonListViewController.h; sourceTree = "<group>"; };
+		859A4D78163D6FEF00A78FCA /* HFLessonListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HFLessonListViewController.m; path = ClassNote/HFLessonListViewController.m; sourceTree = "<group>"; };
+		859A4D79163D6FEF00A78FCA /* HFLessonListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = HFLessonListViewController.xib; path = ClassNote/HFLessonListViewController.xib; sourceTree = "<group>"; };
 		859D77B516340AB30050E6FA /* SignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SignUpViewController.h; path = ClassNote/SignUpViewController.h; sourceTree = "<group>"; };
 		859D77B616340AB30050E6FA /* SignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SignUpViewController.m; path = ClassNote/SignUpViewController.m; sourceTree = "<group>"; };
 		859D77B716340AB30050E6FA /* SignUpViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SignUpViewController.xib; path = ClassNote/SignUpViewController.xib; sourceTree = "<group>"; };
@@ -250,6 +255,9 @@
 				85F35684159994D3000E1B6F /* HFClassEditViewController.h */,
 				85F35685159994D3000E1B6F /* HFClassEditViewController.m */,
 				85F35686159994D3000E1B6F /* HFClassEditView.xib */,
+				859A4D77163D6FEE00A78FCA /* HFLessonListViewController.h */,
+				859A4D78163D6FEF00A78FCA /* HFLessonListViewController.m */,
+				859A4D79163D6FEF00A78FCA /* HFLessonListViewController.xib */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -530,6 +538,7 @@
 				859D77BE16340AB30050E6FA /* LoginViewController.xib in Resources */,
 				85611BBA163BD32F0099B7BE /* HFMainViewController.xib in Resources */,
 				859A4D65163D183100A78FCA /* umFeedback.bundle in Resources */,
+				859A4D7B163D6FEF00A78FCA /* HFLessonListViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -578,6 +587,7 @@
 				859D7808163411FB0050E6FA /* type.m in Sources */,
 				85611BB9163BD32F0099B7BE /* HFMainViewController.m in Sources */,
 				85611BBE163C04C30099B7BE /* HFExceptionHandler.m in Sources */,
+				859A4D7A163D6FEF00A78FCA /* HFLessonListViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

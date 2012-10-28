@@ -12,6 +12,7 @@
 #import "HFExceptionHandler.h"
 #import "MobClick.h"
 #import "UMFeedback.h"
+#import "HFLessonListViewController.h"
 
 @interface HFMainViewController ()
 
@@ -111,9 +112,26 @@
 }
 
 - (IBAction)gotoLesson:(id)sender {
+    // initWithNibName 不需要 release
+    HFLessonListViewController *vc = [[HFLessonListViewController alloc] initWithNibName:@"HFLessonListViewController" bundle:nil];
+    
+    NSManagedObjectContext *context = [appDelegate managedObjectContext];
+    if (!context) {
+        NSLog(@"ManagedObjectContext created failed. %@", "Nothing");
+    }
+    
+    vc.managedObjectContext = context;
+    
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (IBAction)feedback:(id)sender {
     [UMFeedback showFeedback:self withAppkey:UMENG_APPKEY];
+}
+
+- (IBAction)about:(id)sender {
+    UIAlertView *alertView=[[UIAlertView alloc] initWithTitle:@"TODO:To be fixed" message:@"clasix:clasix.tk" delegate:self cancelButtonTitle:@"OK,I know" otherButtonTitles:nil];
+    [alertView show];
+    [alertView release];
 }
 @end
