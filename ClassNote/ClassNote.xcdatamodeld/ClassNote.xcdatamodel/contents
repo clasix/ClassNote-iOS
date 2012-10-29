@@ -4,16 +4,22 @@
         <attribute name="book" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="teacher" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="lessonInfos" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="HFLessonInfo" inverseName="lesson" inverseEntity="HFLessonInfo" syncable="YES"/>
     </entity>
-    <entity name="HFLessonItem" representedClassName="HFClass" syncable="YES">
+    <entity name="HFLessonInfo" representedClassName="HFLessonInfo" syncable="YES">
         <attribute name="dayinweek" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="duration" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="room" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="start" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <relationship name="lesson" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="HFLesson" syncable="YES"/>
+        <relationship name="lesson" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="HFLesson" inverseName="lessonInfos" inverseEntity="HFLesson" syncable="YES"/>
+    </entity>
+    <entity name="HFLessonTableItem" representedClassName="HFLessonTableItem" syncable="YES">
+        <attribute name="tableId" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <relationship name="lessonInfo" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="HFLessonInfo" syncable="YES"/>
     </entity>
     <elements>
-        <element name="HFLessonItem" positionX="180" positionY="-63" width="128" height="120"/>
+        <element name="HFLessonInfo" positionX="180" positionY="-63" width="128" height="120"/>
         <element name="HFLesson" positionX="160" positionY="192" width="128" height="105"/>
+        <element name="HFLessonTableItem" positionX="-36" positionY="-63" width="128" height="75"/>
     </elements>
 </model>

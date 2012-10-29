@@ -33,8 +33,6 @@
 		859A4D5C163D107400A78FCA /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 859A4D5B163D107400A78FCA /* libz.dylib */; };
 		859A4D64163D183100A78FCA /* libUMFeedback.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 859A4D61163D183000A78FCA /* libUMFeedback.a */; };
 		859A4D65163D183100A78FCA /* umFeedback.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 859A4D62163D183000A78FCA /* umFeedback.bundle */; };
-		859A4D7A163D6FEF00A78FCA /* HFLessonListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 859A4D78163D6FEF00A78FCA /* HFLessonListViewController.m */; };
-		859A4D7B163D6FEF00A78FCA /* HFLessonListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 859A4D79163D6FEF00A78FCA /* HFLessonListViewController.xib */; };
 		859D77BB16340AB30050E6FA /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 859D77B616340AB30050E6FA /* SignUpViewController.m */; };
 		859D77BC16340AB30050E6FA /* SignUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 859D77B716340AB30050E6FA /* SignUpViewController.xib */; };
 		859D77BD16340AB30050E6FA /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 859D77B916340AB30050E6FA /* LoginViewController.m */; };
@@ -62,10 +60,15 @@
 		85AB0AB915988CD60065020C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 85AB0AB815988CD60065020C /* main.m */; };
 		85AB0ABD15988CD60065020C /* HFAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 85AB0ABC15988CD60065020C /* HFAppDelegate.m */; };
 		85E035D615F64FE70009FAB8 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 85E035D815F64FE70009FAB8 /* Localizable.strings */; };
-		85E035E615F65EF70009FAB8 /* HFLesson.m in Sources */ = {isa = PBXBuildFile; fileRef = 85E035E515F65EF70009FAB8 /* HFLesson.m */; };
-		85E035E915F65F090009FAB8 /* HFLessonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 85E035E815F65F090009FAB8 /* HFLessonItem.m */; };
+		85E035E915F65F090009FAB8 /* HFLessonInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 85E035E815F65F090009FAB8 /* HFLessonInfo.m */; };
 		85E6CF9316020C2E00ED65FC /* HFLessonEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85E6CF9116020C2E00ED65FC /* HFLessonEditViewController.m */; };
 		85E6CF9416020C2E00ED65FC /* HFLessonEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85E6CF9216020C2E00ED65FC /* HFLessonEditViewController.xib */; };
+		85EA882D163E7E480002E80A /* HFLessonTableItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 85EA882C163E7E480002E80A /* HFLessonTableItem.m */; };
+		85EA8830163E7F4D0002E80A /* HFUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 85EA882F163E7F4D0002E80A /* HFUtils.m */; };
+		85EA8833163E9F110002E80A /* HFLesson.m in Sources */ = {isa = PBXBuildFile; fileRef = 85EA8832163E9F110002E80A /* HFLesson.m */; };
+		85EA8840163ECD180002E80A /* HFLessonListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85EA883E163ECD170002E80A /* HFLessonListViewController.m */; };
+		85EA8841163ECD180002E80A /* HFLessonListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85EA883F163ECD170002E80A /* HFLessonListViewController.xib */; };
+		85EA8866163EDD2A0002E80A /* HFAddLessonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85EA8865163EDD2A0002E80A /* HFAddLessonViewController.m */; };
 		85F35687159994D4000E1B6F /* HFLessonItemEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85F35685159994D3000E1B6F /* HFLessonItemEditViewController.m */; };
 		85F35688159994D4000E1B6F /* HFClassEditView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85F35686159994D3000E1B6F /* HFClassEditView.xib */; };
 		85F850711604699500068115 /* NGVaryingGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = 85F850701604699500068115 /* NGVaryingGridView.m */; };
@@ -114,9 +117,6 @@
 		859A4D61163D183000A78FCA /* libUMFeedback.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libUMFeedback.a; sourceTree = "<group>"; };
 		859A4D62163D183000A78FCA /* umFeedback.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = umFeedback.bundle; sourceTree = "<group>"; };
 		859A4D63163D183100A78FCA /* UMFeedback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMFeedback.h; sourceTree = "<group>"; };
-		859A4D77163D6FEE00A78FCA /* HFLessonListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HFLessonListViewController.h; path = ClassNote/HFLessonListViewController.h; sourceTree = "<group>"; };
-		859A4D78163D6FEF00A78FCA /* HFLessonListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HFLessonListViewController.m; path = ClassNote/HFLessonListViewController.m; sourceTree = "<group>"; };
-		859A4D79163D6FEF00A78FCA /* HFLessonListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = HFLessonListViewController.xib; path = ClassNote/HFLessonListViewController.xib; sourceTree = "<group>"; };
 		859D77B516340AB30050E6FA /* SignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SignUpViewController.h; path = ClassNote/SignUpViewController.h; sourceTree = "<group>"; };
 		859D77B616340AB30050E6FA /* SignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SignUpViewController.m; path = ClassNote/SignUpViewController.m; sourceTree = "<group>"; };
 		859D77B716340AB30050E6FA /* SignUpViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SignUpViewController.xib; path = ClassNote/SignUpViewController.xib; sourceTree = "<group>"; };
@@ -175,13 +175,22 @@
 		85AB0ABC15988CD60065020C /* HFAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HFAppDelegate.m; sourceTree = "<group>"; };
 		85E035D715F64FE70009FAB8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		85E035DA15F650180009FAB8 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
-		85E035E415F65EF70009FAB8 /* HFLesson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HFLesson.h; path = ClassNote/HFLesson.h; sourceTree = "<group>"; };
-		85E035E515F65EF70009FAB8 /* HFLesson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HFLesson.m; path = ClassNote/HFLesson.m; sourceTree = "<group>"; };
-		85E035E715F65F090009FAB8 /* HFLessonItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HFLessonItem.h; path = ClassNote/HFLessonItem.h; sourceTree = "<group>"; };
-		85E035E815F65F090009FAB8 /* HFLessonItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HFLessonItem.m; path = ClassNote/HFLessonItem.m; sourceTree = "<group>"; };
+		85E035E715F65F090009FAB8 /* HFLessonInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HFLessonInfo.h; path = ClassNote/HFLessonInfo.h; sourceTree = "<group>"; };
+		85E035E815F65F090009FAB8 /* HFLessonInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HFLessonInfo.m; path = ClassNote/HFLessonInfo.m; sourceTree = "<group>"; };
 		85E6CF9016020C2E00ED65FC /* HFLessonEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HFLessonEditViewController.h; path = ClassNote/HFLessonEditViewController.h; sourceTree = "<group>"; };
 		85E6CF9116020C2E00ED65FC /* HFLessonEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HFLessonEditViewController.m; path = ClassNote/HFLessonEditViewController.m; sourceTree = "<group>"; };
 		85E6CF9216020C2E00ED65FC /* HFLessonEditViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = HFLessonEditViewController.xib; path = ClassNote/HFLessonEditViewController.xib; sourceTree = "<group>"; };
+		85EA882B163E7E480002E80A /* HFLessonTableItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HFLessonTableItem.h; path = ClassNote/HFLessonTableItem.h; sourceTree = "<group>"; };
+		85EA882C163E7E480002E80A /* HFLessonTableItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HFLessonTableItem.m; path = ClassNote/HFLessonTableItem.m; sourceTree = "<group>"; };
+		85EA882E163E7F4D0002E80A /* HFUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HFUtils.h; sourceTree = "<group>"; };
+		85EA882F163E7F4D0002E80A /* HFUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HFUtils.m; sourceTree = "<group>"; };
+		85EA8831163E9F110002E80A /* HFLesson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HFLesson.h; path = ClassNote/HFLesson.h; sourceTree = "<group>"; };
+		85EA8832163E9F110002E80A /* HFLesson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HFLesson.m; path = ClassNote/HFLesson.m; sourceTree = "<group>"; };
+		85EA883D163ECD150002E80A /* HFLessonListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HFLessonListViewController.h; path = ClassNote/HFLessonListViewController.h; sourceTree = "<group>"; };
+		85EA883E163ECD170002E80A /* HFLessonListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HFLessonListViewController.m; path = ClassNote/HFLessonListViewController.m; sourceTree = "<group>"; };
+		85EA883F163ECD170002E80A /* HFLessonListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = HFLessonListViewController.xib; path = ClassNote/HFLessonListViewController.xib; sourceTree = "<group>"; };
+		85EA8864163EDD2A0002E80A /* HFAddLessonViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HFAddLessonViewController.h; path = ClassNote/HFAddLessonViewController.h; sourceTree = "<group>"; };
+		85EA8865163EDD2A0002E80A /* HFAddLessonViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HFAddLessonViewController.m; path = ClassNote/HFAddLessonViewController.m; sourceTree = "<group>"; };
 		85F35684159994D3000E1B6F /* HFLessonItemEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HFLessonItemEditViewController.h; path = ClassNote/HFLessonItemEditViewController.h; sourceTree = "<group>"; };
 		85F35685159994D3000E1B6F /* HFLessonItemEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HFLessonItemEditViewController.m; path = ClassNote/HFLessonItemEditViewController.m; sourceTree = "<group>"; };
 		85F35686159994D3000E1B6F /* HFClassEditView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = HFClassEditView.xib; path = ClassNote/HFClassEditView.xib; sourceTree = "<group>"; };
@@ -217,10 +226,12 @@
 		85031E8515FE24C800A1A287 /* Model Class */ = {
 			isa = PBXGroup;
 			children = (
-				85E035E715F65F090009FAB8 /* HFLessonItem.h */,
-				85E035E815F65F090009FAB8 /* HFLessonItem.m */,
-				85E035E415F65EF70009FAB8 /* HFLesson.h */,
-				85E035E515F65EF70009FAB8 /* HFLesson.m */,
+				85EA8831163E9F110002E80A /* HFLesson.h */,
+				85EA8832163E9F110002E80A /* HFLesson.m */,
+				85EA882B163E7E480002E80A /* HFLessonTableItem.h */,
+				85EA882C163E7E480002E80A /* HFLessonTableItem.m */,
+				85E035E715F65F090009FAB8 /* HFLessonInfo.h */,
+				85E035E815F65F090009FAB8 /* HFLessonInfo.m */,
 			);
 			name = "Model Class";
 			sourceTree = "<group>";
@@ -240,6 +251,11 @@
 		852EC1DA159C56830018A30E /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				85EA8864163EDD2A0002E80A /* HFAddLessonViewController.h */,
+				85EA8865163EDD2A0002E80A /* HFAddLessonViewController.m */,
+				85EA883D163ECD150002E80A /* HFLessonListViewController.h */,
+				85EA883E163ECD170002E80A /* HFLessonListViewController.m */,
+				85EA883F163ECD170002E80A /* HFLessonListViewController.xib */,
 				85611BB6163BD32F0099B7BE /* HFMainViewController.h */,
 				85611BB7163BD32F0099B7BE /* HFMainViewController.m */,
 				85611BB8163BD32F0099B7BE /* HFMainViewController.xib */,
@@ -255,9 +271,6 @@
 				85F35684159994D3000E1B6F /* HFLessonItemEditViewController.h */,
 				85F35685159994D3000E1B6F /* HFLessonItemEditViewController.m */,
 				85F35686159994D3000E1B6F /* HFClassEditView.xib */,
-				859A4D77163D6FEE00A78FCA /* HFLessonListViewController.h */,
-				859A4D78163D6FEF00A78FCA /* HFLessonListViewController.m */,
-				859A4D79163D6FEF00A78FCA /* HFLessonListViewController.xib */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -280,8 +293,6 @@
 				859D77B816340AB30050E6FA /* LoginViewController.h */,
 				859D77B916340AB30050E6FA /* LoginViewController.m */,
 				859D77BA16340AB30050E6FA /* LoginViewController.xib */,
-				859D77BF16340CE90050E6FA /* HFRemoteUtils.h */,
-				859D77C016340CE90050E6FA /* HFRemoteUtils.m */,
 			);
 			name = Login;
 			sourceTree = "<group>";
@@ -367,12 +378,16 @@
 		85AB0A9D15988CD50065020C = {
 			isa = PBXGroup;
 			children = (
+				85EA882E163E7F4D0002E80A /* HFUtils.h */,
+				85EA882F163E7F4D0002E80A /* HFUtils.m */,
 				859A4D61163D183000A78FCA /* libUMFeedback.a */,
 				859A4D62163D183000A78FCA /* umFeedback.bundle */,
 				859A4D63163D183100A78FCA /* UMFeedback.h */,
 				859A4D5B163D107400A78FCA /* libz.dylib */,
 				859A4D57163D0FF000A78FCA /* libMobClickLibrary.a */,
 				859A4D58163D0FF000A78FCA /* MobClick.h */,
+				859D77BF16340CE90050E6FA /* HFRemoteUtils.h */,
+				859D77C016340CE90050E6FA /* HFRemoteUtils.m */,
 				85611BBB163C03270099B7BE /* Exception */,
 				859D77D01634110A0050E6FA /* thrift */,
 				859D77C216340E060050E6FA /* thrift-client */,
@@ -538,7 +553,7 @@
 				859D77BE16340AB30050E6FA /* LoginViewController.xib in Resources */,
 				85611BBA163BD32F0099B7BE /* HFMainViewController.xib in Resources */,
 				859A4D65163D183100A78FCA /* umFeedback.bundle in Resources */,
-				859A4D7B163D6FEF00A78FCA /* HFLessonListViewController.xib in Resources */,
+				85EA8841163ECD180002E80A /* HFLessonListViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -553,8 +568,7 @@
 				85AB0ABD15988CD60065020C /* HFAppDelegate.m in Sources */,
 				85F35687159994D4000E1B6F /* HFLessonItemEditViewController.m in Sources */,
 				852EC1C3159C4AFA0018A30E /* ClassNote.xcdatamodeld in Sources */,
-				85E035E615F65EF70009FAB8 /* HFLesson.m in Sources */,
-				85E035E915F65F090009FAB8 /* HFLessonItem.m in Sources */,
+				85E035E915F65F090009FAB8 /* HFLessonInfo.m in Sources */,
 				850E377115FBA1B700EE3F6D /* UIImage+SplitImageIntoTwoParts.m in Sources */,
 				8590DF9715FBB83800A7019F /* GuideViewController.m in Sources */,
 				851B4FFA15FCF3A200A98CD8 /* YISplashScreen.m in Sources */,
@@ -587,7 +601,11 @@
 				859D7808163411FB0050E6FA /* type.m in Sources */,
 				85611BB9163BD32F0099B7BE /* HFMainViewController.m in Sources */,
 				85611BBE163C04C30099B7BE /* HFExceptionHandler.m in Sources */,
-				859A4D7A163D6FEF00A78FCA /* HFLessonListViewController.m in Sources */,
+				85EA882D163E7E480002E80A /* HFLessonTableItem.m in Sources */,
+				85EA8830163E7F4D0002E80A /* HFUtils.m in Sources */,
+				85EA8833163E9F110002E80A /* HFLesson.m in Sources */,
+				85EA8840163ECD180002E80A /* HFLessonListViewController.m in Sources */,
+				85EA8866163EDD2A0002E80A /* HFAddLessonViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

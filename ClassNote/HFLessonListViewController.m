@@ -8,6 +8,9 @@
 
 #import "HFLessonListViewController.h"
 #import "HFLesson.h"
+#import "AddViewController.h"
+#import "HFLessonInfo.h"
+#import "HFAddLessonViewController.h"
 
 @interface HFLessonListViewController ()
 
@@ -27,7 +30,9 @@
 
 @synthesize listContent, filteredListContent, savedSearchTerm, savedScopeButtonIndex, searchWasActive;
 
-@synthesize managedObjectContext, fetchedResultsController;
+@synthesize managedObjectContext, addingManagedObjectContext,fetchedResultsController, viewType;
+
+@synthesize delegate, searchingText;
 
 
 #pragma mark - 
@@ -43,6 +48,12 @@
 		NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
 		exit(-1);  // Fail
 	}
+    
+    if (viewType == TYPE_SELECT_LESSONS) {
+        self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel 
+                                                                                               target:self action:@selector(cancel:)] autorelease];
+//        self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(save:)] autorelease];
+    }
     
     self.listContent = fetchedResultsController.fetchedObjects;
 	
@@ -83,6 +94,8 @@
     
     [managedObjectContext release];
     [fetchedResultsController release];
+    
+    [searchingText release];
 	
 	[super dealloc];
 }
@@ -99,11 +112,11 @@
 	 */
 	if (tableView == self.searchDisplayController.searchResultsTableView)
 	{
-        return [self.filteredListContent count];
+        return [self.filteredListContent count] + 1;
     }
 	else
 	{
-        return [self.listContent count];
+        return [self.listContent count] + 1;
     }
 }
 
@@ -119,44 +132,142 @@
 		cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 	}
 	
-	/*
+    /*
 	 If the requesting table view is the search display controller's table view, configure the cell using the filtered content, otherwise use the main list.
 	 */
-	HFLesson *hfLesson = nil;
-	if (tableView == self.searchDisplayController.searchResultsTableView)
-	{
-        hfLesson = [self.filteredListContent objectAtIndex:indexPath.row];
+    if (tableView == self.searchDisplayController.searchResultsTableView) {
+        if (indexPath.row >= [self.filteredListContent count]) {
+            cell.textLabel.text = [NSString stringWithFormat:@"手动添加'%@'", self.searchingText];
+        } else {
+            HFLesson *hfLesson = [self.filteredListContent objectAtIndex:indexPath.row];
+            cell.textLabel.text = hfLesson.name;
+        }
+    } else {
+        if (indexPath.row >= [self.listContent count]) {
+            cell.textLabel.text = [NSString stringWithFormat:@"手动添加'%@'", @"New Lesson"];
+        } else {
+            HFLesson *hfLesson = [self.listContent objectAtIndex:indexPath.row]; 
+            cell.textLabel.text = hfLesson.name;
+        }
     }
-	else
-	{
-        hfLesson = [self.listContent objectAtIndex:indexPath.row];
-    }
-	
-	cell.textLabel.text = hfLesson.name;
-	return cell;
+    
+    return cell;
 }
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UIViewController *detailsViewController = [[UIViewController alloc] init];
+    
     
 	/*
 	 If the requesting table view is the search display controller's table view, configure the next view controller using the filtered content, otherwise use the main list.
 	 */
-	HFLesson *hfLesson = nil;
 	if (tableView == self.searchDisplayController.searchResultsTableView)
 	{
-        hfLesson = [self.filteredListContent objectAtIndex:indexPath.row];
+        if (indexPath.row >= [self.filteredListContent count]) {
+            [self addNewLesson:self.searchingText];
+        } else {
+            HFLesson *hfLesson = [self.filteredListContent objectAtIndex:indexPath.row];
+            if (self.viewType == TYPE_SELECT_LESSONS) {
+                [self.delegate finishedLessonInfos:hfLesson.lessonInfos];
+                [self.navigationController popViewControllerAnimated:YES];
+            } else {
+                
+                UIViewController *detailsViewController = [[UIViewController alloc] init];
+                detailsViewController.title = hfLesson.name;
+                
+                [[self navigationController] pushViewController:detailsViewController animated:YES];
+                [detailsViewController release];
+            }
+        }
     }
 	else
 	{
-        hfLesson = [self.listContent objectAtIndex:indexPath.row];
+        if (indexPath.row >= [self.listContent count]) {
+            [self addNewLesson:@"New Lesson"];
+        } else {
+            HFLesson *hfLesson = [self.listContent objectAtIndex:indexPath.row];
+            if (self.viewType == TYPE_SELECT_LESSONS) {
+                [self.delegate finishedLessonInfos:hfLesson.lessonInfos];
+                [self.navigationController popViewControllerAnimated:YES];
+            } else {
+                UIViewController *detailsViewController = [[UIViewController alloc] init];
+                detailsViewController.title = hfLesson.name;
+                
+                [[self navigationController] pushViewController:detailsViewController animated:YES];
+                [detailsViewController release];
+            }
+        }
     }
-	detailsViewController.title = hfLesson.name;
+}
+
+- (void)addNewLesson: (NSString*) lessonName {
+    HFAddLessonViewController * vc = [[HFAddLessonViewController alloc] initWithStyle:UITableViewStyleGrouped];
     
-    [[self navigationController] pushViewController:detailsViewController animated:YES];
-    [detailsViewController release];
+//    addViewController.delegate = self;
+	
+	// Create a new managed object context for the new book -- set its persistent store coordinator to the same as that from the fetched results controller's context.
+	NSManagedObjectContext *addingContext = [[NSManagedObjectContext alloc] init];
+	self.addingManagedObjectContext = addingContext;
+	[addingContext release];
+	
+	[addingManagedObjectContext setPersistentStoreCoordinator:[[fetchedResultsController managedObjectContext] persistentStoreCoordinator]];
+    
+    HFLesson *hfLesson = (HFLesson *)[NSEntityDescription insertNewObjectForEntityForName:@"HFLesson" inManagedObjectContext:addingManagedObjectContext];
+    
+    hfLesson.name = lessonName;
+    
+    HFLessonInfo *hfLessonInfo = (HFLessonInfo *)[NSEntityDescription insertNewObjectForEntityForName:@"HFLessonInfo" inManagedObjectContext:addingManagedObjectContext];
+    
+    hfLessonInfo.lesson = hfLesson;
+    hfLessonInfo.room = @"";
+    hfLessonInfo.dayinweek = [NSNumber numberWithInt:1];
+    hfLessonInfo.start = [NSNumber numberWithInt:1 + 1];
+    hfLessonInfo.duration = [NSNumber numberWithInt:1];
+    
+    vc.lessonInfos = [NSMutableArray arrayWithCapacity:2];
+    vc.lesson = hfLesson;
+    [vc.lessonInfos addObject:hfLessonInfo];
+    
+    [self.navigationController pushViewController:vc animated:YES];
+    [vc release];
+    
+    // TODO: delegate.deleteLessonInfo  realize.
+    // TODO: delegate.addLessonInfo
+//    AddViewController *addViewController = [[AddViewController alloc] initWithStyle:UITableViewStyleGrouped];
+//    [self.navigationController pushViewController:addViewController animated:YES];
+//	
+//	[addViewController release];
+}
+
+- (void)addViewController:(AddViewController *)controller didFinishWithSave:(BOOL)save {
+	
+	if (save) {
+        NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
+		[dnc addObserver:self selector:@selector(addControllerContextDidSave:) name:NSManagedObjectContextDidSaveNotification object:addingManagedObjectContext];
+        
+        // do save
+        // Create and configure a new instance of the Event entity.
+        NSError *error;
+		if (![addingManagedObjectContext save:&error]) {
+			// Update to handle the error appropriately.
+			NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+			exit(-1);  // Fail
+		}
+        
+        [dnc removeObserver:self name:NSManagedObjectContextDidSaveNotification object:addingManagedObjectContext];
+    }
+    
+    self.addingManagedObjectContext = nil;
+    
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)addControllerContextDidSave:(NSNotification*)saveNotification {
+	
+	NSManagedObjectContext *context = [fetchedResultsController managedObjectContext];
+	// Merging changes causes the fetched results controller to update its results
+	[context mergeChangesFromContextDidSaveNotification:saveNotification];	
 }
 
 
@@ -170,6 +281,8 @@
 	 */
 	
 	[self.filteredListContent removeAllObjects]; // First clear the filtered array.
+    
+    [self setSearchingText:searchText];
 	
 	/*
 	 Search the main list for products whose type matches the scope (if selected) and whose name matches searchText; add items that match to the filtered array.
@@ -304,6 +417,22 @@
 	// The fetch controller has sent all current change notifications, so tell the table view to process all updates.
     [self.tableView reloadData];
 	
+}
+
+#pragma mark -
+#pragma mark Save and cancel operations
+
+- (IBAction)cancel:(id)sender {
+    // Don't pass current value to the edited object, just pop.
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (IBAction)save:(id)sender {
+    if (self.delegate) {
+        [delegate finishedLessonInfos: nil];
+    }
+    
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 @end

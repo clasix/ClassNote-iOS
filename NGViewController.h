@@ -8,13 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import "HFLessonItemEditViewController.h"
-#import "HFLessonItem.h"
+#import "HFLessonInfo.h"
 #import "AddViewController.h"
+#import "HFLessonListViewController.h"
 
 static const int CLASSES_IN_DAY = 12;
 static const int DAYS_IN_WEEK = 7;
 
-@interface NGViewController : UIViewController<NSFetchedResultsControllerDelegate, AddViewControllerDelegate> {
+@interface NGViewController : UIViewController<NSFetchedResultsControllerDelegate,LessonListControllerDelegate> {
     NSArray *weekdays;
     
     NSManagedObjectContext *managedObjectContext;

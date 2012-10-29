@@ -7,13 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "HFLessonItem.h"
+#import "HFLessonInfo.h"
 #import "HFLesson.h"
 
 @protocol AddHFLessonItemViewControllerDelegate;
 
 @interface HFLessonItemEditViewController : UIViewController <UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate>{
-    HFLessonItem *hfLessonItem;
+    HFLessonInfo *hfLessonItem;
     
     id <AddHFLessonItemViewControllerDelegate> delegate;
 
@@ -26,7 +26,7 @@
     bool keyboardShown;
     UITextField *activeField;
 }
-@property (nonatomic, retain) HFLessonItem *hfLessonItem;
+@property (nonatomic, retain) HFLessonInfo *hfLessonItem;
 @property (nonatomic, retain) HFLesson *hfLesson;
 
 @property (retain, nonatomic) IBOutlet UIScrollView *scrollView;

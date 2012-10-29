@@ -9,9 +9,12 @@
 #import "NGViewController.h"
 #import "NGVaryingGridView.h"
 #import "NGClassCell.h"
-#import "HFLessonItem.h"
+#import "HFLessonInfo.h"
 #import "HFRemoteUtils.h"
 #import "HFExceptionHandler.h"
+#import "HFUtils.h"
+#import "HFLessonTableItem.h"
+#import "HFLessonListViewController.h"
 
 
 #define kColumnWidth    ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad ? 120.f : 60.f)
@@ -56,11 +59,10 @@
     }
     
     if ([[NSUserDefaults standardUserDefaults] integerForKey:@"lesson_table_id"]) {
-        lesson_table_id = [[NSUserDefaults standardUserDefaults] integerForKey:@"lesson_table_id"];
-        NSLog(@"lesson_table_id is %d", lesson_table_id);
+        lesson_table_id = [HFUtils getLessonTableID];
     } else {
         NSArray * lesson_tables;
-        NSString *auth_token = (NSString *)[[NSUserDefaults standardUserDefaults] objectForKey:@"auth_token"];
+        NSString *auth_token = [HFUtils getAuthToken];
         @try {
             lesson_tables = [[[HFRemoteUtils instance] server] get_lessontables:auth_token];
         }
@@ -76,15 +78,13 @@
             if (ret) {
                 NSArray * lesson_tables = [[[HFRemoteUtils instance] server] get_lessontables:auth_token];
                 lesson_table_id = [(LessonTable *)[lesson_tables objectAtIndex:0] gid];
-                [[NSUserDefaults standardUserDefaults] setInteger:lesson_table_id forKey:@"lesson_table_id"];
-                NSLog(@"lesson_table_id is %@", lesson_table_id);
+                [HFUtils setLessonTableID:lesson_table_id];
             } else {
                 [HFExceptionHandler networkAlert];
             }
         } else {
             lesson_table_id = [(LessonTable *)[lesson_tables objectAtIndex:0] gid];
-            [[NSUserDefaults standardUserDefaults] setInteger:lesson_table_id forKey:@"lesson_table_id"];
-            NSLog(@"lesson_table_id is %d", lesson_table_id);
+            [HFUtils setLessonTableID:lesson_table_id];
         }
     }
     
@@ -237,37 +237,14 @@
 }
 
 - (void)addLesson {
-    AddViewController *addViewController = [[AddViewController alloc] initWithStyle:UITableViewStyleGrouped];
-	addViewController.delegate = self;
-	
-	// Create a new managed object context for the new book -- set its persistent store coordinator to the same as that from the fetched results controller's context.
-	NSManagedObjectContext *addingContext = [[NSManagedObjectContext alloc] init];
-	self.addingManagedObjectContext = addingContext;
-	[addingContext release];
-	
-	[addingManagedObjectContext setPersistentStoreCoordinator:[[fetchedResultsController managedObjectContext] persistentStoreCoordinator]];
+    HFLessonListViewController * lessonListViewController = [[HFLessonListViewController alloc] initWithNibName:@"HFLessonListViewController" bundle:nil];
+
+    lessonListViewController.viewType = TYPE_SELECT_LESSONS;
+    lessonListViewController.delegate = self;
     
-    HFLessonItem *hfLessonItem = (HFLessonItem *)[NSEntityDescription insertNewObjectForEntityForName:@"HFLessonItem" inManagedObjectContext:addingManagedObjectContext];
-    hfLessonItem.lesson = (HFLesson *)[NSEntityDescription insertNewObjectForEntityForName:@"HFLesson" inManagedObjectContext:addingManagedObjectContext];
-    
-    hfLessonItem.lesson.name = @"New Lesson";
-    hfLessonItem.room = @"ClassRoom";
-    if (selectedIndex >= [lessonItemsArray count]) {
-        hfLessonItem.dayinweek = [NSNumber numberWithInt:selectedColumn];
-        hfLessonItem.start = [NSNumber numberWithInt:selectedRow + 1];
-        hfLessonItem.duration = [NSNumber numberWithInt:1];
-    }
-    
-	addViewController.hfLessonItem = hfLessonItem;
+    lessonListViewController.managedObjectContext = managedObjectContext;
 	
-	UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:addViewController];
-    
-    //[self.navigationController pushViewController:addViewController animated:YES];
-	
-    [self.navigationController presentModalViewController:navController animated:YES];
-	
-	[addViewController release];
-	[navController release];
+    [self.navigationController pushViewController:lessonListViewController animated:YES];
 }
 
 //The event handling method
@@ -275,10 +252,10 @@
     if (selectedIndex < [lessonItemsArray count] && self.deleteButton.hidden == YES) {
         // Create and push a detail view controller.
         DetailViewController *detailViewController = [[DetailViewController alloc] initWithStyle:UITableViewStyleGrouped];
-        HFLessonItem * hfLessonItem = [lessonItemsArray objectAtIndex:selectedIndex];
+        HFLessonTableItem * hfLessonItem = [lessonItemsArray objectAtIndex:selectedIndex];
         
         // Pass the selected book to the new view controller.
-        detailViewController.hfLessonItem = hfLessonItem;
+        detailViewController.hfLessonInfo = hfLessonItem.lessonInfo;
         [self.navigationController pushViewController:detailViewController animated:YES];
         [detailViewController release];
     }
@@ -320,7 +297,7 @@
 
 - (void) deleteClass {
     if (selectedIndex < [lessonItemsArray count]) {
-        HFLessonItem * hfLessonItem = [lessonItemsArray objectAtIndex:selectedIndex];
+        HFLessonTableItem * hfLessonItem = [lessonItemsArray objectAtIndex:selectedIndex];
         
         NSManagedObjectContext *context = [fetchedResultsController managedObjectContext];
 		[context deleteObject:hfLessonItem];
@@ -360,11 +337,11 @@
         [classIndexSet addObject:[NSNumber numberWithInt:i]];
     }
     
-    for (HFLessonItem *lessonItem in lessonItemsArray) {
-        [rectsArray addObject:[NSValue valueWithCGRect:CGRectMake(kRightPadding + margin + [lessonItem.dayinweek intValue] * kColumnWidth, dayLineHeight + ([lessonItem.start intValue] - 1) * cellLineHeight + margin, kColumnWidth - margin * 2, ([lessonItem.duration intValue]) * cellLineHeight - margin * 2)]];
+    for (HFLessonTableItem *lessonItem in lessonItemsArray) {
+        [rectsArray addObject:[NSValue valueWithCGRect:CGRectMake(kRightPadding + margin + [lessonItem.lessonInfo.dayinweek intValue] * kColumnWidth, dayLineHeight + ([lessonItem.lessonInfo.start intValue] - 1) * cellLineHeight + margin, kColumnWidth - margin * 2, ([lessonItem.lessonInfo.duration intValue]) * cellLineHeight - margin * 2)]];
         
-        for (int k = [lessonItem.start intValue]; k < ([lessonItem.start intValue] + [lessonItem.duration intValue]); k ++) {
-            [classIndexSet removeObject:[NSNumber numberWithInt:([lessonItem.dayinweek intValue] * CLASSES_IN_DAY + k - 1)]];
+        for (int k = [lessonItem.lessonInfo.start intValue]; k < ([lessonItem.lessonInfo.start intValue] + [lessonItem.lessonInfo.duration intValue]); k ++) {
+            [classIndexSet removeObject:[NSNumber numberWithInt:([lessonItem.lessonInfo.dayinweek intValue] * CLASSES_IN_DAY + k - 1)]];
         }
     }
     
@@ -381,15 +358,15 @@
         NGClassCell *cell = (NGClassCell *) ([gridView dequeueReusableCellWithFrame:rect] ?: [[NGClassCell alloc] initWithFrame:rect]);
         
         // TODO
-        HFLessonItem *hfLessonItem = [lessonItemsArray objectAtIndex:index];
-        cell.text = hfLessonItem.lesson.name;
-        cell.column = [hfLessonItem.dayinweek intValue];
-        cell.row = [hfLessonItem.start intValue] - 1;
+        HFLessonTableItem *lessonItem = [lessonItemsArray objectAtIndex:index];
+        cell.text = lessonItem.lessonInfo.lesson.name;
+        cell.column = [lessonItem.lessonInfo.dayinweek intValue];
+        cell.row = [lessonItem.lessonInfo.start intValue] - 1;
         cell.index = index;
         
         if (cell.column == selectedColumn && cell.row == selectedRow) {
             cell.backgroundColor = [UIColor redColor];
-            [self.editLabel setText:[NSString stringWithFormat:@"Class's lesson is: %@, class room is:%@", hfLessonItem.lesson.name, hfLessonItem.room]];
+            [self.editLabel setText:[NSString stringWithFormat:@"Class's lesson is: %@, class room is:%@", lessonItem.lessonInfo.lesson.name, lessonItem.lessonInfo.room]];
             //[self.editLabel setBackgroundColor:[UIColor redColor]];
             selectedIndex = index;
             [self updateButtonState:index];
@@ -446,25 +423,34 @@
     
 }
 
-- (void)addViewController:(HFLessonItemEditViewController *)controller didFinishWithSave:(BOOL)save {
-	
-	if (save) {
-        NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
-		[dnc addObserver:self selector:@selector(addControllerContextDidSave:) name:NSManagedObjectContextDidSaveNotification object:addingManagedObjectContext];
+- (void)finishedLessonInfos:(NSSet *)lessonInfos {
+	// Create a new managed object context for the new book -- set its persistent store coordinator to the same as that from the fetched results controller's context.
+//	NSManagedObjectContext *addingContext = [[NSManagedObjectContext alloc] init];
+//	self.addingManagedObjectContext = addingContext;
+//	[addingContext release];
+//	
+//	[addingManagedObjectContext setPersistentStoreCoordinator:[[fetchedResultsController managedObjectContext] persistentStoreCoordinator]];
+    
+    for(HFLessonInfo * hfLessonInfo in lessonInfos) {
+        HFLessonTableItem *hfLessonTableItem = (HFLessonTableItem *)[NSEntityDescription insertNewObjectForEntityForName:@"HFLessonTableItem" inManagedObjectContext:hfLessonInfo.managedObjectContext];
+        hfLessonTableItem.tableId = [NSNumber numberWithInt:lesson_table_id];
+        hfLessonTableItem.lessonInfo = hfLessonInfo;
         
-        // do save
+        NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
+        [dnc addObserver:self selector:@selector(addControllerContextDidSave:) name:NSManagedObjectContextDidSaveNotification object:hfLessonInfo.managedObjectContext];
+        
         // Create and configure a new instance of the Event entity.
         NSError *error;
-		if (![addingManagedObjectContext save:&error]) {
-			// Update to handle the error appropriately.
-			NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-			exit(-1);  // Fail
-		}
+        if (![hfLessonInfo.managedObjectContext save:&error]) {
+            // Update to handle the error appropriately.
+            NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+            exit(-1);  // Fail
+        }
         
-        [dnc removeObserver:self name:NSManagedObjectContextDidSaveNotification object:addingManagedObjectContext];
+        [dnc removeObserver:self name:NSManagedObjectContextDidSaveNotification object:hfLessonInfo.managedObjectContext];
     }
     
-    self.addingManagedObjectContext = nil;
+//    self.addingManagedObjectContext = nil;
     
     [self dismissModalViewControllerAnimated:YES];
 }
@@ -487,26 +473,23 @@
     
 	// Create and configure a fetch request with the Book entity.
 	NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-	NSEntityDescription *entity = [NSEntityDescription entityForName:@"HFLessonItem" inManagedObjectContext:managedObjectContext];
+	NSEntityDescription *entity = [NSEntityDescription entityForName:@"HFLessonTableItem" inManagedObjectContext:managedObjectContext];
 	[fetchRequest setEntity:entity];
-	
-	// Create the sort descriptors array.
-	NSSortDescriptor *dayinweekDescriptor = [[NSSortDescriptor alloc] initWithKey:@"dayinweek" ascending:YES];
-	NSSortDescriptor *startDescriptor = [[NSSortDescriptor alloc] initWithKey:@"start" ascending:YES];
-	NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:dayinweekDescriptor, startDescriptor, nil];
-	[fetchRequest setSortDescriptors:sortDescriptors];
+    
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"tableId" ascending:YES];
+    NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
+    [fetchRequest setSortDescriptors:sortDescriptors];
+    [sortDescriptors release];
+    [sortDescriptor release];
 	
 	// Create and initialize the fetch results controller.
-	NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:managedObjectContext sectionNameKeyPath:@"dayinweek" cacheName:@"Root"];
+	NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:managedObjectContext sectionNameKeyPath:nil cacheName:@"Root1"];
 	self.fetchedResultsController = aFetchedResultsController;
 	fetchedResultsController.delegate = self;
 	
 	// Memory management.
 	[aFetchedResultsController release];
 	[fetchRequest release];
-	[dayinweekDescriptor release];
-	[startDescriptor release];
-	[sortDescriptors release];
 	
 	return fetchedResultsController;
 }
@@ -525,7 +508,7 @@
 	switch (type) {
         case NSFetchedResultsChangeInsert:
         {
-            HFLessonItem *lessonItem = (HFLessonItem *)anObject;
+            HFLessonTableItem *lessonItem = (HFLessonTableItem *)anObject;
 
             // TODO: check!!
 //            if ([lessonsDictionary objectForKey:key]){

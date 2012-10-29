@@ -1,16 +1,16 @@
 //
-//  HFLessonItem.m
+//  HFLessonInfo.m
 //  ClassNote
 //
 //  Created by XiaoYin Wang on 12-9-5.
 //  Copyright (c) 2012年 HackFisher. All rights reserved.
 //
 
-#import "HFLessonItem.h"
+#import "HFLessonInfo.h"
 #import "HFLesson.h"
 
 
-@implementation HFLessonItem
+@implementation HFLessonInfo
 
 @dynamic dayinweek;
 @dynamic duration;
