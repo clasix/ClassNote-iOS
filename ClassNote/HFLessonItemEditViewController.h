@@ -1,5 +1,5 @@
 //
-//  HFClassEditViewControllerViewController.h
+//  HFLessonItemEditViewController.h
 //  ClassNote
 //
 //  Created by XiaoYin Wang on 12-6-26.
@@ -7,26 +7,26 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "HFClass.h"
+#import "HFLessonItem.h"
 #import "HFLesson.h"
 
-@protocol AddHFClassViewControllerDelegate;
+@protocol AddHFLessonItemViewControllerDelegate;
 
-@interface HFClassEditViewController : UIViewController <UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate>{
-    HFClass *hfClass;
+@interface HFLessonItemEditViewController : UIViewController <UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate>{
+    HFLessonItem *hfLessonItem;
     
-    id <AddHFClassViewControllerDelegate> delegate;
+    id <AddHFLessonItemViewControllerDelegate> delegate;
 
     NSArray * daysInWeek;
     NSInteger dayInWeek;
     NSInteger start;
-    NSInteger end;
+    NSInteger duaration;
     HFLesson *hfLesson;
     
     bool keyboardShown;
     UITextField *activeField;
 }
-@property (nonatomic, retain) HFClass *hfClass;
+@property (nonatomic, retain) HFLessonItem *hfLessonItem;
 @property (nonatomic, retain) HFLesson *hfLesson;
 
 @property (retain, nonatomic) IBOutlet UIScrollView *scrollView;
@@ -39,7 +39,7 @@
 @property (retain, nonatomic) IBOutlet UILabel *lessonLabel;
 @property (retain, nonatomic) IBOutlet UILabel *classRoomLabel;
 
-@property (nonatomic, assign) id <AddHFClassViewControllerDelegate> delegate;
+@property (nonatomic, assign) id <AddHFLessonItemViewControllerDelegate> delegate;
 
 @property (nonatomic, assign) NSInteger dayInWeek;
 @property (nonatomic, assign) NSInteger start;
@@ -49,6 +49,6 @@
 
 @end
 
-@protocol AddHFClassViewControllerDelegate
-- (void)addViewController:(HFClassEditViewController *)controller didFinishWithSave:(BOOL)save;
+@protocol AddHFLessonItemViewControllerDelegate
+- (void)addViewController:(HFLessonItemEditViewController *)controller didFinishWithSave:(BOOL)save;
 @end

@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "HFClassEditViewController.h"
-#import "HFClass.h"
+#import "HFLessonItemEditViewController.h"
+#import "HFLessonItem.h"
 #import "AddViewController.h"
 
 static const int CLASSES_IN_DAY = 12;
@@ -22,7 +22,7 @@ static const int DAYS_IN_WEEK = 7;
     
     NSFetchedResultsController *fetchedResultsController;
     
-    NSMutableArray * classesArray;
+    NSMutableArray * lessonItemsArray;
     
     NSInteger selectedIndex;
     NSInteger selectedRow;
@@ -36,7 +36,7 @@ static const int DAYS_IN_WEEK = 7;
 
 @property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
 
-@property (nonatomic, retain) NSMutableArray *classesArray;
+@property (nonatomic, retain) NSMutableArray *lessonItemsArray;
 
 @property (nonatomic, retain) UILabel *editLabel;
 @property (nonatomic, retain) UIButton *deleteButton;

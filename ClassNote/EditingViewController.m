@@ -110,7 +110,7 @@
 
 // returns the # of rows in each component..
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
-    if (component == TYPE_DAY_IN_WEEK) {
+    if (pickerType == TYPE_DAY_IN_WEEK) {
         return 7;
     } else {
         return 12;

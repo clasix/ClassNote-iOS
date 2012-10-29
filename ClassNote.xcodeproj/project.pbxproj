@@ -63,10 +63,10 @@
 		85AB0ABD15988CD60065020C /* HFAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 85AB0ABC15988CD60065020C /* HFAppDelegate.m */; };
 		85E035D615F64FE70009FAB8 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 85E035D815F64FE70009FAB8 /* Localizable.strings */; };
 		85E035E615F65EF70009FAB8 /* HFLesson.m in Sources */ = {isa = PBXBuildFile; fileRef = 85E035E515F65EF70009FAB8 /* HFLesson.m */; };
-		85E035E915F65F090009FAB8 /* HFClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 85E035E815F65F090009FAB8 /* HFClass.m */; };
+		85E035E915F65F090009FAB8 /* HFLessonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 85E035E815F65F090009FAB8 /* HFLessonItem.m */; };
 		85E6CF9316020C2E00ED65FC /* HFLessonEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85E6CF9116020C2E00ED65FC /* HFLessonEditViewController.m */; };
 		85E6CF9416020C2E00ED65FC /* HFLessonEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85E6CF9216020C2E00ED65FC /* HFLessonEditViewController.xib */; };
-		85F35687159994D4000E1B6F /* HFClassEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85F35685159994D3000E1B6F /* HFClassEditViewController.m */; };
+		85F35687159994D4000E1B6F /* HFLessonItemEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85F35685159994D3000E1B6F /* HFLessonItemEditViewController.m */; };
 		85F35688159994D4000E1B6F /* HFClassEditView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85F35686159994D3000E1B6F /* HFClassEditView.xib */; };
 		85F850711604699500068115 /* NGVaryingGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = 85F850701604699500068115 /* NGVaryingGridView.m */; };
 		85F85076160469B100068115 /* NGClassCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 85F85073160469B100068115 /* NGClassCell.m */; };
@@ -177,13 +177,13 @@
 		85E035DA15F650180009FAB8 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		85E035E415F65EF70009FAB8 /* HFLesson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HFLesson.h; path = ClassNote/HFLesson.h; sourceTree = "<group>"; };
 		85E035E515F65EF70009FAB8 /* HFLesson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HFLesson.m; path = ClassNote/HFLesson.m; sourceTree = "<group>"; };
-		85E035E715F65F090009FAB8 /* HFClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HFClass.h; path = ClassNote/HFClass.h; sourceTree = "<group>"; };
-		85E035E815F65F090009FAB8 /* HFClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HFClass.m; path = ClassNote/HFClass.m; sourceTree = "<group>"; };
+		85E035E715F65F090009FAB8 /* HFLessonItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HFLessonItem.h; path = ClassNote/HFLessonItem.h; sourceTree = "<group>"; };
+		85E035E815F65F090009FAB8 /* HFLessonItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HFLessonItem.m; path = ClassNote/HFLessonItem.m; sourceTree = "<group>"; };
 		85E6CF9016020C2E00ED65FC /* HFLessonEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HFLessonEditViewController.h; path = ClassNote/HFLessonEditViewController.h; sourceTree = "<group>"; };
 		85E6CF9116020C2E00ED65FC /* HFLessonEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HFLessonEditViewController.m; path = ClassNote/HFLessonEditViewController.m; sourceTree = "<group>"; };
 		85E6CF9216020C2E00ED65FC /* HFLessonEditViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = HFLessonEditViewController.xib; path = ClassNote/HFLessonEditViewController.xib; sourceTree = "<group>"; };
-		85F35684159994D3000E1B6F /* HFClassEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HFClassEditViewController.h; path = ClassNote/HFClassEditViewController.h; sourceTree = "<group>"; };
-		85F35685159994D3000E1B6F /* HFClassEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HFClassEditViewController.m; path = ClassNote/HFClassEditViewController.m; sourceTree = "<group>"; };
+		85F35684159994D3000E1B6F /* HFLessonItemEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HFLessonItemEditViewController.h; path = ClassNote/HFLessonItemEditViewController.h; sourceTree = "<group>"; };
+		85F35685159994D3000E1B6F /* HFLessonItemEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HFLessonItemEditViewController.m; path = ClassNote/HFLessonItemEditViewController.m; sourceTree = "<group>"; };
 		85F35686159994D3000E1B6F /* HFClassEditView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = HFClassEditView.xib; path = ClassNote/HFClassEditView.xib; sourceTree = "<group>"; };
 		85F8506F1604699500068115 /* NGVaryingGridView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGVaryingGridView.h; sourceTree = "<group>"; };
 		85F850701604699500068115 /* NGVaryingGridView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGVaryingGridView.m; sourceTree = "<group>"; };
@@ -217,8 +217,8 @@
 		85031E8515FE24C800A1A287 /* Model Class */ = {
 			isa = PBXGroup;
 			children = (
-				85E035E715F65F090009FAB8 /* HFClass.h */,
-				85E035E815F65F090009FAB8 /* HFClass.m */,
+				85E035E715F65F090009FAB8 /* HFLessonItem.h */,
+				85E035E815F65F090009FAB8 /* HFLessonItem.m */,
 				85E035E415F65EF70009FAB8 /* HFLesson.h */,
 				85E035E515F65EF70009FAB8 /* HFLesson.m */,
 			);
@@ -252,8 +252,8 @@
 				85031E7B15FE160900A1A287 /* DetailViewController.m */,
 				85031E7C15FE160900A1A287 /* EditingViewController.h */,
 				85031E7D15FE160900A1A287 /* EditingViewController.m */,
-				85F35684159994D3000E1B6F /* HFClassEditViewController.h */,
-				85F35685159994D3000E1B6F /* HFClassEditViewController.m */,
+				85F35684159994D3000E1B6F /* HFLessonItemEditViewController.h */,
+				85F35685159994D3000E1B6F /* HFLessonItemEditViewController.m */,
 				85F35686159994D3000E1B6F /* HFClassEditView.xib */,
 				859A4D77163D6FEE00A78FCA /* HFLessonListViewController.h */,
 				859A4D78163D6FEF00A78FCA /* HFLessonListViewController.m */,
@@ -551,10 +551,10 @@
 			files = (
 				85AB0AB915988CD60065020C /* main.m in Sources */,
 				85AB0ABD15988CD60065020C /* HFAppDelegate.m in Sources */,
-				85F35687159994D4000E1B6F /* HFClassEditViewController.m in Sources */,
+				85F35687159994D4000E1B6F /* HFLessonItemEditViewController.m in Sources */,
 				852EC1C3159C4AFA0018A30E /* ClassNote.xcdatamodeld in Sources */,
 				85E035E615F65EF70009FAB8 /* HFLesson.m in Sources */,
-				85E035E915F65F090009FAB8 /* HFClass.m in Sources */,
+				85E035E915F65F090009FAB8 /* HFLessonItem.m in Sources */,
 				850E377115FBA1B700EE3F6D /* UIImage+SplitImageIntoTwoParts.m in Sources */,
 				8590DF9715FBB83800A7019F /* GuideViewController.m in Sources */,
 				851B4FFA15FCF3A200A98CD8 /* YISplashScreen.m in Sources */,

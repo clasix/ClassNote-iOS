@@ -26,7 +26,7 @@
         CALayer *layer = self.layer;
         //layer.cornerRadius = 5.f;
         layer.masksToBounds = YES;
-        layer.borderWidth =1.0f;
+        layer.borderWidth = 0.5f;
         layer.borderColor = [[UIColor darkGrayColor] CGColor];
         
     }

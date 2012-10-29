@@ -1,5 +1,5 @@
 #import "DetailViewController.h"
-#import "HFClass.h"
+#import "HFLessonItem.h"
 #import "HFLesson.h"
 #import "EditingViewController.h"
 #import "HFLessonEditViewController.h"
@@ -7,7 +7,7 @@
 
 @implementation DetailViewController
 
-@synthesize hfClass, undoManager;
+@synthesize hfLessonItem, undoManager;
 
 
 #pragma mark -
@@ -58,7 +58,7 @@
 		[self cleanUpUndoManager];
 		// Save the changes.
 		NSError *error;
-		if (![hfClass.managedObjectContext save:&error]) {
+		if (![hfLessonItem.managedObjectContext save:&error]) {
 			// Update to handle the error appropriately.
 			NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
 			exit(-1);  // Fail
@@ -74,7 +74,7 @@
 
 - (void)updateRightBarButtonItemState {
 	// Conditionally enable the right bar button item -- it should only be enabled if the book is in a valid state for saving.
-    self.navigationItem.rightBarButtonItem.enabled = [hfClass validateForUpdate:NULL];
+    self.navigationItem.rightBarButtonItem.enabled = [hfLessonItem validateForUpdate:NULL];
 }
 
 //
@@ -112,23 +112,23 @@
 	switch (indexPath.row) {
         case 0: 
 			cell.textLabel.text = NSLocalizedString(@"lesson", @"");
-			cell.detailTextLabel.text = hfClass.lesson.name;
+			cell.detailTextLabel.text = hfLessonItem.lesson.name;
 			break;
         case 1: 
 			cell.textLabel.text = NSLocalizedString(@"classRoom", @"");
-			cell.detailTextLabel.text = hfClass.room;
+			cell.detailTextLabel.text = hfLessonItem.room;
 			break;
         case 2:
 			cell.textLabel.text = NSLocalizedString(@"dayInWeek", @"");
-			cell.detailTextLabel.text = [daysInWeek objectAtIndex:[hfClass.dayinweek intValue]];
+			cell.detailTextLabel.text = [daysInWeek objectAtIndex:[hfLessonItem.dayinweek intValue]];
 			break;
         case 3:
 			cell.textLabel.text = NSLocalizedString(@"start", @"");
-			cell.detailTextLabel.text = [NSString stringWithFormat:@"%d", [hfClass.start intValue]];
+			cell.detailTextLabel.text = [NSString stringWithFormat:@"%d", [hfLessonItem.start intValue]];
 			break;
         case 4:
-			cell.textLabel.text = NSLocalizedString(@"end", @"");
-			cell.detailTextLabel.text = [NSString stringWithFormat:@"%d", [hfClass.end intValue]];
+			cell.textLabel.text = NSLocalizedString(@"duration", @"");
+			cell.detailTextLabel.text = [NSString stringWithFormat:@"%d", [hfLessonItem.duration intValue]];
 			break;
     }
     return cell;
@@ -150,15 +150,15 @@
     switch (indexPath.row) {
         case 0: {
             HFLessonEditViewController *controller = [[HFLessonEditViewController alloc] init];
-            controller.editObject = hfClass;
-            controller.hfLesson = hfClass.lesson;
+            controller.editObject = hfLessonItem;
+            controller.hfLesson = hfLessonItem.lesson;
             
             [self.navigationController pushViewController:controller animated:YES];
             [controller release];
         } break;
         case 1: {
             EditingViewController *controller = [[EditingViewController alloc] initWithNibName:@"EditingView" bundle:nil];
-            controller.editedObject = hfClass;
+            controller.editedObject = hfLessonItem;
             
             controller.editedFieldKey = @"room";
 			controller.editedFieldName = NSLocalizedString(@"classRoom", @"display name for room");
@@ -169,7 +169,7 @@
         } break;
         case 2: {
             EditingViewController *controller = [[EditingViewController alloc] initWithNibName:@"EditingView" bundle:nil];
-            controller.editedObject = hfClass;
+            controller.editedObject = hfLessonItem;
             
             controller.editedFieldKey = @"dayinweek";
 			controller.editedFieldName = NSLocalizedString(@"dayInWeek", @"display name for dayinweek");
@@ -181,7 +181,7 @@
         } break;
         case 3: {
             EditingViewController *controller = [[EditingViewController alloc] initWithNibName:@"EditingView" bundle:nil];
-            controller.editedObject = hfClass;
+            controller.editedObject = hfLessonItem;
             
             controller.editedFieldKey = @"start";
 			controller.editedFieldName = NSLocalizedString(@"start", @"display name for start");
@@ -193,10 +193,10 @@
         } break;
         case 4: {
             EditingViewController *controller = [[EditingViewController alloc] initWithNibName:@"EditingView" bundle:nil];
-            controller.editedObject = hfClass;
+            controller.editedObject = hfLessonItem;
             
-            controller.editedFieldKey = @"end";
-			controller.editedFieldName = NSLocalizedString(@"end", @"display name for end");
+            controller.editedFieldKey = @"duration";
+			controller.editedFieldName = NSLocalizedString(@"duration", @"display name for end");
 			controller.editingNumber = YES;
             controller.pickerType = TYPE_END;
             
@@ -225,18 +225,18 @@
 	 If the book's managed object context doesn't already have an undo manager, then create one and set it for the context and self.
 	 The view controller needs to keep a reference to the undo manager it creates so that it can determine whether to remove the undo manager when editing finishes.
 	 */
-	if (hfClass.managedObjectContext.undoManager == nil) {
+	if (hfLessonItem.managedObjectContext.undoManager == nil) {
 		
 		NSUndoManager *anUndoManager = [[NSUndoManager alloc] init];
 		[anUndoManager setLevelsOfUndo:3];
 		self.undoManager = anUndoManager;
 		[anUndoManager release];
 		
-		hfClass.managedObjectContext.undoManager = undoManager;
+		hfLessonItem.managedObjectContext.undoManager = undoManager;
 	}
 	
 	// Register as an observer of the book's context's undo manager.
-	NSUndoManager *bookUndoManager = hfClass.managedObjectContext.undoManager;
+	NSUndoManager *bookUndoManager = hfLessonItem.managedObjectContext.undoManager;
 	
 	NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
 	[dnc addObserver:self selector:@selector(undoManagerDidUndo:) name:NSUndoManagerDidUndoChangeNotification object:bookUndoManager];
@@ -249,15 +249,15 @@
 	// Remove self as an observer.
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
 	
-	if (hfClass.managedObjectContext.undoManager == undoManager) {
-		hfClass.managedObjectContext.undoManager = nil;
+	if (hfLessonItem.managedObjectContext.undoManager == undoManager) {
+		hfLessonItem.managedObjectContext.undoManager = nil;
 		self.undoManager = nil;
 	}		
 }
 
 
 - (NSUndoManager *)undoManager {
-	return hfClass.managedObjectContext.undoManager;
+	return hfLessonItem.managedObjectContext.undoManager;
 }
 
 
@@ -298,7 +298,7 @@
 
 - (void)dealloc {
     [undoManager release];
-    [hfClass release];
+    [hfLessonItem release];
     [daysInWeek release];
     [super dealloc];
 }

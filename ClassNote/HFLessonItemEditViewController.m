@@ -1,18 +1,18 @@
 //
-//  HFClassEditViewControllerViewController.m
+//  HFLessonItemEditViewController.m
 //  ClassNote
 //
 //  Created by XiaoYin Wang on 12-6-26.
 //  Copyright (c) 2012年 HackFisher. All rights reserved.
 //
 
-#import "HFClassEditViewController.h"
+#import "HFLessonItemEditViewController.h"
 
-@interface HFClassEditViewController ()
+@interface HFLessonItemEditViewController ()
 
 @end
 
-@implementation HFClassEditViewController
+@implementation HFLessonItemEditViewController
 
 @synthesize lessonText;
 @synthesize classRoomText;
@@ -23,7 +23,7 @@
 @synthesize lessonLabel;
 @synthesize classRoomLabel;
 @synthesize delegate;
-@synthesize hfClass;
+@synthesize hfLessonItem;
 @synthesize hfLesson;
 @synthesize scrollView;
 @synthesize dayInWeek;
@@ -67,14 +67,14 @@
     self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave 
                                                                                             target:self action:@selector(save:)] autorelease];
     // default value of end
-    end = start + 1;
+    duaration = 1;
     
     [dayInWeekPickerView selectRow:dayInWeek inComponent:0 animated:false];
     [dayInWeekPickerView selectRow:(start-1) inComponent:1 animated:false];
-    [dayInWeekPickerView selectRow:(end-1) inComponent:2 animated:false];
+    [dayInWeekPickerView selectRow:duaration inComponent:2 animated:false];
     
-    if (hfClass) {
-        classRoomText.text = hfClass.room;
+    if (hfLessonItem) {
+        classRoomText.text = hfLessonItem.room;
     }
     if (hfLesson) {
         lessonText.text = hfLesson.name;
@@ -115,20 +115,20 @@
 
 - (IBAction)save:(id)sender {
     [hfLesson setName: lessonText.text];
-    [hfClass setLesson:hfLesson];
+    [hfLessonItem setLesson:hfLesson];
     
-    //[hfClass setLesson_id:[NSNumber numberWithInt:1]];
-    [hfClass setStart:[NSNumber numberWithInteger:start]];
-    [hfClass setEnd:[NSNumber numberWithInteger:end]];
-    [hfClass setDayinweek:[NSNumber numberWithInteger:dayInWeek]];
-    [hfClass setRoom:classRoomText.text];
+    //[hfLessonItem setLesson_id:[NSNumber numberWithInt:1]];
+    [hfLessonItem setStart:[NSNumber numberWithInteger:start]];
+    [hfLessonItem setDuration:[NSNumber numberWithInteger:duaration]];
+    [hfLessonItem setDayinweek:[NSNumber numberWithInteger:dayInWeek]];
+    [hfLessonItem setRoom:classRoomText.text];
     
     if (delegate) { // add
         [delegate addViewController:self didFinishWithSave:YES];
     } else {    // edit
         // Save the changes.
 		NSError *error;
-		if (![hfClass.managedObjectContext save:&error]) {
+		if (![hfLessonItem.managedObjectContext save:&error]) {
 			// Update to handle the error appropriately.
 			NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
 			exit(-1);  // Fail
@@ -182,6 +182,8 @@
     //NSLog(@"component is %d", component);
     if ( component == 0) {
         return [daysInWeek objectAtIndex:row];
+    } else if (component == 1) {
+        return [NSString stringWithFormat:@"%d", row +1];
     } else {
         return [NSString stringWithFormat:@"%d", row +1];
     }
@@ -196,7 +198,7 @@
     } else if (component == 1) {
         start = (row + 1);
     } else if (component == 2) {
-        end = (row + 1);
+        duaration = (row + 1);
     }
 }
 

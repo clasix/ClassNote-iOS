@@ -9,14 +9,14 @@
 #import "NGViewController.h"
 #import "NGVaryingGridView.h"
 #import "NGClassCell.h"
-#import "HFClass.h"
+#import "HFLessonItem.h"
 #import "HFRemoteUtils.h"
 #import "HFExceptionHandler.h"
 
 
 #define kColumnWidth    ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad ? 120.f : 60.f)
 #define kRightPadding   ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad ? 91.f : 46.f)
-#define kContentHeight  ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad ? 800.f : 400.f)
+#define kContentHeight  ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad ? 750.f : 420.f)
 
 #define dayLineLeft  600.f
 #define timeLineTop 600.f
@@ -36,7 +36,7 @@
 @synthesize editLabel = _editLabel;
 @synthesize deleteButton = _deleteButton;
 
-@synthesize managedObjectContext, addingManagedObjectContext ,classesArray, fetchedResultsController;
+@synthesize managedObjectContext, addingManagedObjectContext ,lessonItemsArray, fetchedResultsController;
 
 ////////////////////////////////////////////////////////////////////////
 #pragma mark - Life Cycle
@@ -190,11 +190,17 @@
     [editLine addGestureRecognizer:singleFingerTap];
     [singleFingerTap release];
     
-    UISwipeGestureRecognizer *swipeGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(detectSwipe:)];
-    [swipeGesture setNumberOfTouchesRequired:1];
-    [swipeGesture setDirection:UISwipeGestureRecognizerDirectionLeft | UISwipeGestureRecognizerDirectionRight];
-    [editLine addGestureRecognizer:swipeGesture];
-    [swipeGesture release];
+    UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressedOnEditLine:)];
+    [editLine addGestureRecognizer:longPress];
+    longPress.allowableMovement = NO;
+    longPress.minimumPressDuration = 0.5;
+    [longPress release];
+    
+//    UISwipeGestureRecognizer *swipeGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(detectSwipe:)];
+//    [swipeGesture setNumberOfTouchesRequired:1];
+//    [swipeGesture setDirection:UISwipeGestureRecognizerDirectionLeft | UISwipeGestureRecognizerDirectionRight];
+//    [editLine addGestureRecognizer:swipeGesture];
+//    [swipeGesture release];
     
     self.editLabel = editLine;
     [editLine release];
@@ -214,7 +220,7 @@
     
     //http://www.raywenderlich.com/934/core-data-on-ios-5-tutorial-getting-started
     
-    self.classesArray = [NSMutableArray arrayWithArray:fetchedObjects];
+    self.lessonItemsArray = [NSMutableArray arrayWithArray:fetchedObjects];
     
     UIApplication *app = [UIApplication sharedApplication];
     [[NSNotificationCenter defaultCenter]
@@ -241,24 +247,18 @@
 	
 	[addingManagedObjectContext setPersistentStoreCoordinator:[[fetchedResultsController managedObjectContext] persistentStoreCoordinator]];
     
-    HFClass *hfClass = (HFClass *)[NSEntityDescription insertNewObjectForEntityForName:@"HFClass" inManagedObjectContext:addingManagedObjectContext];
-    hfClass.lesson = (HFLesson *)[NSEntityDescription insertNewObjectForEntityForName:@"HFLesson" inManagedObjectContext:addingManagedObjectContext];
+    HFLessonItem *hfLessonItem = (HFLessonItem *)[NSEntityDescription insertNewObjectForEntityForName:@"HFLessonItem" inManagedObjectContext:addingManagedObjectContext];
+    hfLessonItem.lesson = (HFLesson *)[NSEntityDescription insertNewObjectForEntityForName:@"HFLesson" inManagedObjectContext:addingManagedObjectContext];
     
-    hfClass.lesson.name = @"New Lesson";
-    hfClass.room = @"ClassRoom";
-    if (selectedIndex > [classesArray count]) {
-        hfClass.dayinweek = [NSNumber numberWithInt:selectedColumn];
-        hfClass.start = [NSNumber numberWithInt:selectedRow + 1];
-        // TODO: if the start is 12?
-        if (selectedRow < 12) {
-            hfClass.end = [NSNumber numberWithInt:selectedRow + 2];
-        } else {
-            hfClass.end = [NSNumber numberWithInt:selectedRow + 1];
-        }
-        
+    hfLessonItem.lesson.name = @"New Lesson";
+    hfLessonItem.room = @"ClassRoom";
+    if (selectedIndex >= [lessonItemsArray count]) {
+        hfLessonItem.dayinweek = [NSNumber numberWithInt:selectedColumn];
+        hfLessonItem.start = [NSNumber numberWithInt:selectedRow + 1];
+        hfLessonItem.duration = [NSNumber numberWithInt:1];
     }
     
-	addViewController.hfClass = hfClass;
+	addViewController.hfLessonItem = hfLessonItem;
 	
 	UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:addViewController];
     
@@ -272,18 +272,30 @@
 
 //The event handling method
 - (void)editLesson:(UITapGestureRecognizer *)recognizer {
-    if (selectedIndex < [classesArray count] && self.deleteButton.hidden == YES) {
+    if (selectedIndex < [lessonItemsArray count] && self.deleteButton.hidden == YES) {
         // Create and push a detail view controller.
         DetailViewController *detailViewController = [[DetailViewController alloc] initWithStyle:UITableViewStyleGrouped];
-        HFClass * hfClass = [classesArray objectAtIndex:selectedIndex];
+        HFLessonItem * hfLessonItem = [lessonItemsArray objectAtIndex:selectedIndex];
         
         // Pass the selected book to the new view controller.
-        detailViewController.hfClass = hfClass;
+        detailViewController.hfLessonItem = hfLessonItem;
         [self.navigationController pushViewController:detailViewController animated:YES];
         [detailViewController release];
     }
 }
 
+-(void)longPressedOnEditLine:(id)sender{
+    
+    if ([(UILongPressGestureRecognizer *)sender state] == UIGestureRecognizerStateBegan) {
+        if (self.deleteButton.hidden) {
+            self.deleteButton.hidden = NO;
+        } else {
+            self.deleteButton.hidden = YES;
+        }
+    }
+}
+
+/*
 -(void)detectSwipe:(UISwipeGestureRecognizer *)recognizer {
     if (selectedIndex < [classesArray count]) {
         if (self.deleteButton.hidden) {
@@ -304,13 +316,14 @@
 //        }
     }
 }
+ */
 
 - (void) deleteClass {
-    if (selectedIndex < [classesArray count]) {
-        HFClass * hfClass = [classesArray objectAtIndex:selectedIndex];
+    if (selectedIndex < [lessonItemsArray count]) {
+        HFLessonItem * hfLessonItem = [lessonItemsArray objectAtIndex:selectedIndex];
         
         NSManagedObjectContext *context = [fetchedResultsController managedObjectContext];
-		[context deleteObject:hfClass];
+		[context deleteObject:hfLessonItem];
 		
 		NSError *error;
 		if (![context save:&error]) {
@@ -347,11 +360,11 @@
         [classIndexSet addObject:[NSNumber numberWithInt:i]];
     }
     
-    for (HFClass *class in classesArray) {
-        [rectsArray addObject:[NSValue valueWithCGRect:CGRectMake(kRightPadding + margin + [class.dayinweek intValue] * kColumnWidth, dayLineHeight + ([class.start intValue] - 1) * cellLineHeight + margin, kColumnWidth - margin * 2, ([class.end intValue] - [class.start intValue]) * cellLineHeight - margin * 2)]];
+    for (HFLessonItem *lessonItem in lessonItemsArray) {
+        [rectsArray addObject:[NSValue valueWithCGRect:CGRectMake(kRightPadding + margin + [lessonItem.dayinweek intValue] * kColumnWidth, dayLineHeight + ([lessonItem.start intValue] - 1) * cellLineHeight + margin, kColumnWidth - margin * 2, ([lessonItem.duration intValue]) * cellLineHeight - margin * 2)]];
         
-        for (int k = [class.start intValue]; k < [class.end intValue]; k ++) {
-            [classIndexSet removeObject:[NSNumber numberWithInt:([class.dayinweek intValue] * CLASSES_IN_DAY + k - 1)]];
+        for (int k = [lessonItem.start intValue]; k < ([lessonItem.start intValue] + [lessonItem.duration intValue]); k ++) {
+            [classIndexSet removeObject:[NSNumber numberWithInt:([lessonItem.dayinweek intValue] * CLASSES_IN_DAY + k - 1)]];
         }
     }
     
@@ -364,21 +377,22 @@
 
 - (UIView *)gridView:(NGVaryingGridView *)gridView viewForCellWithRect:(CGRect)rect index:(NSUInteger)index {
     
-    if (index < [classesArray count]) {
+    if (index < [lessonItemsArray count]) {
         NGClassCell *cell = (NGClassCell *) ([gridView dequeueReusableCellWithFrame:rect] ?: [[NGClassCell alloc] initWithFrame:rect]);
         
         // TODO
-        HFClass *hfClass = [classesArray objectAtIndex:index];
-        cell.text = hfClass.lesson.name;
-        cell.column = [hfClass.dayinweek intValue];
-        cell.row = [hfClass.start intValue] - 1;
+        HFLessonItem *hfLessonItem = [lessonItemsArray objectAtIndex:index];
+        cell.text = hfLessonItem.lesson.name;
+        cell.column = [hfLessonItem.dayinweek intValue];
+        cell.row = [hfLessonItem.start intValue] - 1;
         cell.index = index;
         
         if (cell.column == selectedColumn && cell.row == selectedRow) {
             cell.backgroundColor = [UIColor redColor];
-            [self.editLabel setText:[NSString stringWithFormat:@"Class's lesson is: %@, class room is:%@", hfClass.lesson.name, hfClass.room]];
+            [self.editLabel setText:[NSString stringWithFormat:@"Class's lesson is: %@, class room is:%@", hfLessonItem.lesson.name, hfLessonItem.room]];
             //[self.editLabel setBackgroundColor:[UIColor redColor]];
             selectedIndex = index;
+            [self updateButtonState:index];
         } else {
             cell.backgroundColor = [UIColor whiteColor];
         }
@@ -393,6 +407,7 @@
             cell.backgroundColor = [UIColor redColor];
             [self.editLabel setText:@"No Class"];
             selectedIndex = index;
+            [self updateButtonState:index];
         } else {
             cell.backgroundColor = [UIColor whiteColor];
         }
@@ -413,15 +428,25 @@
     
     self.deleteButton.hidden = YES;
     
+    [self updateButtonState:index];
+    
     [self.gridView reloadData];
-    NSLog(@"You selected a cell!");
+}
+
+-(void) updateButtonState: (NSInteger) index {
+    // disable addButton when there already exists class
+    if (index < [lessonItemsArray count]) {
+        self.navigationItem.rightBarButtonItem.enabled = NO;
+    } else {
+        self.navigationItem.rightBarButtonItem.enabled = YES;
+    }
 }
 
 - (void)gridView:(NGVaryingGridView *)gridView willPrepareCellForReuse:(UIView *)cell {
     
 }
 
-- (void)addViewController:(HFClassEditViewController *)controller didFinishWithSave:(BOOL)save {
+- (void)addViewController:(HFLessonItemEditViewController *)controller didFinishWithSave:(BOOL)save {
 	
 	if (save) {
         NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
@@ -462,7 +487,7 @@
     
 	// Create and configure a fetch request with the Book entity.
 	NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-	NSEntityDescription *entity = [NSEntityDescription entityForName:@"HFClass" inManagedObjectContext:managedObjectContext];
+	NSEntityDescription *entity = [NSEntityDescription entityForName:@"HFLessonItem" inManagedObjectContext:managedObjectContext];
 	[fetchRequest setEntity:entity];
 	
 	// Create the sort descriptors array.
@@ -500,13 +525,13 @@
 	switch (type) {
         case NSFetchedResultsChangeInsert:
         {
-            HFClass *class = (HFClass *)anObject;
+            HFLessonItem *lessonItem = (HFLessonItem *)anObject;
 
             // TODO: check!!
 //            if ([lessonsDictionary objectForKey:key]){
 //                NSLog(@"The class for key %d already exists.", [key intValue]);
 //            }
-            [classesArray addObject:class];
+            [lessonItemsArray addObject:lessonItem];
             break;
         }
         case NSFetchedResultsChangeMove:
@@ -515,7 +540,7 @@
         }
         case NSFetchedResultsChangeDelete:
         {
-            [classesArray removeObject:anObject];
+            [lessonItemsArray removeObject:anObject];
             break;
         }
         case NSFetchedResultsChangeUpdate:
@@ -549,7 +574,7 @@
 
 - (void)dealloc {
     [_editLabel release];
-    [classesArray release];
+    [lessonItemsArray release];
     [weekdays release];
     [managedObjectContext release];
     [addingManagedObjectContext release];

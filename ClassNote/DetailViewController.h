@@ -1,14 +1,14 @@
 
 
-@class HFClass, EditingViewController;
+@class HFLessonItem, EditingViewController;
 
 @interface DetailViewController : UITableViewController {
-    HFClass *hfClass;
+    HFLessonItem *hfLessonItem;
 	NSUndoManager *undoManager;
     NSArray * daysInWeek;
 }
 
-@property (nonatomic, retain) HFClass *hfClass;
+@property (nonatomic, retain) HFLessonItem *hfLessonItem;
 @property (nonatomic, retain) NSUndoManager *undoManager;
 
 - (void)setUpUndoManager;

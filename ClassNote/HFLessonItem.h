@@ -1,5 +1,5 @@
 //
-//  HFClass.h
+//  HFLessonItem.h
 //  ClassNote
 //
 //  Created by XiaoYin Wang on 12-9-5.
@@ -11,12 +11,12 @@
 
 @class HFLesson;
 
-@interface HFClass : NSManagedObject
+@interface HFLessonItem : NSManagedObject
 
 @property (nonatomic, retain) NSNumber * dayinweek;
-@property (nonatomic, retain) NSNumber * end;
+@property (nonatomic, retain) NSNumber * duration;
 @property (nonatomic, retain) NSString * room;
 @property (nonatomic, retain) NSNumber * start;
-@property (nonatomic, retain) HFLesson *lesson;
+@property (nonatomic, retain) HFLesson * lesson;
 
 @end

@@ -1,5 +1,4 @@
 #import "AddViewController.h"
-#import "HFClass.h"
 
 @implementation AddViewController
 
