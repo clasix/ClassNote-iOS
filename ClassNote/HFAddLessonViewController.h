@@ -9,7 +9,13 @@
 #import <UIKit/UIKit.h>
 #import "HFLesson.h"
 
-@interface HFAddLessonViewController : UITableViewController{
+#define kDayInWeekComponent 0
+#define kStartComponent 1
+#define kEndComponent 1
+
+@interface HFAddLessonViewController : UITableViewController<UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource>{
+    NSArray *WEEKDAYS;
+    
     NSMutableArray			*lessonInfos;
     HFLesson                *lesson;
 }
@@ -17,4 +23,7 @@
 @property (nonatomic, retain) NSMutableArray *lessonInfos;
 @property (nonatomic, retain) HFLesson *lesson;
 
+- (IBAction)toolBarDone:(id)sender;
+@property (retain, nonatomic) IBOutlet UIToolbar *doneToolbar;
+@property (retain, nonatomic) IBOutlet UIPickerView *selectPicker;
 @end

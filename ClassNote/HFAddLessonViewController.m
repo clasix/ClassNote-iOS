@@ -8,12 +8,15 @@
 
 #import "HFAddLessonViewController.h"
 #import "HFLessonInfo.h"
+#import "HFLessonCell.h"
 
 @interface HFAddLessonViewController ()
 
 @end
 
 @implementation HFAddLessonViewController
+@synthesize doneToolbar;
+@synthesize selectPicker;
 
 @synthesize lessonInfos, lesson;
 
@@ -22,6 +25,15 @@
     self = [super initWithStyle:style];
     if (self) {
         // Custom initialization
+        WEEKDAYS = [[NSArray alloc] initWithObjects:
+                    NSLocalizedString(@"Sunday", @""),
+                    NSLocalizedString(@"Monday", @""),
+                    NSLocalizedString(@"Tuesday", @""),
+                    NSLocalizedString(@"Wednesday", @""),
+                    NSLocalizedString(@"Thursday", @""),
+                    NSLocalizedString(@"Friday", @""),
+                    NSLocalizedString(@"Saturday", @""),
+                    nil];
     }
     return self;
 }
@@ -49,10 +61,15 @@
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
+    selectPicker.delegate = self;
+    selectPicker.dataSource = self;  
+    selectPicker.frame = CGRectMake(0, 480, 320, 216);  
 }
 
 - (void)viewDidUnload
 {
+    [self setDoneToolbar:nil];
+    [self setSelectPicker:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -63,6 +80,8 @@
 	[lessonInfos release];
 	[lesson release];
 	
+    [doneToolbar release];
+    [selectPicker release];
 	[super dealloc];
 }
 
@@ -81,7 +100,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (section == 0) {
-        return 2;
+        return 3;
     } else if (section == [self.lessonInfos count] + 1) {
         return 1;
     } else {
@@ -91,53 +110,108 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = nil;
-    
-    // For the Ingredients section, if necessary create a new cell and configure it with an additional label for the amount.  Give the cell a different identifier from that used for cells in other sections so that it can be dequeued separately.
     if (indexPath.section == 0) {
-        // If the row is within the range of the number of ingredients for the current recipe, then configure the cell to show the ingredient name and amount.
-        static NSString *IngredientsCellIdentifier = @"LessonCell";
+        static NSString *LessonCellIdentifier = @"LessonCell";
         
-        cell = [tableView dequeueReusableCellWithIdentifier:IngredientsCellIdentifier];
+        HFLessonCell *cell = [tableView dequeueReusableCellWithIdentifier:LessonCellIdentifier];
         
         if (cell == nil) {
             // Create a cell to display an ingredient.
-            cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:IngredientsCellIdentifier] autorelease];
+            NSArray *array = [[NSBundle mainBundle] loadNibNamed:@"HFLessonCell" owner:self options:nil];
+            cell = [array objectAtIndex:0];
+            
+            [cell setSelectionStyle:UITableViewCellSelectionStyleGray];  
+            
             cell.accessoryType = UITableViewCellAccessoryNone;
         }
         
-        cell.editing = NO;
+        if (indexPath.row == 0) {
+            cell.iconImage.image = [UIImage imageNamed:@"people_.png"];
+            cell.textField.text = [[self lesson] name];
+            cell.textField.delegate = self;
+            cell.textField.tag = 1;
+        } else if (indexPath.row == 1) {
+            cell.iconImage.image = [UIImage imageNamed:@"people_.png"];
+            cell.textField.text = [[self lesson] teacher];
+            cell.textField.placeholder = @"请输入老师姓名";
+            cell.textField.delegate = self;
+            cell.textField.tag = 2;
+        } else {
+            cell.iconImage.image = [UIImage imageNamed:@"people_.png"];
+            cell.textField.text = [[self lesson] book];
+            cell.textField.placeholder = @"请输入课本";
+            cell.textField.delegate = self;
+            cell.textField.tag = 3;
+        }
         
-//        cell.textLabel.text = ingredient.name;
-//        cell.detailTextLabel.text = ingredient.amount;
+        return cell;
     } else if (indexPath.section == [lessonInfos count] + 1) {
-        static NSString *MyIdentifier = @"AddLessonCell";
+        static NSString *LessonCellIdentifier = @"LessonInfoAddCell";
         
-        cell = [tableView dequeueReusableCellWithIdentifier:MyIdentifier];
+        HFLessonCell *cell = [tableView dequeueReusableCellWithIdentifier:LessonCellIdentifier];
+        
         if (cell == nil) {
-            cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:MyIdentifier] autorelease];
-            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            // Create a cell to display an ingredient.
+            NSArray *array = [[NSBundle mainBundle] loadNibNamed:@"HFLessonCell" owner:self options:nil];
+            cell = [array objectAtIndex:0];
+            
+            [cell setSelectionStyle:UITableViewCellSelectionStyleGray];  
+            
+            cell.accessoryType = UITableViewCellAccessoryNone;
         }
         
-        cell.textLabel.text = @"点击添加上课时间";
+        cell.iconImage.image = [UIImage imageNamed:@"people_.png"];
+        cell.textField.text = @"点击添加课程时间";
+        cell.textField.enabled = false;
+        cell.textField.tag = 4;
         
+        return cell;
     } else {
-        // If necessary create a new cell and configure it appropriately for the section.  Give the cell a different identifier from that used for cells in the Ingredients section so that it can be dequeued separately.
-        static NSString *MyIdentifier = @"GenericCell";
+        static NSString *LessonCellIdentifier = @"LessonInfoCell";
         
-        cell = [tableView dequeueReusableCellWithIdentifier:MyIdentifier];
+        HFLessonCell *cell = [tableView dequeueReusableCellWithIdentifier:LessonCellIdentifier];
+        
         if (cell == nil) {
-            cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:MyIdentifier] autorelease];
-            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            // Create a cell to display an ingredient.
+            NSArray *array = [[NSBundle mainBundle] loadNibNamed:@"HFLessonCell" owner:self options:nil];
+            cell = [array objectAtIndex:0];
+            
+            [cell setSelectionStyle:UITableViewCellSelectionStyleGray];  
+            
+            cell.accessoryType = UITableViewCellAccessoryNone;
         }
         
-//        cell.editing = YES;
+        HFLessonInfo *lessonInfo = [lessonInfos objectAtIndex:(indexPath.section - 1)];
+        if (indexPath.row == 0) {
+            cell.iconImage.image = [UIImage imageNamed:@"people_.png"];
+            cell.textField.text = [self timeDescription:lessonInfo];
+            cell.textField.delegate = self;
+            
+//            cell.textField.inputView = selectPicker;
+//            cell.textField.inputAccessoryView = doneToolbar;
+            cell.textField.enabled = NO;
+            cell.textField.tag = 3 + indexPath.section * 2;
+        } else {
+            cell.iconImage.image = [UIImage imageNamed:@"people_.png"];
+            cell.textField.text = [lessonInfo room];
+            cell.textField.placeholder = @"请输入教室";
+            
+            cell.textField.delegate = self;
+            cell.textField.tag = 4 + indexPath.section * 2;
+        }
         
-//        NSString *text = nil;
-        
-//        cell.textLabel.text = text;
+        return cell;
     }
-    return cell;
+}
+
+- (NSString *) timeDescription: (HFLessonInfo*) hfLessonInfo{
+//    NSLog(@"%@", [hfLessonInfo duration]);
+    // TODO: FIXME: 当添加LessonInfo的时候出错
+    if ([hfLessonInfo.duration intValue] == 1) {
+        return [NSString stringWithFormat:@"%@ %@%@%@", [WEEKDAYS objectAtIndex: [hfLessonInfo.dayinweek intValue]], NSLocalizedString(@"D_I", @""), hfLessonInfo.start, NSLocalizedString(@"section", @"")];
+    } else {
+        return [NSString stringWithFormat:@"%@ %@-%d%@", [WEEKDAYS objectAtIndex: [hfLessonInfo.dayinweek intValue]], hfLessonInfo.start, [hfLessonInfo.start intValue] + [hfLessonInfo.duration intValue] - 1, NSLocalizedString(@"section", @"")];
+    }
 }
 
 - (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -193,9 +267,15 @@
 {
     if (indexPath.section == [lessonInfos count] + 1) {
         [lessonInfos addObject:[[HFLessonInfo alloc] init]];
+        [self.tableView reloadData];
+    } else if (indexPath.section > 0 && indexPath.section < ([lessonInfos count] + 1) && indexPath.row == 0){
+        UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+        [(HFLessonCell*)cell setInputView:selectPicker];
+        [(HFLessonCell*)cell setInputAccessoryView:doneToolbar];
+        [cell becomeFirstResponder];
     }
     
-    [self.tableView reloadData];
+    
 }
 
 #pragma mark -
@@ -209,4 +289,96 @@
 	[self.navigationController popViewControllerAnimated:YES];
 }
 
+#pragma mark -
+#pragma mark UITextFieldDelegate
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
+    [textField becomeFirstResponder];
+}
+
+- (BOOL)textFieldShouldEndEditing:(UITextField *)textField {
+    return YES;
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    return NO;
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField{
+    NSLog(@"%@%d", textField.text, textField.tag);
+    if (textField.tag == 1) {
+        self.lesson.name = textField.text;
+    } else if (textField.tag == 2) {
+        self.lesson.teacher = textField.text;
+    } else if (textField.tag == 3) {
+        self.lesson.book = textField.text;
+    } else if (textField.tag >= 5) {
+        if (textField.tag % 2 == 0) {
+            int section = (textField.tag - 4) / 2;
+            [[lessonInfos objectAtIndex:(section-1)] setRoom:textField.text];
+        } else {
+            int section = (textField.tag - 3) / 2;
+            //[[lessonInfos objectAtIndex:section] setRoom:textField.text];
+        }
+    }
+}
+
+- (IBAction)toolBarDone:(id)sender {
+}
+
+#pragma mark -
+#pragma mark Picker Date Source Methods
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
+    return 3;
+}
+
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
+    if (component == kDayInWeekComponent) {
+        return 7;
+    } else if (component == kStartComponent) {
+        return 12;
+    }
+    
+    return 12;
+}
+
+#pragma mark Picker Delegate Methods
+- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
+    if (component == kDayInWeekComponent) {
+        return [WEEKDAYS objectAtIndex:component];
+    } else {
+        return [NSString stringWithFormat:@"第%d节", row + 1];
+    }
+    
+    return [NSString stringWithFormat:@"到第%d节", row + 1];
+}
+
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
+    if (component == kDayInWeekComponent) {
+        
+    } else if (component == kStartComponent) {
+        int end = [selectPicker selectedRowInComponent:kEndComponent];
+        
+        if (end < row) {
+            [selectPicker selectRow:row inComponent:kEndComponent animated:YES];
+        }
+//        self.cities = array;
+//        [picker selectRow:0 inComponent:kCityComponent animated:YES];
+//        [picker reloadComponent:kCityComponent];
+    } else {
+        int start = [selectPicker selectedRowInComponent:kStartComponent];
+        
+        if (start > row) {
+            [selectPicker selectRow:start inComponent:kEndComponent animated:YES];
+        }
+    }
+}
+
+- (CGFloat)pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component {
+    if (component == kDayInWeekComponent) {
+        return 50;
+    }
+    return 100;
+}
 @end

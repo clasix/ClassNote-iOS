@@ -22,6 +22,10 @@
 		851B4FF515FCF25700A98CD8 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 851B4FF115FCF25700A98CD8 /* Icon.png */; };
 		851B4FFA15FCF3A200A98CD8 /* YISplashScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 851B4FF715FCF3A200A98CD8 /* YISplashScreen.m */; };
 		851B4FFB15FCF3A200A98CD8 /* YISplashScreenAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 851B4FF915FCF3A200A98CD8 /* YISplashScreenAnimation.m */; };
+		851BE71E163FFE8700A90D25 /* HFLessonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 851BE71D163FFE8700A90D25 /* HFLessonCell.m */; };
+		851BE721163FFECD00A90D25 /* HFLessonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 851BE720163FFECD00A90D25 /* HFLessonCell.xib */; };
+		851BE723164005A800A90D25 /* people_.png in Resources */ = {isa = PBXBuildFile; fileRef = 851BE722164005A800A90D25 /* people_.png */; };
+		851BE7251640214000A90D25 /* HFAddLessonView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 851BE7241640214000A90D25 /* HFAddLessonView.xib */; };
 		852EC1BF159C4AA40018A30E /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 852EC1BE159C4AA40018A30E /* CoreData.framework */; };
 		852EC1C3159C4AFA0018A30E /* ClassNote.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 852EC1C1159C4AFA0018A30E /* ClassNote.xcdatamodeld */; };
 		85611BB9163BD32F0099B7BE /* HFMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85611BB7163BD32F0099B7BE /* HFMainViewController.m */; };
@@ -101,6 +105,11 @@
 		851B4FF715FCF3A200A98CD8 /* YISplashScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YISplashScreen.m; path = YISplashScreen/YISplashScreen.m; sourceTree = "<group>"; };
 		851B4FF815FCF3A200A98CD8 /* YISplashScreenAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YISplashScreenAnimation.h; path = YISplashScreen/YISplashScreenAnimation.h; sourceTree = "<group>"; };
 		851B4FF915FCF3A200A98CD8 /* YISplashScreenAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YISplashScreenAnimation.m; path = YISplashScreen/YISplashScreenAnimation.m; sourceTree = "<group>"; };
+		851BE71C163FFE8700A90D25 /* HFLessonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HFLessonCell.h; path = ClassNote/HFLessonCell.h; sourceTree = "<group>"; };
+		851BE71D163FFE8700A90D25 /* HFLessonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HFLessonCell.m; path = ClassNote/HFLessonCell.m; sourceTree = "<group>"; };
+		851BE720163FFECD00A90D25 /* HFLessonCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HFLessonCell.xib; sourceTree = "<group>"; };
+		851BE722164005A800A90D25 /* people_.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = people_.png; sourceTree = "<group>"; };
+		851BE7241640214000A90D25 /* HFAddLessonView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HFAddLessonView.xib; sourceTree = "<group>"; };
 		852EC1BE159C4AA40018A30E /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		852EC1C2159C4AFA0018A30E /* ClassNote.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ClassNote.xcdatamodel; sourceTree = "<group>"; };
 		85611BB6163BD32F0099B7BE /* HFMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HFMainViewController.h; sourceTree = "<group>"; };
@@ -253,6 +262,7 @@
 			children = (
 				85EA8864163EDD2A0002E80A /* HFAddLessonViewController.h */,
 				85EA8865163EDD2A0002E80A /* HFAddLessonViewController.m */,
+				851BE7241640214000A90D25 /* HFAddLessonView.xib */,
 				85EA883D163ECD150002E80A /* HFLessonListViewController.h */,
 				85EA883E163ECD170002E80A /* HFLessonListViewController.m */,
 				85EA883F163ECD170002E80A /* HFLessonListViewController.xib */,
@@ -271,6 +281,9 @@
 				85F35684159994D3000E1B6F /* HFLessonItemEditViewController.h */,
 				85F35685159994D3000E1B6F /* HFLessonItemEditViewController.m */,
 				85F35686159994D3000E1B6F /* HFClassEditView.xib */,
+				851BE71C163FFE8700A90D25 /* HFLessonCell.h */,
+				851BE71D163FFE8700A90D25 /* HFLessonCell.m */,
+				851BE720163FFECD00A90D25 /* HFLessonCell.xib */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -439,6 +452,7 @@
 		85AB0AB315988CD60065020C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				851BE722164005A800A90D25 /* people_.png */,
 				851B4FEE15FCF25700A98CD8 /* Icon_72.png */,
 				851B4FEF15FCF25700A98CD8 /* Icon_Big.png */,
 				851B4FF015FCF25700A98CD8 /* Icon_Small.png */,
@@ -554,6 +568,9 @@
 				85611BBA163BD32F0099B7BE /* HFMainViewController.xib in Resources */,
 				859A4D65163D183100A78FCA /* umFeedback.bundle in Resources */,
 				85EA8841163ECD180002E80A /* HFLessonListViewController.xib in Resources */,
+				851BE721163FFECD00A90D25 /* HFLessonCell.xib in Resources */,
+				851BE723164005A800A90D25 /* people_.png in Resources */,
+				851BE7251640214000A90D25 /* HFAddLessonView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -606,6 +623,7 @@
 				85EA8833163E9F110002E80A /* HFLesson.m in Sources */,
 				85EA8840163ECD180002E80A /* HFLessonListViewController.m in Sources */,
 				85EA8866163EDD2A0002E80A /* HFAddLessonViewController.m in Sources */,
+				851BE71E163FFE8700A90D25 /* HFLessonCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
