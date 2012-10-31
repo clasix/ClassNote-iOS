@@ -13,11 +13,15 @@
 #define kStartComponent 1
 #define kEndComponent 2
 
+@protocol AddLessonDelegate;
+
 @interface HFAddLessonViewController : UITableViewController<UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource>{
     NSArray *WEEKDAYS;
     
     NSMutableArray			*lessonInfos;
     HFLesson                *lesson;
+    
+    id <AddLessonDelegate> delegate;
 }
 
 @property (nonatomic, retain) NSMutableArray *lessonInfos;
@@ -26,4 +30,15 @@
 - (IBAction)toolBarDone:(id)sender;
 @property (retain, nonatomic) IBOutlet UIToolbar *doneToolbar;
 @property (retain, nonatomic) IBOutlet UIPickerView *selectPicker;
+
+@property (nonatomic, assign) id <AddLessonDelegate> delegate;
+@end
+
+@protocol AddLessonDelegate
+- (void)addLessonViewController:(HFAddLessonViewController *)controller didFinishWithSave:(BOOL)save;
+
+- (HFLessonInfo*)addLessonInfo:(HFAddLessonViewController *)controller;
+
+- (void)removeLessonInfo:(HFAddLessonViewController *)controller atIndex:(int)index;
+
 @end

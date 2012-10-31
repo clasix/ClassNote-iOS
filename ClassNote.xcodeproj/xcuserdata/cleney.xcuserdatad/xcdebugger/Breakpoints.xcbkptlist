@@ -1850,11 +1850,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "ClassNote/HFAddLessonViewController.m"
-         timestampString = "373384484.424592"
+         timestampString = "373387127.396314"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "80"
-         endingLineNumber = "80"
+         startingLineNumber = "81"
+         endingLineNumber = "81"
          landmarkName = "-viewDidLoad"
          landmarkType = "5">
       </FileBreakpoint>
@@ -1863,11 +1863,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "ClassNote/HFAddLessonViewController.m"
-         timestampString = "373385779.480815"
+         timestampString = "373388011.582161"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "237"
-         endingLineNumber = "237"
+         startingLineNumber = "239"
+         endingLineNumber = "239"
          landmarkName = "-tableView:editingStyleForRowAtIndexPath:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -1876,11 +1876,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "ClassNote/HFAddLessonViewController.m"
-         timestampString = "373385779.480815"
+         timestampString = "373388011.582161"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "238"
-         endingLineNumber = "238"
+         startingLineNumber = "240"
+         endingLineNumber = "240"
          landmarkName = "-tableView:editingStyleForRowAtIndexPath:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -1889,11 +1889,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "ClassNote/HFAddLessonViewController.m"
-         timestampString = "373385779.480815"
+         timestampString = "373388306.889689"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "321"
-         endingLineNumber = "321"
+         startingLineNumber = "327"
+         endingLineNumber = "327"
          landmarkName = "-textFieldDidEndEditing:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -1902,11 +1902,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "ClassNote/HFAddLessonViewController.m"
-         timestampString = "373385779.480815"
+         timestampString = "373388306.889689"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "328"
-         endingLineNumber = "328"
+         startingLineNumber = "334"
+         endingLineNumber = "334"
          landmarkName = "-textFieldDidEndEditing:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -1915,11 +1915,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "ClassNote/HFAddLessonViewController.m"
-         timestampString = "373385779.480815"
+         timestampString = "373388306.889689"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "330"
-         endingLineNumber = "330"
+         startingLineNumber = "336"
+         endingLineNumber = "336"
          landmarkName = "-textFieldDidEndEditing:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -1928,11 +1928,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "ClassNote/HFAddLessonViewController.m"
-         timestampString = "373385779.480815"
+         timestampString = "373388011.582161"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "288"
-         endingLineNumber = "288"
+         startingLineNumber = "292"
+         endingLineNumber = "292"
          landmarkName = "-tableView:didSelectRowAtIndexPath:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -1941,11 +1941,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "ClassNote/HFAddLessonViewController.m"
-         timestampString = "373385779.480815"
+         timestampString = "373388011.582161"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "227"
-         endingLineNumber = "227"
+         startingLineNumber = "229"
+         endingLineNumber = "229"
          landmarkName = "-timeDescription:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -1954,11 +1954,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "ClassNote/HFAddLessonViewController.m"
-         timestampString = "373385779.480815"
+         timestampString = "373388011.582161"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "286"
-         endingLineNumber = "286"
+         startingLineNumber = "290"
+         endingLineNumber = "290"
          landmarkName = "-tableView:didSelectRowAtIndexPath:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -1967,11 +1967,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "ClassNote/HFAddLessonViewController.m"
-         timestampString = "373385779.480815"
+         timestampString = "373388306.889689"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "308"
-         endingLineNumber = "308"
+         startingLineNumber = "314"
+         endingLineNumber = "314"
          landmarkName = "-textFieldDidBeginEditing:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -1980,11 +1980,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "ClassNote/HFAddLessonViewController.m"
-         timestampString = "373385779.480815"
+         timestampString = "373388011.582161"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "209"
-         endingLineNumber = "209"
+         startingLineNumber = "211"
+         endingLineNumber = "211"
          landmarkName = "-tableView:cellForRowAtIndexPath:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -1993,20 +1993,7 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "ClassNote/HFAddLessonViewController.m"
-         timestampString = "373385779.480815"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "369"
-         endingLineNumber = "369"
-         landmarkName = "-pickerView:didSelectRow:inComponent:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "ClassNote/HFAddLessonViewController.m"
-         timestampString = "373385779.480815"
+         timestampString = "373388306.889689"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "383"
@@ -2019,63 +2006,102 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "ClassNote/HFAddLessonViewController.m"
-         timestampString = "373385779.480815"
+         timestampString = "373388306.889689"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "382"
-         endingLineNumber = "382"
+         startingLineNumber = "397"
+         endingLineNumber = "397"
          landmarkName = "-pickerView:didSelectRow:inComponent:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
-         shouldBeEnabled = "Yes"
+         shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "ClassNote/HFAddLessonViewController.m"
-         timestampString = "373385779.480815"
+         timestampString = "373388306.889689"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "240"
-         endingLineNumber = "240"
+         startingLineNumber = "396"
+         endingLineNumber = "396"
+         landmarkName = "-pickerView:didSelectRow:inComponent:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "ClassNote/HFAddLessonViewController.m"
+         timestampString = "373388011.582161"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "242"
+         endingLineNumber = "242"
          landmarkName = "-tableView:editingStyleForRowAtIndexPath:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
-         shouldBeEnabled = "Yes"
+         shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "ClassNote/HFAddLessonViewController.m"
-         timestampString = "373385779.480815"
+         timestampString = "373388011.582161"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "239"
-         endingLineNumber = "239"
+         startingLineNumber = "241"
+         endingLineNumber = "241"
          landmarkName = "-tableView:editingStyleForRowAtIndexPath:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
-         shouldBeEnabled = "Yes"
+         shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "ClassNote/HFAddLessonViewController.m"
-         timestampString = "373385779.480815"
+         timestampString = "373388011.582161"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "236"
-         endingLineNumber = "236"
+         startingLineNumber = "238"
+         endingLineNumber = "238"
          landmarkName = "-tableView:editingStyleForRowAtIndexPath:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
-         shouldBeEnabled = "Yes"
+         shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "ClassNote/HFAddLessonViewController.m"
-         timestampString = "373385552.604164"
+         timestampString = "373388011.582161"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "117"
-         endingLineNumber = "117"
+         startingLineNumber = "119"
+         endingLineNumber = "119"
+         landmarkName = "-numberOfSectionsInTableView:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "ClassNote/HFAddLessonViewController.m"
+         timestampString = "373388306.889689"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "352"
+         endingLineNumber = "352"
+         landmarkName = "-toolBarDone:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "ClassNote/HFAddLessonViewController.m"
+         timestampString = "373388017.503674"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "120"
+         endingLineNumber = "120"
          landmarkName = "-numberOfSectionsInTableView:"
          landmarkType = "5">
       </FileBreakpoint>

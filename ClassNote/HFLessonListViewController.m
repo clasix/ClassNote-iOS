@@ -203,9 +203,8 @@
 
 - (void)addNewLesson: (NSString*) lessonName {
     HFAddLessonViewController * vc = [[HFAddLessonViewController alloc] initWithNibName:@"HFAddLessonView" bundle:nil];
+    vc.delegate = self;
     //UITableViewStyleGrouped
-    
-    
     
 //    addViewController.delegate = self;
 	
@@ -243,9 +242,8 @@
 //	[addViewController release];
 }
 
-- (void)addViewController:(AddViewController *)controller didFinishWithSave:(BOOL)save {
-	
-	if (save) {
+- (void)addLessonViewController:(HFAddLessonViewController *)controller didFinishWithSave:(BOOL)save {
+    if (save) {
         NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
 		[dnc addObserver:self selector:@selector(addControllerContextDidSave:) name:NSManagedObjectContextDidSaveNotification object:addingManagedObjectContext];
         
@@ -264,6 +262,26 @@
     self.addingManagedObjectContext = nil;
     
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (HFLessonInfo*)addLessonInfo:(HFAddLessonViewController *)controller {
+    HFLessonInfo *hfLessonInfo = (HFLessonInfo *)[NSEntityDescription insertNewObjectForEntityForName:@"HFLessonInfo" inManagedObjectContext:addingManagedObjectContext];
+    
+    hfLessonInfo.lesson = controller.lesson;
+    hfLessonInfo.room = @"";
+    hfLessonInfo.dayinweek = [NSNumber numberWithInt:1];
+    hfLessonInfo.start = [NSNumber numberWithInt:1 + 1];
+    hfLessonInfo.duration = [NSNumber numberWithInt:1];
+    
+    [controller.lessonInfos addObject:hfLessonInfo];
+    
+    return hfLessonInfo;
+}
+
+- (void)removeLessonInfo:(HFAddLessonViewController *)controller atIndex:(int)index{
+    HFLessonInfo *hfLessonInfo = [controller.lessonInfos objectAtIndex:index];
+    [controller.lessonInfos removeObjectAtIndex:index];
+    [addingManagedObjectContext deleteObject:hfLessonInfo];
 }
 
 - (void)addControllerContextDidSave:(NSNotification*)saveNotification {

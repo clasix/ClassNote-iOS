@@ -17,6 +17,7 @@
 @implementation HFAddLessonViewController
 @synthesize doneToolbar;
 @synthesize selectPicker;
+@synthesize delegate;
 
 @synthesize lessonInfos, lesson;
 
@@ -102,6 +103,7 @@
 	
     [doneToolbar release];
     [selectPicker release];
+    [WEEKDAYS release];
 	[super dealloc];
 }
 
@@ -247,7 +249,9 @@
     
     // Only allow deletion, and only in the ingredients section
     if ((editingStyle == UITableViewCellEditingStyleDelete) && (indexPath.section > 0 && indexPath.section < 2 + [lessonInfos count])) {
-        // TODO delete lessonInfo
+        [self.delegate removeLessonInfo:self atIndex:(indexPath.section - 1)];
+        
+        [self.tableView reloadData];
     }
 }
 
@@ -284,7 +288,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == [lessonInfos count] + 1) {
-        [lessonInfos addObject:[[HFLessonInfo alloc] init]];
+        [self.delegate addLessonInfo:self];
         [self.tableView reloadData];
 //    } else if (indexPath.section > 0 && indexPath.section < ([lessonInfos count] + 1) && indexPath.row == 0){
     }
@@ -294,11 +298,13 @@
 #pragma mark Save and cancel operations
 
 - (IBAction)cancel:(id)sender {
-	[self.navigationController popViewControllerAnimated:YES];
+    [self.delegate addLessonViewController:self didFinishWithSave:NO];
+//	[self.navigationController popViewControllerAnimated:YES];
 }
 
 - (IBAction)save:(id)sender {
-	[self.navigationController popViewControllerAnimated:YES];
+    [self.delegate addLessonViewController:self didFinishWithSave:YES];
+//	[self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark -
@@ -337,6 +343,14 @@
 }
 
 - (IBAction)toolBarDone:(id)sender {
+    int start = [selectPicker selectedRowInComponent:kStartComponent];
+    int dayinweek = [selectPicker selectedRowInComponent:kDayInWeekComponent];
+    int end = [selectPicker selectedRowInComponent:kEndComponent];
+    int duration = end - start;
+    
+    NSLog(@"start: %d, dayinweek: %d, duration: %d", start, dayinweek, duration);
+//    [sender resignFirstResponder];
+    
 }
 
 #pragma mark -

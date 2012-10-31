@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "AddViewController.h"
+#import "HFAddLessonViewController.h"
 
 static const int TYPE_WATCH_NOTES = 0;
 static const int TYPE_SELECT_LESSONS = 1;
@@ -15,7 +15,7 @@ static const int TYPE_SELECT_LESSONS = 1;
 
 @protocol LessonListControllerDelegate;
 
-@interface HFLessonListViewController : UITableViewController<UISearchDisplayDelegate, UISearchBarDelegate, NSFetchedResultsControllerDelegate, AddViewControllerDelegate>
+@interface HFLessonListViewController : UITableViewController<UISearchDisplayDelegate, UISearchBarDelegate, NSFetchedResultsControllerDelegate, AddLessonDelegate>
 {
     NSMutableArray			*listContent;			// The master content.
 	NSMutableArray	*filteredListContent;	// The content filtered as a result of a search.
