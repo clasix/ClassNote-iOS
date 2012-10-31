@@ -16,7 +16,4 @@
 @property (retain, nonatomic) IBOutlet UIImageView *iconImage;
 @property (retain, nonatomic) IBOutlet UITextField *textField;
 
-@property(strong,nonatomic,readwrite) UIToolbar *inputAccessoryView;
-@property(strong,nonatomic,readwrite) UIPickerView *inputView;
-
 @end

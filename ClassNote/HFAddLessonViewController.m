@@ -38,6 +38,25 @@
     return self;
 }
 
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        // Custom initialization
+        // Custom initialization
+        WEEKDAYS = [[NSArray alloc] initWithObjects:
+                    NSLocalizedString(@"Sunday", @""),
+                    NSLocalizedString(@"Monday", @""),
+                    NSLocalizedString(@"Tuesday", @""),
+                    NSLocalizedString(@"Wednesday", @""),
+                    NSLocalizedString(@"Thursday", @""),
+                    NSLocalizedString(@"Friday", @""),
+                    NSLocalizedString(@"Saturday", @""),
+                    nil];
+    }
+    return self;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -62,8 +81,9 @@
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     selectPicker.delegate = self;
-    selectPicker.dataSource = self;  
-    selectPicker.frame = CGRectMake(0, 480, 320, 216);  
+    selectPicker.dataSource = self;
+    selectPicker.frame = CGRectMake(0, 480, 320, 216);
+    [self.tableView addSubview:selectPicker];
 }
 
 - (void)viewDidUnload
@@ -186,10 +206,8 @@
             cell.iconImage.image = [UIImage imageNamed:@"people_.png"];
             cell.textField.text = [self timeDescription:lessonInfo];
             cell.textField.delegate = self;
-            
-//            cell.textField.inputView = selectPicker;
-//            cell.textField.inputAccessoryView = doneToolbar;
-            cell.textField.enabled = NO;
+            cell.textField.inputView = selectPicker;
+            cell.textField.inputAccessoryView = doneToolbar;
             cell.textField.tag = 3 + indexPath.section * 2;
         } else {
             cell.iconImage.image = [UIImage imageNamed:@"people_.png"];
@@ -268,14 +286,8 @@
     if (indexPath.section == [lessonInfos count] + 1) {
         [lessonInfos addObject:[[HFLessonInfo alloc] init]];
         [self.tableView reloadData];
-    } else if (indexPath.section > 0 && indexPath.section < ([lessonInfos count] + 1) && indexPath.row == 0){
-        UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-        [(HFLessonCell*)cell setInputView:selectPicker];
-        [(HFLessonCell*)cell setInputAccessoryView:doneToolbar];
-        [cell becomeFirstResponder];
+//    } else if (indexPath.section > 0 && indexPath.section < ([lessonInfos count] + 1) && indexPath.row == 0){
     }
-    
-    
 }
 
 #pragma mark -
@@ -347,7 +359,7 @@
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
     if (component == kDayInWeekComponent) {
         return [WEEKDAYS objectAtIndex:component];
-    } else {
+    } else if (component == kStartComponent){
         return [NSString stringWithFormat:@"第%d节", row + 1];
     }
     
@@ -371,6 +383,7 @@
         
         if (start > row) {
             [selectPicker selectRow:start inComponent:kEndComponent animated:YES];
+//            [selectPicker reloadComponent:kEndComponent];
         }
     }
 }

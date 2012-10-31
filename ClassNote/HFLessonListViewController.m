@@ -202,7 +202,10 @@
 }
 
 - (void)addNewLesson: (NSString*) lessonName {
-    HFAddLessonViewController * vc = [[HFAddLessonViewController alloc] initWithStyle:UITableViewStyleGrouped];
+    HFAddLessonViewController * vc = [[HFAddLessonViewController alloc] initWithNibName:@"HFAddLessonView" bundle:nil];
+    //UITableViewStyleGrouped
+    
+    
     
 //    addViewController.delegate = self;
 	
@@ -230,7 +233,7 @@
     [vc.lessonInfos addObject:hfLessonInfo];
     
     [self.navigationController pushViewController:vc animated:YES];
-    [vc release];
+//    [vc release];
     
     // TODO: delegate.deleteLessonInfo  realize.
     // TODO: delegate.addLessonInfo

@@ -11,7 +11,7 @@
 
 #define kDayInWeekComponent 0
 #define kStartComponent 1
-#define kEndComponent 1
+#define kEndComponent 2
 
 @interface HFAddLessonViewController : UITableViewController<UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource>{
     NSArray *WEEKDAYS;
