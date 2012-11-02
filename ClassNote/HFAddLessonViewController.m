@@ -303,6 +303,10 @@
 }
 
 - (IBAction)save:(id)sender {
+    if (activeField) {
+//        [self textFieldDidEndEditing:activeField];
+        [activeField resignFirstResponder];
+    }
     [self.delegate addLessonViewController:self didFinishWithSave:YES];
 //	[self.navigationController popViewControllerAnimated:YES];
 }
@@ -312,6 +316,7 @@
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
     [textField becomeFirstResponder];
+    activeField = textField;
 }
 
 - (BOOL)textFieldShouldEndEditing:(UITextField *)textField {
@@ -324,7 +329,7 @@
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField{
-    NSLog(@"%@%d", textField.text, textField.tag);
+//    NSLog(@"%@%d", textField.text, textField.tag);
     if (textField.tag == 1) {
         self.lesson.name = textField.text;
     } else if (textField.tag == 2) {
@@ -337,20 +342,29 @@
             [[lessonInfos objectAtIndex:(section-1)] setRoom:textField.text];
         } else {
             int section = (textField.tag - 3) / 2;
-            //[[lessonInfos objectAtIndex:section] setRoom:textField.text];
+            
+            int start = [selectPicker selectedRowInComponent:kStartComponent];
+            int dayinweek = [selectPicker selectedRowInComponent:kDayInWeekComponent];
+            int end = [selectPicker selectedRowInComponent:kEndComponent];
+            int duration = end - start + 1;
+            
+            HFLessonInfo *hfLessonInfo = [lessonInfos objectAtIndex:(section-1)];
+            hfLessonInfo.dayinweek = [NSNumber numberWithInt:dayinweek];
+            hfLessonInfo.start = [NSNumber numberWithInt:start+1];
+            hfLessonInfo.duration = [NSNumber numberWithInt:duration];
+            NSLog(@"start: %d, dayinweek: %d, duration: %d", start, dayinweek, duration);
+//            [self.tableView reloadData];
+            textField.text = [self timeDescription:hfLessonInfo];
         }
     }
+    
+    activeField = nil;
 }
 
 - (IBAction)toolBarDone:(id)sender {
-    int start = [selectPicker selectedRowInComponent:kStartComponent];
-    int dayinweek = [selectPicker selectedRowInComponent:kDayInWeekComponent];
-    int end = [selectPicker selectedRowInComponent:kEndComponent];
-    int duration = end - start;
     
-    NSLog(@"start: %d, dayinweek: %d, duration: %d", start, dayinweek, duration);
 //    [sender resignFirstResponder];
-    
+    [activeField resignFirstResponder];
 }
 
 #pragma mark -
@@ -372,7 +386,7 @@
 #pragma mark Picker Delegate Methods
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
     if (component == kDayInWeekComponent) {
-        return [WEEKDAYS objectAtIndex:component];
+        return [WEEKDAYS objectAtIndex:row];
     } else if (component == kStartComponent){
         return [NSString stringWithFormat:@"第%d节", row + 1];
     }
@@ -404,8 +418,11 @@
 
 - (CGFloat)pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component {
     if (component == kDayInWeekComponent) {
-        return 50;
+        return 80;
+    } else if (component == kStartComponent) {
+        return 80;
+    } else {
+        return 100;
     }
-    return 100;
 }
 @end

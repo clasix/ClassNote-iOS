@@ -12,7 +12,19 @@
 #import "MobClick.h"
 
 @implementation SignUpViewController
+@synthesize scrollView;
 @synthesize user,password,ensurePassword, delegate;
+
+- (void)viewDidLoad 
+{
+    [super viewDidLoad];
+    password.secureTextEntry = YES;
+    ensurePassword.secureTextEntry = YES;
+    user.delegate = self;
+    password.delegate = self;
+    ensurePassword.delegate = self;
+    [self registerForKeyboardNotifications];
+}
 
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -70,6 +82,10 @@
 	}
 	
 }
+
+- (IBAction)cancelSignUp:(id)sender {
+    [self.view removeFromSuperview];
+}
 -(IBAction) ensurePasswordComplete:(id) sender
 {
 	if(![ensurePassword.text isEqualToString:password.text])
@@ -82,6 +98,74 @@
 		
 	}
 }
+
+// Call this method somewhere in your view controller setup code.
+- (void)registerForKeyboardNotifications
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWasShown:)
+                                                 name:UIKeyboardDidShowNotification object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWasHidden:)
+                                                 name:UIKeyboardDidHideNotification object:nil];
+}
+
+// Called when the UIKeyboardDidShowNotification is sent.
+- (void)keyboardWasShown:(NSNotification*)aNotification
+{
+    CGRect aRect = self.view.frame;
+    
+    NSDictionary* info = [aNotification userInfo];
+    CGRect kbRect = [[info objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    kbRect = [self.view convertRect:kbRect fromView:nil];
+    
+    CGSize kbSize = kbRect.size;
+    
+    UIEdgeInsets contentInsets = UIEdgeInsetsMake(0.0, 0.0, kbSize.height, 0.0);
+    scrollView.contentInset = contentInsets;
+    scrollView.scrollIndicatorInsets = contentInsets;
+    
+    // If active text field is hidden by keyboard, scroll it so it's visible
+    // Your application might not need or want this behavior.
+    //CGRect aRect = self.view.frame;
+    aRect.size.height -= kbSize.height;
+    if (!CGRectContainsPoint(aRect, activeField.frame.origin) ) {
+        CGPoint scrollPoint = CGPointMake(0.0, activeField.frame.origin.y + activeField.frame.size.height - kbSize.height + 60); // 52 is the status bar'height plus the topbar's height
+        // consider that when the keyboard is chinese keyboard, the height is higher, and will hidden the textfield, then the 60 plus is not accurate!
+        [scrollView setContentOffset:scrollPoint animated:YES];
+    }     
+}
+
+
+// Called when the UIKeyboardDidHideNotification is sent
+- (void)keyboardWasHidden:(NSNotification*)aNotification
+{
+    UIEdgeInsets contentInsets = UIEdgeInsetsZero;
+    scrollView.contentInset = contentInsets;
+    scrollView.scrollIndicatorInsets = contentInsets;    
+}
+
+- (BOOL)textFieldShouldEndEditing:(UITextField *)textField {
+    return YES;
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    return NO;
+}
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    [textField becomeFirstResponder];
+    activeField = textField;
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+    activeField = nil;
+}
+
 /*
 // Implement loadView to create a view hierarchy programmatically, without using a nib.
 - (void)loadView {
@@ -111,6 +195,9 @@
 }
 
 - (void)viewDidUnload {
+    [scrollView release];
+    scrollView = nil;
+    [self setScrollView:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -118,6 +205,8 @@
 
 
 - (void)dealloc {
+    [scrollView release];
+    [scrollView release];
     [super dealloc];
 }
 

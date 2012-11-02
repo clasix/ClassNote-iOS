@@ -22,6 +22,7 @@
     HFLesson                *lesson;
     
     id <AddLessonDelegate> delegate;
+    UITextField *activeField;
 }
 
 @property (nonatomic, retain) NSMutableArray *lessonInfos;

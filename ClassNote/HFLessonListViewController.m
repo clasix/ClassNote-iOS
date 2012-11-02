@@ -55,7 +55,7 @@
 //        self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(save:)] autorelease];
     }
     
-    self.listContent = fetchedResultsController.fetchedObjects;
+    self.listContent = [NSMutableArray arrayWithArray:fetchedResultsController.fetchedObjects];
 	
 	// create a filtered list that will contain products for the search results table.
 	self.filteredListContent = [NSMutableArray arrayWithCapacity:[self.listContent count]];
