@@ -88,6 +88,10 @@
         }
     }
     
+//    NSString *auth_token = [HFUtils getAuthToken];
+//    NSArray *provinces = [[[HFRemoteUtils instance] server] dept_provinces:auth_token];
+//    NSLog(@"provinces[0] is %@", [provinces objectAtIndex:0]);
+    
     return self;
 }
 

@@ -20,6 +20,9 @@
 - (BOOL) sign_out: (NSString *) auth_token;  // throws TException
 - (NSArray *) get_lessontables: (NSString *) auth_token;  // throws TException
 - (BOOL) create_lessontable: (NSString *) auth_token;  // throws TException
+- (NSArray *) dept_provinces: (NSString *) auth_token;  // throws TException
+- (NSArray *) dept_schools: (NSString *) auth_token : (NSString *) province;  // throws TException
+- (NSArray *) dept_departments: (NSString *) auth_token : (NSString *) province : (NSString *) school;  // throws TException
 - (User *) user_get: (NSString *) auth_token : (int64_t) user_id;  // throws TException
 - (NSArray *) lessontable_get: (NSString *) auth_token : (int64_t) user_id;  // throws TException
 - (BOOL) lessontable_set: (NSString *) auth_token : (int64_t) user_id : (NSArray *) lesson_tables;  // throws TException

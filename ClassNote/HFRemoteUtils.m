@@ -28,7 +28,7 @@
     self = [super init];
     if (self) {
         // Talk to a server via socket, using a binary protocol
-        TSocketClient *transport = [[TSocketClient alloc] initWithHostname:@"localhost" port:8080];
+        TSocketClient *transport = [[TSocketClient alloc] initWithHostname:@"clasix.tk" port:8080];
         TBinaryProtocol *protocol = [[TBinaryProtocol alloc] initWithTransport:transport strictRead:YES strictWrite:YES];
         server = [[ClassNoteClient alloc] initWithProtocol:protocol];
     }
