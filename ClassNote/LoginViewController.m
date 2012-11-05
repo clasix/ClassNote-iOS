@@ -11,6 +11,7 @@
 #import "NGViewController.h"
 #import "HFRemoteUtils.h"
 #import "MobClick.h"
+#import "HFUtils.h"
 
 @implementation LoginViewController
 @synthesize scrollView;
@@ -62,8 +63,10 @@
         AuthResponse *auth_res = [[[HFRemoteUtils instance] server] login_by_email:user.text :password.text];
         
         if (auth_res.auth_token) {
-            [[NSUserDefaults standardUserDefaults] setObject:auth_res.auth_token forKey:@"auth_token"];
-            [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"isLogged"];
+            [HFUtils setAuthToken:auth_res.auth_token];
+            [HFUtils setLogged:YES];
+            NSDictionary *dictionary = [NSDictionary dictionaryWithObject:@"email" forKey:user.text];
+            [[NSUserDefaults standardUserDefaults] setObject:dictionary forKey:@"userinfo"];
                         
             [self.navigationController presentModalViewController:[self.delegate goingToMain] animated:YES];
         }

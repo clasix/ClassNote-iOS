@@ -15,7 +15,9 @@
 #import "LoginViewController.h"
 #import "HFMainViewController.h"
 #import "HFExceptionHandler.h"
+#import "HFSettingsViewController.h"
 #import "MobClick.h"
+#import "HFUtils.h"
 
 #define SHOWS_MIGRATION_ALERT   0   // 0 or 1
 #define ANIMATION_TYPE          1   // 0-2
@@ -90,7 +92,7 @@
     if (![[NSUserDefaults standardUserDefaults] boolForKey:@"everLaunched"]) { 
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"everLaunched"]; 
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"firstLaunch"];
-        [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"isLogged"];
+        [HFUtils setLogged:NO];
     }
     
     if ([[NSUserDefaults standardUserDefaults] boolForKey:@"firstLaunch"]) {
@@ -99,20 +101,7 @@
         
         window.rootViewController = appStartController;
     } else {
-        // FIXME: PassWordViewController 并没有managedContext
-        UIViewController *vc;
-        if ([[NSUserDefaults standardUserDefaults] boolForKey:@"isLogged"]) {
-            vc = [[HFMainViewController alloc] init];
-            ((HFMainViewController *) vc).appDelegate = self;
-        } else {
-            vc = [[LoginViewController alloc] init];
-            
-            ((LoginViewController *)vc).delegate = self;
-        }
-        
-        navigationController = [[UINavigationController alloc] initWithRootViewController:vc];
-        
-        [vc release];
+        navigationController = (UINavigationController*)[self goingToMain];
         
         [window addSubview:navigationController.view];
     }
@@ -195,12 +184,14 @@
 - (UIViewController *)goingToMain {
     // FIXME: PassWordViewController 并没有managedContext
     UIViewController *vc;
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"isLogged"]) {
-        vc = [[HFMainViewController alloc] init];
-        ((HFMainViewController *) vc).appDelegate = self;
-    } else {
+    if (![HFUtils isLogged]) {
         vc = [[LoginViewController alloc] init];
         ((LoginViewController *)vc).delegate = self;
+    } else if (![HFUtils hasUserSettings]){
+        vc = [[HFSettingsViewController alloc] initWithStyle:UITableViewStyleGrouped];
+    } else {
+        vc = [[HFMainViewController alloc] init];
+        ((HFMainViewController *) vc).appDelegate = self;
     }
     
     navigationController = [[UINavigationController alloc] initWithRootViewController:vc];

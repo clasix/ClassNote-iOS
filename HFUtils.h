@@ -12,8 +12,18 @@
 
 + (NSString *)getAuthToken;
 
++ (void) setAuthToken: (NSString *) auth_token;
+
 + (NSInteger) getLessonTableID;
 
++ (BOOL) isLogged;
+
++ (BOOL) hasUserSettings;
+
++ (void) setLogged: (BOOL) logged;
+
 + (void) setLessonTableID: (NSInteger) table_id;
+
++ (NSDictionary *) userDictionary;
 
 @end
