@@ -15,6 +15,8 @@
 
 @implementation HFSettingsViewController
 
+@synthesize delegate;
+
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -157,16 +159,30 @@
         if (indexPath.row == 0) {
             HFSearchListViewController * vc = [[HFSearchListViewController alloc] initWithNibName:@"HFSearchListViewController" bundle:nil];
             vc.searchStep = stepProvince;
+            vc.delegate = self;
             
-            [self.navigationController pushViewController:vc animated:YES];
+            UINavigationController * nav = [[UINavigationController alloc] initWithRootViewController:vc];
+            [self.navigationController presentModalViewController:nav animated:YES];
+            [nav release];
+//            [self.navigationController pushViewController:vc animated:YES];
         } else if (indexPath.row == 1) {
+            HFSearchListViewController * vc = [[HFSearchListViewController alloc] initWithNibName:@"HFSearchListViewController" bundle:nil];
+            vc.searchStep = stepDept;
+            vc.delegate = self;
             
-            
-//            HFSearchListViewController * vc = [[HFSearchListViewController alloc] initWithNibName:@"HFSearchListViewController" bundle:nil];
-//            vc.searchStep = stepProvince;
+            UINavigationController * nav = [[UINavigationController alloc] initWithRootViewController:vc];
+            [self.navigationController presentModalViewController:nav animated:YES];
+            [nav release];
+//            [self.navigationController pushViewController:vc animated:YES];
         } else if (indexPath.row == 2) {
-//            HFSearchListViewController * vc = [[HFSearchListViewController alloc] initWithNibName:@"HFSearchListViewController" bundle:nil];
-//            vc.searchStep = stepProvince;
+            HFSearchListViewController * vc = [[HFSearchListViewController alloc] initWithNibName:@"HFSearchListViewController" bundle:nil];
+            vc.searchStep = stepYear;
+            vc.delegate = self;
+            
+            UINavigationController * nav = [[UINavigationController alloc] initWithRootViewController:vc];
+            [self.navigationController presentModalViewController:nav animated:YES];
+            [nav release];
+//            [self.navigationController pushViewController:vc animated:YES];
         }
     } else if (indexPath.section == 1) {
         if (indexPath.row == 0) {
@@ -175,6 +191,17 @@
             
         }
     }
+}
+
+- (IBAction)save:(id)sender {
+    // TODO: To synchronize the settings to server.
+    
+    [self presentModalViewController:[delegate goingToMain] animated:YES];
+}
+
+
+- (void)finishSearch {
+    [self.tableView reloadData];
 }
 
 @end

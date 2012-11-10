@@ -13,6 +13,7 @@
 #define stepDept 2
 #define stepYear 3
 
+@protocol SearchListViewControllerDelegate;
 @interface HFSearchListViewController : UITableViewController<UISearchDisplayDelegate, UISearchBarDelegate>{
     NSMutableArray			*listContent;			// The master content.
 	NSMutableArray	*filteredListContent;	// The content filtered as a result of a search.
@@ -34,4 +35,10 @@
 
 @property (nonatomic, assign) int searchStep;
 
+@property (nonatomic, assign) id <SearchListViewControllerDelegate> delegate;
+
+@end
+
+@protocol SearchListViewControllerDelegate
+- (void)finishSearch;
 @end

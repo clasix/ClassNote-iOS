@@ -31,7 +31,9 @@
 }
 
 + (BOOL) hasUserSettings {
-    return !![[NSUserDefaults standardUserDefaults] objectForKey:@"deptCode"];
+    NSDictionary *dict = [HFUtils userDictionary];
+    
+    return !![dict objectForKey:@"dept"];
 }
 
 + (void) setLogged: (BOOL) logged {
@@ -39,7 +41,20 @@
 }
 
 + (NSDictionary *) userDictionary {
-    return [[NSUserDefaults standardUserDefaults] dictionaryForKey:@"userinfo"];
+    NSDictionary * dict = [[NSUserDefaults standardUserDefaults] dictionaryForKey:@"userinfo"];
+    if (dict == nil) {
+        dict = [NSMutableDictionary dictionaryWithCapacity:3];
+        [[NSUserDefaults standardUserDefaults] setObject:dict forKey:@"userinfo"];
+    }
+    return dict;
+}
+
++ (void) setUserValue: (NSString*)obj forkey:(NSString*)key {
+    NSMutableDictionary * dict = [NSMutableDictionary dictionaryWithDictionary:[HFUtils userDictionary]];
+    [dict setObject:obj forKey:key];
+    [[NSUserDefaults standardUserDefaults] setObject:dict forKey:@"userinfo"];
+    //
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 @end

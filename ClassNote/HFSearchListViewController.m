@@ -18,7 +18,7 @@
 
 @synthesize listContent, filteredListContent, savedSearchTerm, savedScopeButtonIndex, searchWasActive;
 
-@synthesize searchStep;
+@synthesize searchStep, delegate;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -46,6 +46,7 @@
         self.listContent = [[[HFRemoteUtils instance] server] dept_provinces:auth_token];
     } else if (searchStep == stepSchool) {
         NSString * province = [[HFUtils userDictionary] objectForKey:@"province"];
+//        [[[HFRemoteUtils instance] server] dept_schools:auth_token 
         self.listContent = [[[HFRemoteUtils instance] server] dept_schools:auth_token :province];
     } else if (searchStep == stepDept) {
         NSString * province = [[HFUtils userDictionary] objectForKey:@"province"];
@@ -206,22 +207,32 @@
         str = [self.listContent objectAtIndex:indexPath.row];
     }
     if (searchStep == stepProvince) {
-        [[HFUtils userDictionary] setValue:str forKey:@"province"];
+        [HFUtils setUserValue:str forkey:@"province"];
         HFSearchListViewController * vc = [[HFSearchListViewController alloc] initWithNibName:@"HFSearchListViewController" bundle:nil];
         vc.searchStep = stepSchool;
+        
+        vc.delegate = self.delegate;
         [self.navigationController pushViewController:vc animated:YES];
     } else if (searchStep == stepSchool) {
-        [[HFUtils userDictionary] setValue:str forKey:@"school"];
+        [HFUtils setUserValue:str forkey:@"school"];
         HFSearchListViewController * vc = [[HFSearchListViewController alloc] initWithNibName:@"HFSearchListViewController" bundle:nil];
         vc.searchStep = stepDept;
+        
+        vc.delegate = self.delegate;
         [self.navigationController pushViewController:vc animated:YES];
     } else if (searchStep == stepDept) {
-        [[HFUtils userDictionary] setValue:str forKey:@"dept"];
+        [HFUtils setUserValue:str forkey:@"dept"];
         HFSearchListViewController * vc = [[HFSearchListViewController alloc] initWithNibName:@"HFSearchListViewController" bundle:nil];
         vc.searchStep = stepYear;
+        
+        vc.delegate = self.delegate;
         [self.navigationController pushViewController:vc animated:YES];
     } else if (searchStep == stepYear) {
-        [[HFUtils userDictionary] setValue:str forKey:@"year"];
+        [HFUtils setUserValue:str forkey:@"year"];
+        
+        [self.delegate finishSearch];
+//        [self.navigationController popToViewController:self animated:YES];
+        [self dismissModalViewControllerAnimated:YES];
     }
 }
 

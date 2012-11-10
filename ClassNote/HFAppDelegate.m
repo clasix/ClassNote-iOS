@@ -189,6 +189,7 @@
         ((LoginViewController *)vc).delegate = self;
     } else if (![HFUtils hasUserSettings]){
         vc = [[HFSettingsViewController alloc] initWithStyle:UITableViewStyleGrouped];
+        ((HFSettingsViewController*)vc).delegate = self;
     } else {
         vc = [[HFMainViewController alloc] init];
         ((HFMainViewController *) vc).appDelegate = self;

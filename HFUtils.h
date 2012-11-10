@@ -24,6 +24,8 @@
 
 + (void) setLessonTableID: (NSInteger) table_id;
 
-+ (NSDictionary *) userDictionary;
++ (NSDictionary*) userDictionary;
+
++ (void) setUserValue: (id)obj forkey:(NSString*)key;
 
 @end

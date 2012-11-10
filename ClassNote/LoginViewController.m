@@ -65,9 +65,8 @@
         if (auth_res.auth_token) {
             [HFUtils setAuthToken:auth_res.auth_token];
             [HFUtils setLogged:YES];
-            NSDictionary *dictionary = [NSDictionary dictionaryWithObject:@"email" forKey:user.text];
+            NSDictionary *dictionary = [NSMutableDictionary dictionaryWithObject:@"email" forKey:user.text];
             [[NSUserDefaults standardUserDefaults] setObject:dictionary forKey:@"userinfo"];
-                        
             [self.navigationController presentModalViewController:[self.delegate goingToMain] animated:YES];
         }
 		else
